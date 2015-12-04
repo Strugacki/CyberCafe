@@ -10,6 +10,13 @@
   <name>cyberCafe</name>
   <url>http://maven.apache.org</url>
 
+  <repositories>
+    <repository>
+      <id>codelds</id>
+      <url>https://code.lds.org/nexus/content/groups/main-repo</url>
+    </repository>
+  </repositories>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <springframework.version>4.0.6.RELEASE</springframework.version>
@@ -63,6 +70,14 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+        
+        <!--  Oracle JDBC -->       
+		<dependency>
+    		<groupId>com.oracle</groupId>
+   		    <artifactId>ojdbc6</artifactId>
+   		    <version>11.2.0.3</version>
+		</dependency>
+        
  
   </dependencies>
 </project>
