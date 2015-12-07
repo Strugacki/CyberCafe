@@ -1,4 +1,4 @@
-package dao;
+package com.ug.cyberCafe.dao;
 
 import java.util.List;
 import com.ug.cyberCafe.domain.User;
