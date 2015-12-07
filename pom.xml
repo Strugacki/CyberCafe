@@ -64,6 +64,19 @@
             <version>${springframework.version}</version>
         </dependency>
         
+        <dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+	  	<dependency>
+	  		<groupId>javax.servlet</groupId>
+	  		<artifactId>servlet-api</artifactId>
+	  		<version>3.0-alpha-1</version>
+	  		<scope>provided</scope>
+	  	</dependency>
+        
           <!-- Hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
