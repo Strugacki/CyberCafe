@@ -94,12 +94,19 @@
  
   </dependencies>
     <build>
-    	<finalName>skateshop</finalName>
+    	<finalName>cyberCafe</finalName>
 		<plugins>
 			<plugin>
   				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+            </configuration>
+        </plugin>
 		</plugins>
   </build>
 </project>
