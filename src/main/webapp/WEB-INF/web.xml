@@ -3,10 +3,10 @@
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <servlet>
   	<servlet-name>DefaultServlet</servlet-name>
-  	<servlet-class>org.springframework.web.srvlet.DispatcherServlet</servlet-class>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>DefaultServlet</servlet-name>
-  	<url-pattern>/</url-pattern>
+  	<url-pattern>/home</url-pattern>
   </servlet-mapping>
 </web-app>
