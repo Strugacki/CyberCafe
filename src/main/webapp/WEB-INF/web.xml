@@ -2,7 +2,7 @@
 		 xmlns="http://java.sun.com/xml/ns/javaee" 	
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-
+	<!--  FRONTEND servlet conf -->
 	<servlet>
 		<servlet-name>DefaultServlet</servlet-name>
 	  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
