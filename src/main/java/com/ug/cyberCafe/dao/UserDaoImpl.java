@@ -11,20 +11,16 @@ import com.ug.cyberCafe.domain.User;
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
-	public User getById(int id) {
-		return getByKey(id);
-	}
-
 	public void addUser(User user) {
 		persist(user);
 	}
 
-	public void deleteEmployeeById(int id) {
+	public void deleteUserById(int id) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public List<User> getAllEmployees() {
+	public List<User> getAllUsers() {
 		Criteria criteria = createEntityCriteria();
         return (List<User>) criteria.list();
 	}

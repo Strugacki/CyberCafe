@@ -4,14 +4,12 @@ import java.util.List;
 import com.ug.cyberCafe.domain.User;
 
 public interface UserDao {
-	
-    User getById(int id);
     
     void addUser(User user);
      
-    void deleteEmployeeById(int id);
+    void deleteUserById(int id);
      
-    List<User> getAllEmployees();
+    List<User> getAllUsers();
  
     User getUserById(int id);
 
