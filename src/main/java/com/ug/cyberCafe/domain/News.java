@@ -1,5 +1,7 @@
 package com.ug.cyberCafe.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,13 +21,16 @@ public class News {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_news;
+	private long idNews;
 	
 	@Column(name = "BODY", nullable = true)
 	private String body;
 	
 	@Column(name = "UPLOADDATE", nullable = false)
 	private String uploadDate;
+	
+	@OneToMany
+	private Set<User> users;
 	
 	public News(){
 		
@@ -36,12 +42,12 @@ public class News {
 		this.setUploadDate(uploadDate);
 	}
 	
-	public long getId_news() {
-		return id_news;
+	public long getIdNews() {
+		return idNews;
 	}
 
-	public void setId_news(long id_news) {
-		this.id_news = id_news;
+	public void setIdNews(long idNews) {
+		this.idNews = idNews;
 	}
 
 	public String getBody() {
@@ -59,4 +65,14 @@ public class News {
 	public void setUploadDate(String uploadDate) {
 		this.uploadDate = uploadDate;
 	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+	
+	
 }

@@ -1,5 +1,6 @@
 package com.ug.cyberCafe.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +17,13 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idAddress;
 	
+	@Column(name = "CITY", nullable = true)
 	private String city;
+	
+	@Column(name = "POSTALCODE", nullable = true)
 	private String postalCode;
+	
+	@Column(name = "STREET", nullable = true)
 	private String street;
 	
 	public long getIdAddress() {

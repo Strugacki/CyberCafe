@@ -1,6 +1,7 @@
 package com.ug.cyberCafe.domain;
 
 import java.sql.Blob;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -48,6 +50,12 @@ public class User {
 	
 	@Column(name = "AVATAR", nullable = true)
 	private Blob avatar=null;
+	
+	@OneToMany
+	private Set<Address> addresses;
+	
+	@OneToMany
+	private Set<Role> roles;
 
 	public long getIdUser() {
 		return idUser;
@@ -128,4 +136,21 @@ public class User {
 	public void setAvatar(Blob avatar) {
 		this.avatar = avatar;
 	}
+
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}	
+	
 }
