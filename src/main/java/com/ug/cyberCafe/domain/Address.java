@@ -1,9 +1,16 @@
 package com.ug.cyberCafe.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+@Entity
+@NamedQueries({ 
+	@NamedQuery(name = "get.All.Addresses", query = "Select a from Address a"),
+})
 public class Address {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
