@@ -8,7 +8,7 @@ public interface TerminalDao {
 
     void addTerminal(Terminal terminal);
     
-    void deleteTerminalById(int id);
+    void deleteTerminal(Terminal terminal);
      
     List<Terminal> getAllTerminals();
  
