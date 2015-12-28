@@ -8,7 +8,7 @@ public interface AddressDao {
 
     void addAddress(Address address);
     
-    void deleteAddressById(int id);
+    void deleteAddress(Address address);
      
     List<Address> getAllAddresses();
  
