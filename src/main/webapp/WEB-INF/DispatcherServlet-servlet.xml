@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	 <bean name="/home.jsp" 
+	 <bean name="/" 
 		class="com.ug.cyberCafe.controller.homeController" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
