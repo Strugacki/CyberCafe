@@ -13,7 +13,7 @@ public class Terminal {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_terminal;
+	private long idTerminal;
 	
 	@Column(name = "TYPE", nullable = false)
 	private String type;
