@@ -10,5 +10,21 @@ public class Role {
 	private long idRole;
 	
 	private String role;
+
+	public long getIdRole() {
+		return idRole;
+	}
+
+	public void setIdRole(long idRole) {
+		this.idRole = idRole;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 	
 }

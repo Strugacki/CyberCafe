@@ -20,4 +20,28 @@ public class Terminal {
 	
 	@Column(name = "AVAILABLE", nullable = false)
 	private Boolean available;
+
+	public long getIdTerminal() {
+		return idTerminal;
+	}
+
+	public void setIdTerminal(long idTerminal) {
+		this.idTerminal = idTerminal;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Boolean getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Boolean available) {
+		this.available = available;
+	}
 }
