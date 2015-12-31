@@ -22,7 +22,7 @@ public class NewsDaoImpl extends AbstractDao<Integer, News> implements NewsDao {
 
 	@Override
 	public void deleteNews(News news) {
-		news = (News) sessionFactory.getCurrentSession().get(News.class, news.getId_news());
+		news = (News) sessionFactory.getCurrentSession().get(News.class, news.getIdNews());
 		sessionFactory.getCurrentSession().delete(news);
 		
 	}
