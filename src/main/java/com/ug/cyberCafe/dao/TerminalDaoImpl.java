@@ -32,8 +32,16 @@ public class TerminalDaoImpl extends AbstractDao<Integer, Terminal> implements T
 	}
 
 	@Override
-	public Terminal getTerminalById(int id) {
+	public Terminal getTerminalById(long id) {
 		return (Terminal) sessionFactory.getCurrentSession().get(Terminal.class, id);
+	}
+
+	@Override
+	public void updateTerminal(Terminal terminal) {
+		Terminal terminalToUpdate = getTerminalById(terminal.getIdTerminal());
+		terminalToUpdate.setAvailable(terminal.getAvailable());
+		terminalToUpdate.setType(terminal.getType());
+		sessionFactory.getCurrentSession().update(terminalToUpdate);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.ug.cyberCafe.dao;
 
 import java.util.List;
+
 import com.ug.cyberCafe.domain.User;
 
 public interface UserDao {
@@ -11,6 +12,8 @@ public interface UserDao {
      
     List<User> getAllUsers();
  
-    User getUserById(int id);
+    User getUserById(long id);
+    
+    void updateUser(User user);
 
 }

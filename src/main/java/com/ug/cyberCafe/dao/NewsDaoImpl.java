@@ -33,8 +33,17 @@ public class NewsDaoImpl extends AbstractDao<Integer, News> implements NewsDao {
 	}
 
 	@Override
-	public News getNewsById(int id) {
+	public News getNewsById(long id) {
 		return (News) sessionFactory.getCurrentSession().get(News.class, id);
+	}
+
+	@Override
+	public void updateNews(News news) {
+		News newsToUpdate = getNewsById(news.getIdNews());
+		newsToUpdate.setBody(news.getBody());
+		newsToUpdate.setUploadDate(news.getUploadDate());
+		newsToUpdate.setUsers(news.getUsers());
+		sessionFactory.getCurrentSession().update(newsToUpdate);
 	}
 
 }

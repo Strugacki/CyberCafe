@@ -12,6 +12,7 @@ public interface NewsDao {
      
     List<News> getAllNews();
  
-    News getNewsById(int id);
-
+    News getNewsById(long id);
+    
+    void updateNews(News news);
 }

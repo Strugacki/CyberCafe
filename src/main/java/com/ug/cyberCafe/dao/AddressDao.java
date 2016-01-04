@@ -12,6 +12,8 @@ public interface AddressDao {
      
     List<Address> getAllAddresses();
  
-    Address getAddressById(int id);
+    Address getAddressById(long id);
+    
+    void updateAddress(Address address);
     
 }

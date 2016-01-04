@@ -33,8 +33,15 @@ public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao {
 	}
 
 	@Override
-	public Role getRoleById(int id) {
+	public Role getRoleById(long id) {
 		return (Role) sessionFactory.getCurrentSession().get(Role.class, id);
+	}
+
+	@Override
+	public void updateRole(Role role) {
+		Role roleToUpdate = getRoleById(role.getIdRole());
+		roleToUpdate.setRole(role.getRole());
+		sessionFactory.getCurrentSession().update(roleToUpdate);
 	}
 
 }

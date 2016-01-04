@@ -12,6 +12,8 @@ public interface TerminalDao {
      
     List<Terminal> getAllTerminals();
  
-    Terminal getTerminalById(int id);
+    Terminal getTerminalById(long id);
+    
+    void updateTerminal(Terminal terminal);
 	
 }

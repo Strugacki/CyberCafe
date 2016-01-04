@@ -30,8 +30,17 @@ public class AddressDaoImpl extends AbstractDao<Integer, Address> implements Add
 	}
 
 	@Override
-	public Address getAddressById(int id) {
+	public Address getAddressById(long id) {
 		return (Address) sessionFactory.getCurrentSession().get(Address.class, id);
+	}
+
+	@Override
+	public void updateAddress(Address address) {
+		Address addressToUpdate = getAddressById(address.getIdAddress());
+		addressToUpdate.setCity(address.getCity());
+		addressToUpdate.setPostalCode(address.getPostalCode());
+		addressToUpdate.setStreet(address.getStreet());
+		sessionFactory.getCurrentSession().update(addressToUpdate);
 	}
 
 }
