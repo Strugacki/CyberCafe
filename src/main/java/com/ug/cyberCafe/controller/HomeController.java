@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-	ArrayList<String> menu = new ArrayList<String>();
 	
 	@RequestMapping
 	public String welcome(Model model){

@@ -32,22 +32,20 @@
 						</ul>
 					</div>
 				</div>
-				<form class="col-lg-2">
+				<form class="col-lg-2" action="">
 				<input class="form-control input-sm" type="text" name="username" placeholder="Login"/>
 				<input class="form-control input-sm" type="text" name="password" placeholder="Hasło" />
-				<button type="submit" class="btn btn-primary">Zaloguj</button>
-				<a class="btn btn-info" href="<c:url value='/user/registration' />" >Rejestracja</a>
+				<a class="btn btn-primary" href="login">Zaloguj</button>
+				<a class="btn btn-info" href="../user/registration">Rejestracja</a>
 				</form>
 		</div>
 	</div>
-		<section>
-			<div class="jumbotron">
-				<div class="container">
-					<h1>${greeting}<h1>
-					<p>${tagline}<p>
-				</div>
-			</div>
-		</section>
+		
+	<form:form modelAttribute="newUser" class="form-horizontal">
+	
+	</form:form>
+		
+		
 	<body>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
 			integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" 

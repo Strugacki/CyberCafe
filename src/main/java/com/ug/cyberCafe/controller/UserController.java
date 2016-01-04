@@ -14,13 +14,13 @@ import com.ug.cyberCafe.domain.User;
 @RequestMapping("/user")
 public class UserController {
 
-	@Autowired
-	private UserDao UserDao;
+	/*@Autowired
+	private UserDao UserDao;*/
 	
 	/**
 	 * 
 	 */
-	@RequestMapping(value = { "/registration"}, method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
 		User newUser = new User();
 		model.addAttribute("newUser", newUser);
@@ -30,9 +30,9 @@ public class UserController {
 	/**
 	 * 
 	 */
-	@RequestMapping(value = {"/reqistration"}, method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String processAddNewUserForm(@ModelAttribute("newUser") User newUser){
-		UserDao.addUser(newUser);
+		//UserDao.addUser(newUser);
 		return "redirect:/user" ;
 	}
 	
