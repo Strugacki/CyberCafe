@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public class homeController {
+@RequestMapping("/home")
+public class HomeController {
 	ArrayList<String> menu = new ArrayList<String>();
 	
-	@RequestMapping("/")
+	@RequestMapping
 	public String welcome(Model model){
 		model.addAttribute("greeting", "Witaj na stronie naszej Kawiarenki Internetowej!!");
 		model.addAttribute("tagline", "Jedyne takie miejsce w Trójmieście");
