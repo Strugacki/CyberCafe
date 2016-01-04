@@ -3,7 +3,9 @@
 <PUBLIC! html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html"; charser="UTF-8">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+		<link rel="stylesheet" href="css/styles.css" > !-->
+		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 		<link rel="stylesheet" href="css/styles.css" >
 		<title> Cyber Cafe </title>
 	</head>
@@ -33,10 +35,19 @@
 					</div>
 				</div>
 				<form class="col-lg-2">
-				<input class="form-control input-sm" type="text" name="username" placeholder="Login"/>
-				<input class="form-control input-sm" type="text" name="password" placeholder="Hasło" />
-				<button type="submit" class="btn btn-primary">Zaloguj</button>
+				
+				<div class="form-group">
+					<input class="form-control input-sm" type="text" name="username" placeholder="Login"/>
+				</div>
+				<div class="form-group">
+					<input class="form-control input-sm" type="text" name="password" placeholder="Hasło" />
+				</div>
+				
+				<a class="btn btn-primary" href="<c:url value='/user/registration' />" >Zaloguj</button>
+				
+				
 				<a class="btn btn-info" href="<c:url value='/user/registration' />" >Rejestracja</a>
+				
 				</form>
 		</div>
 	</div>
@@ -48,10 +59,11 @@
 				</div>
 			</div>
 		</section>
+		<div class="col-md-4">
+      		<img src="<c:url value="/resources/images/banner_1.jpg" />" alt="banner" style="width:600px;height:300px">
+ 		 </div>
+		
 	<body>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
-			integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" 
-			crossorigin="anonymous">
-	</script>
-	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="<c:url value='/resources/js/bootstrap.min.j' />" />
+	<script src="<c:url value='/resources/js/jquery.js' />" />
 </html>
