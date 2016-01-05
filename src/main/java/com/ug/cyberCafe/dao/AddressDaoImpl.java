@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ug.cyberCafe.domain.Address;
 
+@Repository
 public class AddressDaoImpl extends AbstractDao<Integer, Address> implements AddressDao {
 
 	@Autowired

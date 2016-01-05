@@ -35,9 +35,8 @@
 	-->
 
 	<bean id="hibernateSessionFactory"
-		class="org.springframework.orm.hibernate4.annotation.AnnotationSessionFactoryBean">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="schemaUpdate" value="true" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
