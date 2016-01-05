@@ -17,6 +17,17 @@ public class UserController {
 	//@Autowired
 	//private UserDao UserDao;
 	
+	@RequestMapping(value="login", method = RequestMethod.GET)
+	public String getLoginForm(Model model){
+		return "login";
+	}
+	
+	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
+	public String loginError(Model model){
+		model.addAttribute("error",true);
+		return "login";
+	}
+	
 	/**
 	 * 
 	 */

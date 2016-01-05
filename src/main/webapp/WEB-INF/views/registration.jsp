@@ -3,8 +3,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
-		<meta http-equiv="Content-type" content="text/html"; charser="UTF-8">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+		<meta http-equiv="Content-type" content="text/html"; charset="UTF-8">
+		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 		<link rel="stylesheet" href="css/styles.css" >
 		<title> Cyber Cafe - registration</title>
 	</head>
@@ -28,7 +28,7 @@
 							<li><a href="#">Kontakt</a></li>
 							<li><a href="#">Cennik</a></li>
 							<li><a href="#">Promocje</a></li>
-							<li><a href="#">Sprzęt</a></li>
+							<li><a class="active" href="<c:url value="/devices/" /> ">Sprzęt</a></li>
 							<li><a href="#">Turnieje</a></li>
 						</ul>
 					</div>
@@ -122,8 +122,8 @@
 				</div>
 				<div class="row">
 					<div class="form-actions col-lg-5 col-md-5 col-sm-5 pull-right">
-						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> or <a
-						href="<c:url value='/home' />">Cancel</a>
+						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a
+						href="<c:url value='/home' />">wróć</a>
 					</div>
 				</div>
 			</form:form>

@@ -12,10 +12,29 @@ public class HomeController {
 	
 	@RequestMapping
 	public String welcome(Model model){
-		model.addAttribute("greeting", "Witaj na stronie naszej Kawiarenki Internetowej!!");
-		model.addAttribute("tagline", "Jedyne takie miejsce w Trójmieście");
 		
 		return "home";
+	}
+	
+	@RequestMapping("/about")
+	public String about(Model model){
+		
+		
+		return "about";
+	}
+	
+	@RequestMapping("/contact")
+	public String contact(Model model){
+		
+		
+		return "contact";
+	}
+	
+	@RequestMapping("/pricing")
+	public String pricing(Model model){
+		
+		
+		return "pricing";
 	}
 		
 }
