@@ -15,7 +15,7 @@
 
 	
 	<context:property-placeholder location="jdbc.properties" />
-	
+    <context:component-scan  base-package="com.ug.cyberCafe" />
 	<!--
 		Scans within the base package of the application for @Components to
 		configure as beans

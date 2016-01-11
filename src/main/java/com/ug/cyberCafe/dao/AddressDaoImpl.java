@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ug.cyberCafe.domain.Address;
 
-@Repository
+@Repository("addressDao")
 public class AddressDaoImpl extends AbstractDao<Integer, Address> implements AddressDao {
 
 	@Autowired
