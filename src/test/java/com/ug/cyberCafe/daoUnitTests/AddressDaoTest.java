@@ -5,9 +5,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,16 +17,17 @@ import com.ug.cyberCafe.domain.Address;
 @ContextConfiguration(locations = { "classpath:/applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 
-@Transactional
+@Transactional("transactionManager")
 public class AddressDaoTest {
 
 	@Autowired
-	AddressDaoImpl addressDaoImpl;
+	AddressDaoImpl addressDaoImpl = new AddressDaoImpl();
 	
 	private String CITY = "Gdansk";
 	private String POSTALCODE = "80-126";
 	private String STREET = "Spokojna";
-	
+		
+	@Rollback(false)
 	@Test
 	public void addAddressCheck() {
 			
