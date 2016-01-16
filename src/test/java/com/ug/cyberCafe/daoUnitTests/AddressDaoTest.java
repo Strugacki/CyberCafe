@@ -37,10 +37,8 @@ public class AddressDaoTest {
 		address.setStreet(STREET);
 		
 		addressDaoImpl.addAddress(address);
-		addressDaoImpl.addAddress(address);
-		
-		List<Address> retrievedAddresses = addressDaoImpl.getAllAddresses();
-		assertEquals(retrievedAddresses.size(),1);
+		List<Address> retrievedAddress = addressDaoImpl.getAllAddresses();
+		assertEquals(CITY,retrievedAddress.get(0).getCity());
 		
 	}
 }
