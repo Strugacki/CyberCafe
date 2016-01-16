@@ -8,8 +8,10 @@
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>src/main/resources/applicationContext.xml</config>
+		<config>src/main/resources/AppConfig.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/DispatcherServlet-servlet.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

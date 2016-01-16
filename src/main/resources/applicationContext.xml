@@ -16,7 +16,7 @@
 	
 	<context:property-placeholder location="jdbc.properties" />
     <context:component-scan  base-package="com.ug.cyberCafe" />
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	<!--
 		Scans within the base package of the application for @Components to
 		configure as beans
@@ -35,7 +35,7 @@
 		annotations
 	-->
 
-	<bean id="hibernateSessionFactory"
+	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">

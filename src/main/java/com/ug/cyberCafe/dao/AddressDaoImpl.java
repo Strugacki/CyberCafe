@@ -4,17 +4,20 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.domain.Address;
 
-@Repository("addressDao")
+
+@Component("addressDao")
 public class AddressDaoImpl extends AbstractDao<Integer, Address> implements AddressDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
+	@Transactional
 	public void addAddress(Address address) {
 		sessionFactory.getCurrentSession().save(address);
 	}
@@ -26,7 +29,9 @@ public class AddressDaoImpl extends AbstractDao<Integer, Address> implements Add
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public List<Address> getAllAddresses() {
 		return sessionFactory.getCurrentSession().getNamedQuery("get.All.Addresses").list();
 	}

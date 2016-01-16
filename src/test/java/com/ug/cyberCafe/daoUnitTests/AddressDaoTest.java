@@ -10,6 +10,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.dao.AddressDaoImpl;
 import com.ug.cyberCafe.domain.Address;
@@ -17,6 +18,7 @@ import com.ug.cyberCafe.domain.Address;
 @ContextConfiguration(locations = { "classpath:/applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 
+@Transactional
 public class AddressDaoTest {
 
 	@Autowired
@@ -33,6 +35,9 @@ public class AddressDaoTest {
 		address.setCity(CITY);
 		address.setPostalCode(POSTALCODE);
 		address.setStreet(STREET);
+		
+		addressDaoImpl.addAddress(address);
+		addressDaoImpl.addAddress(address);
 		
 		List<Address> retrievedAddresses = addressDaoImpl.getAllAddresses();
 		assertEquals(retrievedAddresses.size(),1);
