@@ -4,6 +4,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,22 +31,41 @@ public class AddressDaoTest {
 	private String POSTALCODE = "80-126";
 	private String STREET = "Spokojna";
 	
+	/*Initialization method that cleares the address database and add few records before starting test method*/
 	@Before public void initialize() {
 		addressDao.deleteAllAddresses();
-	}
 		
+		/*First address added*/
+		Address addressToAdd = new Address();
+		addressToAdd.setCity(CITY);
+		addressToAdd.setPostalCode(POSTALCODE);
+		addressToAdd.setStreet(STREET);
+		addressDao.addAddress(addressToAdd);
+		
+		/*Second address added*/
+		Address addressToAdd2 = new Address();
+		addressToAdd2.setCity(CITY);
+		addressToAdd2.setPostalCode(POSTALCODE);
+		addressToAdd2.setStreet(STREET);
+		addressDao.addAddress(addressToAdd2);
+	}
+	
+	@After public void finishing() {
+		addressDao.deleteAllAddresses();
+	}
+	
 	@Test
 	public void addAddressCheck() {
 			
-		Address address = new Address();
-		address.setCity(CITY);
-		address.setPostalCode(POSTALCODE);
-		address.setStreet(STREET);
-		
-		addressDao.addAddress(address);
-
-		List<Address> retrievedAddress = addressDao.getAllAddresses();
-		assertEquals(CITY,retrievedAddress.get(0).getCity());
-		
+		List<Address> retrievedAddresses = addressDao.getAllAddresses();
+		assertEquals(CITY,retrievedAddresses.get(0).getCity());
+		assertEquals(POSTALCODE,retrievedAddresses.get(0).getPostalCode());
+		assertEquals(STREET,retrievedAddresses.get(0).getStreet());	
+	}
+	
+	@Test
+	public void getAllAddressesCheck() {
+		List<Address> retrievedAddresses = addressDao.getAllAddresses();
+		assertEquals(2, retrievedAddresses.size());
 	}
 }
