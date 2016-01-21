@@ -50,4 +50,11 @@ public class AddressDaoImpl extends AbstractDao<Integer, Address> implements Add
 		sessionFactory.getCurrentSession().update(addressToUpdate);
 	}
 
+	@Override
+	public void deleteAllAddresses() {
+		for(Address address : getAllAddresses() ) {
+			deleteAddress(address);
+		}
+	}
+
 }
