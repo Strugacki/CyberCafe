@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ug.cyberCafe.dao.UserDao;
+import com.ug.cyberCafe.service.UserService;
 import com.ug.cyberCafe.domain.User;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-	//@Autowired
-	//private UserDao UserDao;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value="login", method = RequestMethod.GET)
 	public String getLoginForm(Model model){
@@ -34,7 +34,6 @@ public class UserController {
 	@RequestMapping(value = "registration", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
 		User newUser = new User();
-		newUser.setActive(true);
 		model.addAttribute("newUser", newUser);
 		return "registration";
 	}
@@ -44,7 +43,10 @@ public class UserController {
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.POST)
 	public String processAddNewUserForm(@ModelAttribute("newUser") User newUser){
-		//UserDao.addUser(newUser);
+		newUser.setIdUser(1);
+		newUser.setActive(true);
+		newUser.setAvatar(null);
+		userService.addUser(newUser);
 		return "redirect:/user" ;
 	}
 	

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ug.cyberCafe.dao.TerminalDao;
+import com.ug.cyberCafe.service.TerminalService;
 import com.ug.cyberCafe.domain.Terminal;
 
 
@@ -16,8 +16,8 @@ import com.ug.cyberCafe.domain.Terminal;
 @RequestMapping("/devices")
 public class TerminalController {
 
-	    //@Autowired
-		//private TerminalDao TerminalDao;
+	    @Autowired
+		private TerminalService terminalService;
 		
 	    
 	    @RequestMapping
@@ -42,7 +42,7 @@ public class TerminalController {
 		 */
 		@RequestMapping(method = RequestMethod.POST)
 		public String processAddNewTerminalForm(@ModelAttribute("newTerminal") Terminal newTerminal){
-			//TerminalDao.addTerminal(newTerminal);
+			terminalService.addTerminal(newTerminal);
 			return "redirect:/devices" ;
 		}
 	

@@ -9,21 +9,21 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ug.cyberCafe.dao.TerminalDao;
 import com.ug.cyberCafe.domain.Terminal;
 
-@Service("terminalService")
+@Service
 @Transactional
 public class TerminalServiceImpl implements TerminalService{
 
 	@Autowired
-	TerminalDao terminalDao;
+	TerminalDao dao;
 	
 	@Override
 	public Terminal getTerminalById(long id) {
-		return terminalDao.getTerminalById(id);
+		return dao.getTerminalById(id);
 	}
 
 	@Override
 	public void addTerminal(Terminal terminal) {
-		terminalDao.addTerminal(terminal);
+		dao.addTerminal(terminal);
 	}
 
 	@Override
@@ -34,12 +34,12 @@ public class TerminalServiceImpl implements TerminalService{
 
 	@Override
 	public void deleteTerminal(Terminal terminal) {
-		terminalDao.deleteTerminal(terminal);
+		dao.deleteTerminal(terminal);
 	}
 
 	@Override
 	public List<Terminal> getAllTerminals() {
-		return terminalDao.getAllTerminals();
+		return dao.getAllTerminals();
 	}
 
 }

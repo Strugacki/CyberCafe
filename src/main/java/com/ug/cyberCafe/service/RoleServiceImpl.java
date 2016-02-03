@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ug.cyberCafe.dao.RoleDao;
 import com.ug.cyberCafe.domain.Role;
 
-@Service("roleService")
+@Service
 @Transactional
 public class RoleServiceImpl implements RoleService{
 	

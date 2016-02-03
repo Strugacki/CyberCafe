@@ -6,10 +6,12 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ug.cyberCafe.domain.Address;
 import com.ug.cyberCafe.domain.Role;
 
+@Repository
 public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao {
 
 	@Autowired

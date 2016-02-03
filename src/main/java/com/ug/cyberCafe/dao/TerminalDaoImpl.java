@@ -6,10 +6,13 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.ug.cyberCafe.domain.Address;
 import com.ug.cyberCafe.domain.Terminal;
 
+@Repository
 public class TerminalDaoImpl extends AbstractDao<Integer, Terminal> implements TerminalDao {
 	
 	@Autowired
@@ -26,6 +29,7 @@ public class TerminalDaoImpl extends AbstractDao<Integer, Terminal> implements T
 		sessionFactory.getCurrentSession().delete(terminal);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Terminal> getAllTerminals() {
 		return sessionFactory.getCurrentSession().getNamedQuery("get.All.Terminals").list();
