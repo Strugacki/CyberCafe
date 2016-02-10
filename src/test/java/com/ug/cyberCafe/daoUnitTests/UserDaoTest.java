@@ -14,8 +14,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ug.cyberCafe.dao.NewsDao;
-import com.ug.cyberCafe.domain.News;
+import com.ug.cyberCafe.dao.UserDao;
+import com.ug.cyberCafe.domain.User;
 
 @ContextConfiguration(locations = { "classpath:/applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,76 +24,76 @@ import com.ug.cyberCafe.domain.News;
 public class UserDaoTest {
 
 	@Autowired
-	NewsDao newsDao;
+	UserDao userDao;
 	
-	private String BODY = "This is testing body";
-	private String UPLOADDATE = "12-12-12";
 	
-	/*Initialization method that cleares the news table from database and add few records before starting test method*/
+	private String FIRSTNAME = "John";
+	private String LASTNAME = "Smith";
+	/*Initialization method that clears the news table from database and add few records before starting test method*/
 	@Before public void initialize() {
-		newsDao.deleteAllNews();
+		userDao.deleteAllUsers();
 		
 		/*First address added*/
-		News newsToAdd = new News();
-		newsToAdd.setBody(BODY);
-		newsToAdd.setUploadDate(UPLOADDATE);
-		newsDao.addNews(newsToAdd);
+		User userToAdd = new User();
+		userToAdd.setFirstName(FIRSTNAME);
+		userToAdd.setLastName(LASTNAME);
+		userDao.addUser(userToAdd);
 		
 		/*Second address added*/
-		News newsToAdd2 = new News();
-		newsToAdd2.setBody(BODY);
-		newsToAdd2.setUploadDate(UPLOADDATE);
-		newsDao.addNews(newsToAdd2);
+		User userToAdd2 = new User();
+		userToAdd2.setFirstName(FIRSTNAME);
+		userToAdd2.setLastName(LASTNAME);
+		userDao.addUser(userToAdd2);
 	}
 	
-	/*Finishing method that cleares the address table from database*/
+	/*Finishing method that clears the address table from database*/
 	@After public void finishing() {
-		newsDao.deleteAllNews();
+		userDao.deleteAllUsers();
 	}
 	
 	@Test
-	public void addNewsCheck() {
+	public void addUserCheck() {
 			
-		List<News> retrievedNews = newsDao.getAllNews();
-		assertEquals(BODY,retrievedNews.get(0).getBody());
-		assertEquals(UPLOADDATE,retrievedNews.get(0).getUploadDate());
+		List<User> retrievedUsers = userDao.getAllUsers();
+		assertEquals(FIRSTNAME,retrievedUsers.get(0).getFirstName());
+		assertEquals(LASTNAME,retrievedUsers.get(0).getLastName());
 	}
 	
 	@Test
-	public void getAllNewsCheck() {
-		List<News> retrievedNews = newsDao.getAllNews();
-		assertEquals(2, retrievedNews.size());
+	public void getAllUsersCheck() {
+		List<User> retrievedUsers = userDao.getAllUsers();
+		assertEquals(2, retrievedUsers.size());
 	}
 	
 	@Test
-	public void deleteAllNewsCheck() {
-		List<News> retrievedNews = newsDao.getAllNews();
-		assertNotNull(retrievedNews);
-		newsDao.deleteAllNews();
-		List<News> retrievedNewsAfterDelete = newsDao.getAllNews();
-		assertEquals(retrievedNewsAfterDelete, new ArrayList<>(0));
+	public void deleteAllUsersCheck() {
+		List<User> retrievedUsers = userDao.getAllUsers();
+		assertNotNull(retrievedUsers);
+		userDao.deleteAllUsers();
+		List<User> retrievedUsersAfterDelete = userDao.getAllUsers();
+		assertEquals(retrievedUsersAfterDelete, new ArrayList<>(0));
 	}
 	
 	@Test 
 	public void updateNewsCheck() {
-		List<News> retrievedNews = newsDao.getAllNews();
-		News newsToUpdate = retrievedNews.get(0);
-		newsToUpdate.setBody("Something else");
-		newsToUpdate.setUploadDate("1-1-1");
-		newsDao.updateNews(newsToUpdate);
+		List<User> retrievedUsers = userDao.getAllUsers();
+		User userToUpdate = retrievedUsers.get(0);
+		userToUpdate.setFirstName("Something else");
+		userToUpdate.setLastName("1-1-1");
+		userDao.updateUser(userToUpdate);
 		
-		List<News> retrievedNewsAfterUpdate = newsDao.getAllNews();
-		assertEquals("Sierakowice",retrievedNewsAfterUpdate.get(0).getBody());
-		assertEquals("20-200", retrievedNewsAfterUpdate.get(0).getUploadDate());
+		List<User> retrievedUsersAfterUpdate = userDao.getAllUsers();
+		assertEquals("Sierakowice",retrievedUsersAfterUpdate.get(0).getFirstName());
+		assertEquals("20-200", retrievedUsersAfterUpdate.get(0).getLastName());
 	}
 	
 	@Test
 	public void getNewsByIdCheck() {
-		List<News> retrievedNews = newsDao.getAllNews();
-		News newsToCompare = retrievedNews.get(0);
-		Long idToCompare = retrievedNews.get(0).getIdNews();
-		News newsToCompare2 = newsDao.getNewsById(idToCompare);
-		assertEquals(newsToCompare,newsToCompare2);
+		List<User> retrievedUsers = userDao.getAllUsers();
+		User userToCompare = retrievedUsers.get(0);
+		Long idToCompare = retrievedUsers.get(0).getIdUser();
+		User userToCompare2 = userDao.getUserById(idToCompare);
+		assertEquals(userToCompare,userToCompare2);
 	}
 
 }

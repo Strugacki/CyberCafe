@@ -74,4 +74,11 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		}
 	}
 
+	@Override
+	public void deleteAllUsers() {
+		for(User user : getAllUsers() ) {
+			deleteUser(user);
+		}
+	}
+
 }

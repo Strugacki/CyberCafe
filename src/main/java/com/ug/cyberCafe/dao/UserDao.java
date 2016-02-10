@@ -19,4 +19,6 @@ public interface UserDao {
     
     boolean isValidUser(String login, String password) throws SQLException;
 
+	void deleteAllUsers();
+
 }
