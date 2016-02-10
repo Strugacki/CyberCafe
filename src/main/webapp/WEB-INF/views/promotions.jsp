@@ -24,7 +24,7 @@
 								<li><a href="<c:url value="/about/" /> ">O nas</a></li>
 								<li><a href="<c:url value="/contact/" /> ">Kontakt</a></li>
 								<li><a href="<c:url value="/pricing/" /> ">Cennik</a></li>
-								<li><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
+								<li class="active"><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
 								<li><a href="<c:url value="/devices/" /> ">Sprzęt</a></li>
 								<li><a href="<c:url value="/events/" /> ">Turnieje</a></li>
 							</ul>
@@ -45,18 +45,7 @@
 					</ul>
 			</div>
 		</nav>
-			<section>
-				<div class="jumbotron">
-					<div class="container">
-						<h1>Witaj na Cyber Cafe!!</h1>
-						<p>Z nami możesz się zrelaksować w Świecie gier</p>
-					</div>
-				</div>
-			</section>
 			
-			<div class="col-lg-10 col-md-10 col-sm-10">
-				<img src="<c:url value="/resources/images/banner_1.jpg" />" alt="banner" style="width:800px;height:400px">
-	    	</div>	
 			
 		<script src="<c:url value="/resources/js/jquery.js" />" ></script>
 		<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>

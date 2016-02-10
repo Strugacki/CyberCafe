@@ -16,25 +16,39 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/about")
+	@RequestMapping("about")
 	public String about(Model model){
 		
 		
 		return "about";
 	}
 	
-	@RequestMapping("/contact")
+	@RequestMapping("contact")
 	public String contact(Model model){
 		
 		
 		return "contact";
 	}
 	
-	@RequestMapping("/pricing")
+	@RequestMapping("pricing")
 	public String pricing(Model model){
 		
 		
 		return "pricing";
+	}
+	
+	@RequestMapping("promotions")
+	public String promotions(Model model){
+		
+		
+		return "promotions";
+	}
+	
+	@RequestMapping("tournaments")
+	public String tournaments(Model model){
+		
+		
+		return "tournaments";
 	}
 		
 }
