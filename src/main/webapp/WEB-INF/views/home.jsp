@@ -54,38 +54,48 @@
 				</div>
 			</section>
 			
-			<div class="col-lg-10 col-md-10 col-sm-10">
-				<img src="<c:url value="/resources/images/banner_1.jpg" />" alt="banner" style="width:800px;height:400px">
+			<div class="col-lg-8 col-lg-offset-2 col-md-7 col-md-offset-2 col-sm-10 col-sm-offset-1">
+				<img class="img-responsive" src="<c:url value="/resources/images/banner_1.jpg" />" alt="banner" style="width:800px;height:400px">
 	    	</div>	
-			
+			<br>
 			<div class="container">
 				
 				<div class="row">
 				
-					<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-6">
+					<div class="col-lg-9 col-md-7  col-sm-12">
 						<c:forEach items="${news}" var="single">
 						
-						<div class="panel panel-inverse">
-							<div class="panel-heading">
-								<h3>${single.title}</h3>
+						<div class="panel panel-default">
+							<div class="panel-heading-dark">
+								<h3 id="${single.title}"><span class="glyphicon glyphicon-paperclip"></span> ${single.title}</h3>
 							</div>
 							<div class="panel-body">
 								<p>${single.body}</p>
 							</div>
 							<div class="panel-footer">
-								${single.uploadDate}
+								<span class="glyphicon glyphicon-calendar"></span> ${single.uploadDate}
 							</div>
 						</div>
 						
 						</c:forEach>
 					</div>
 				
-					<div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-4">
-					
-					</div>
+					<div class="col-lg-3 col-md-5 col-sm-12">
+						
+						<div class="panel panel-default">
+							<div class="panel-heading-dark">
+								<h3><span class="glyphicon glyphicon-tags"> Short newsy </h3>
+							</div>
+							<c:forEach items="${news}" var="single">
+								<ul class="list-group">
+									<a href="#<c:out value="${single.title}"/>"><li class="list-group-item">${single.title}</li></a>
+								</ul>
+							</c:forEach>
+						</div>
 				</div>
 			
 			</div>
+		</div>
 		<script src="<c:url value="/resources/js/jquery.js" />" ></script>
 		<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 	</body>
