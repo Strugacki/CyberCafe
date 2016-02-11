@@ -19,7 +19,9 @@ public class HomeController {
 	
 	@RequestMapping
 	public String welcome(Model model){
-		model.addAttribute("news",newsService.getAllNews());
+		if(!newsService.getAllNews().isEmpty()){
+			model.addAttribute("news",newsService.getAllNews());
+		}
 		return "home";
 	}
 	
