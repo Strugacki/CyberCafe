@@ -70,6 +70,9 @@
                     <small>Developer</small>
                 </h3>
                 <p>Twarda bania i zaciśnięte pięści, uwalniam instynkt gdy atmosfera się zagęści</p>
+                <a href="https://www.facebook.com/marcin.hallman?fref=nf" class="btn btn-info" role="button">Facebook</a>
+                <a href="https://github.com/Strugacki" class="btn btn-info" role="button">Github</a>
+                <p></p>
             </div>
             <div class="col-lg-6 col-sm-6 text-center">
                 <img class="img-circle  img-center" src="<c:url value="/resources/images/Adam.jpg" />" alt="banner" style="width:200px;height:200px">
@@ -77,6 +80,9 @@
                     <small>Developer</small>
                 </h3>
                 <p>PC Master Race</p>
+                <a href="https://www.facebook.com/adam.chlebba" class="btn btn-info" role="button">Facebook</a>
+                <a href="https://github.com/AChlebba" class="btn btn-info" role="button">Github</a>
+                <p></p>
             </div>
             <div class="col-lg-6 col-sm-6 text-center">
                  <img class="img-circle  img-center" src="<c:url value="/resources/images/Slawek.jpg" />" alt="banner" style="width:200px;height:200px">
@@ -84,6 +90,9 @@
                     <small>Developer</small>
                 </h3>
                 <p>Coooooooooooo</p>
+                <a href="https://www.facebook.com/rslawek5" class="btn btn-info" role="button">Facebook</a>
+                <a href="https://github.com/srzeppa" class="btn btn-info" role="button">Github</a>
+                <p></p>
             </div>
             <div class="col-lg-6 col-sm-6 text-center">
                 <img class="img-circle  img-center" src="<c:url value="/resources/images/Michal.jpg" />" alt="banner" style="width:200px;height:200px">
@@ -91,6 +100,9 @@
                     <small>Developer</small>
                 </h3>
                 <p>Hello World</p>
+                <a href="https://www.facebook.com/dajminazwe?fref=ufi" class="btn btn-info" role="button">Facebook</a>
+                <a href="https://github.com/DajMiNazwe" class="btn btn-info" role="button">Github</a>
+                <p></p>
             </div>
         </div>
 		</div>
