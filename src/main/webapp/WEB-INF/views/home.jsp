@@ -151,6 +151,13 @@
 							<li class="text-center"><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
 						</ul>
 					</div>
+					
+					<div class="col-lg-4">
+						<ul class="nav nav-stacked">
+							<li class="text-center"><h5>Znajdź nas na: </h5></li>
+							<li class="text-center"><a href="<c:url value="#" /> "><img src="<c:url value="/resources/images/social_fb.png" />" /></a></li>
+						</ul>
+					</div>
 				</div>
 				<div class="row">
 					<hr>
