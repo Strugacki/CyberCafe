@@ -53,10 +53,11 @@
 					</div>
 				</div>
 			</section>
-			
-			<div class="col-lg-8 col-lg-offset-2 col-md-7 col-md-offset-2 col-sm-10 col-sm-offset-1">
-				<img class="img-responsive" src="<c:url value="/resources/images/banner_1.jpg" />" alt="banner" style="width:800px;height:400px">
-	    	</div>	
+				<div class="container">
+				<div class="col-lg-8 col-lg-offset-2 col-md-7 col-md-offset-2 col-sm-10 col-sm-offset-1">
+					<img class="img-responsive" src="<c:url value="/resources/images/banner_1.jpg" />" alt="banner" style="width:800px;height:400px">
+		    	</div>
+		    </div>	
 			<br>
 			<div class="container">
 				
