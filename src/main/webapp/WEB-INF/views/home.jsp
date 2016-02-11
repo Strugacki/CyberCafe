@@ -1,4 +1,4 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
@@ -58,6 +58,34 @@
 				<img src="<c:url value="/resources/images/banner_1.jpg" />" alt="banner" style="width:800px;height:400px">
 	    	</div>	
 			
+			<div class="container">
+				
+				<div class="row">
+				
+					<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-6">
+						<c:forEach items="${news}" var="single">
+						
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<h3>${single.title}</h3>
+							</div>
+							<div class="panel-body">
+								<p>${single.body}</p>
+							</div>
+							<div class="panel-footer">
+								${single.uploadDate}
+							</div>
+						</div>
+						
+						</c:forEach>
+					</div>
+				
+					<div class="col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-4">
+					
+					</div>
+				</div>
+			
+			</div>
 		<script src="<c:url value="/resources/js/jquery.js" />" ></script>
 		<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 	</body>

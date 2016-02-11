@@ -46,6 +46,7 @@ public class NewsDaoImpl extends AbstractDao<Integer, News> implements NewsDao {
 	@Transactional
 	public void updateNews(News news) {
 		News newsToUpdate = getNewsById(news.getIdNews());
+		newsToUpdate.setTitle(news.getTitle());
 		newsToUpdate.setBody(news.getBody());
 		newsToUpdate.setUploadDate(news.getUploadDate());
 		newsToUpdate.setUsers(news.getUsers());

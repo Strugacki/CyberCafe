@@ -21,8 +21,12 @@ public class News {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_NEWS", nullable = false)
 	private long idNews;
 	
+	@Column(name = "TITLE", nullable = false)
+	private String title;
+
 	@Column(name = "BODY", nullable = true)
 	private String body;
 	
@@ -36,8 +40,9 @@ public class News {
 		
 	}
 	
-	public News(String body, String uploadDate) {
+	public News(String title, String body, String uploadDate) {
 		super();
+		this.setTitle(title);
 		this.setBody(body);
 		this.setUploadDate(uploadDate);
 	}
@@ -49,6 +54,15 @@ public class News {
 	public void setIdNews(long idNews) {
 		this.idNews = idNews;
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 
 	public String getBody() {
 		return body;
