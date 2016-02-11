@@ -48,8 +48,8 @@
 			<section>
 				<div class="jumbotron">
 					<div class="container">
-						<h1>Witaj na Cyber Cafe!!</h1>
-						<p>Z nami możesz się zrelaksować w Świecie gier</p>
+						<h1 class="text-center">Witaj na Cyber Cafe!!</h1>
+						<p class="text-center">Z nami możesz się zrelaksować w Świecie gier</p>
 					</div>
 				</div>
 			</section>
