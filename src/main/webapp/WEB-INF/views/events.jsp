@@ -89,6 +89,48 @@
         </div>
        </div>
        </div>
+       
+       <div class="container">
+    	<div class="jumbotron">
+
+      
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Turnieje League of Legends</h2>
+            </div>
+            <div class="col-lg-6 col-sm-6 text-center">
+               <img class="img" src="<c:url value="/resources/images/Puchar2.png" />" alt="banner" style="width:1024px;height:683px">
+            </div>   
+        </div>
+      
+      	
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Wielki turniej LoL'a
+                    <small></small>
+                </h1>
+                <p> 8 i 9 marca w CyberCafe, w Gdańsku, 
+                	rozegrany zostanie wielki turniej 5vs5 League of Legends – MSI & Komputronik Gaming Days.
+                	Jego organizatorami są MSI, producent laptopów i komponentów komputerowych, oraz sieć sklepów Komputronik.
+                	Zapisy będą możliwe na miejscu od godziny 10:00. Na zwycięzców czekają atrakcyjne nagrody i moc turniejowych emocji,
+                	którym będzie towarzyszyć puchar CyberCafe Extreme Masters 2016.
+                </p>
+                <p>	Tryb turnieju to klasyczne 5 vs5 na serwerze East. Sobotnie mecze startują o godzinie 11:00 
+                – rozgrywane będą w trybie BO1. Zwycięski drużyny będą kontynuować rywalizację w niedzielę od godziny 12:00 
+                – mecz o III miejsce oraz finał odbędą się w trybie BO3. Wielki finał przewidziano na godzinę 15:30.
+				</p>
+				<p>
+				Podczas turnieju w CyberCafe na przybyłych fanów eSportu i elektronicznej rozrywki czekają obniżki 
+				cen sprzętu komputerowego, stworzony specjalnie dla graczy, m.in. gamingowy laptop MSI GT70 2OC-1059XPL w  wyjątkowej
+ 				cenie 4999zł + GRATIS w postaci słuchawek SteelSeries Siberia v2 Black. Dodatkowo eksperci Komputronika pomogą w wyborze
+ 				najlepszego zestawu komputerowego przeznaczonego dla graczy.
+				</p>
+                
+                
+            </div>
+        </div>
+       </div>
+      </div>
 
       
 
