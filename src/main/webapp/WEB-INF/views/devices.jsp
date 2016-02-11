@@ -19,7 +19,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="home">Cyber Cafe</a>
+						<a class="navbar-brand " href="<c:url value="/" /> ">CyberCafe</a>
 					</div>
 					
 					<div class="collapse navbar-collapse" id="mynavbar-content">
