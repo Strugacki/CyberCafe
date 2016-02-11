@@ -53,11 +53,11 @@ public class HomeController {
 		return "promotions";
 	}
 	
-	@RequestMapping("tournaments")
+	@RequestMapping("events")
 	public String tournaments(Model model){
 		
 		
-		return "tournaments";
+		return "events";
 	}
 		
 }

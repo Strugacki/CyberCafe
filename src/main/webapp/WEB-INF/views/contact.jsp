@@ -46,6 +46,7 @@
 			</div>
 		</nav>
 		
+		<!-- Footer  -->
 		<footer class="navbar-inverse">
 			<div class="container">
 				<div class="row">
