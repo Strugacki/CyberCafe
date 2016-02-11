@@ -4105,6 +4105,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-stacked > li {
   float: none;
 }
+
+.nav-stacked > li >:hover {
+  background-color: #222222 !important;
+}
+
+.nav-stacked > li > h5{
+	color: #FFFFFF;
+}
+
 .nav-stacked > li + li {
   margin-top: 2px;
   margin-left: 0;
@@ -6768,3 +6777,9 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+/* My additional css rules */
+
+.text-white{
+	color: #FFFFFF;
+}
