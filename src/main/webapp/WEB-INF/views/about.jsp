@@ -93,7 +93,8 @@
                 <p>Hello World</p>
             </div>
         </div>
-
+		</div>
+		
 		<footer class="navbar-inverse">
 			<div class="container">
 				<div class="row">
