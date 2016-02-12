@@ -46,54 +46,7 @@
 			</div>
 		</nav>
 		
-		<!--  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4645.553118896304!2d18.58045355361044!3d54.39626155185611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x4d4128c9a5066e47!2sUniwersytet+Gda%C5%84ski!5e0!3m2!1spl!2spl!4v1455224517923" 
-		width="400" 
-		height="300" 
-		frameborder="0" 
-		style="border:0" 
-		allowfullscreen></iframe> !-->
 		
-		
-		<div class="container">
-			<div class="well lead">
-				<h2 class="text-center">Kontakt i lokalizacja</h2>
-			</div>
-			<div class="row">
-			
-				<div class="col-lg-4 col-md-4">
-					<div class="container">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2322.806442139043!2d18.577068598719432!3d54.395733755280574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x4d4128c9a5066e47!2sUniwersytet+Gda%C5%84ski!5e0!3m2!1spl!2spl!4v1455280807218" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-					</div>
-				</div>
-				<div class="col-lg-6 col-lg-offset-1 col-md-6 dark-bg">
-					<br>
-					<form class="form" action="mailto:cybercafe@gmail.com" enctype="text/plain"  method="post">
-						<div class="form-group">
-							<label for="name"><span class="glyphicon glyphicon-pushpin"></span> Imię</label>
-							<input type="text" class="form-control" id="name" placeholder="Twoje imię" />
-						</div>
-					
-						<div class="form-group">
-							<label for="email"><span class="glyphicon glyphicon-envelope"></span> Adres E-mail</label>
-							<input type="text" class="form-control" id="email" placeholder="Adres e-mail" />
-						</div>
-						
-						<div class="form-group">
-							<label for="body"><span class="glyphicon glyphicon-pencil"></span> Treść</label>
-							<textarea cols="40" rows="20" class="form-control" id="body" placeholder="Treść...." /></textarea>
-						</div>
-						
-						<button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
-					</form>
-					<br>
-				</div>
-			
-			</div>
-		
-		</div>
-		
-		<br>
-		<br>
 		<!-- Footer  -->
 		<footer class="navbar-inverse">
 			<div class="container">
@@ -124,6 +77,5 @@
 		</footer>
 		<script src="<c:url value="/resources/js/jquery.js" />" ></script>
 		<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
-		<script src="<c:url value="/resources/js/googlemap.js" />"></script>
 	</body>
 </html>

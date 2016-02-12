@@ -17,6 +17,13 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	public String myPage(Model model){
+		
+		
+		return "profile";		
+	}
+	
+	
 	@RequestMapping(value="login", method = RequestMethod.GET)
 	public String getLoginForm(Model model){
 		return "login";
@@ -43,9 +50,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.POST)
 	public String processAddNewUserForm(@ModelAttribute("newUser") User newUser){
-		newUser.setIdUser(1);
 		newUser.setActive(true);
-		newUser.setAvatar(null);
 		userService.addUser(newUser);
 		return "redirect:/user" ;
 	}

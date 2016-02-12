@@ -48,7 +48,9 @@
 	</nav>
 	
 	<div class="generic-container">
-    	<div class="well lead">Formularz rejestracji</div>
+    	<div class="well lead">
+    		<h2 class="text-center">Formularz rejestracji</h2>
+    	</div>
 			<form:form modelAttribute="newUser" class="form-horizontal">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
