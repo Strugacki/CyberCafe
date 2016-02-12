@@ -13,6 +13,8 @@ public interface UserService {
 	void updateUser(User user);
 
 	void deleteUser(User user);
+	
+	void loginUser (String username, String password);
 
 	List<User> getAllUsers();
 

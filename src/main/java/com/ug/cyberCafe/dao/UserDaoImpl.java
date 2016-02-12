@@ -8,6 +8,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,21 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	public void deleteAllUsers() {
 		for(User user : getAllUsers() ) {
 			deleteUser(user);
+		}
+	}
+
+	@Override
+	public User login(String username, String password) {
+		try{
+			if(!sessionFactory.getCurrentSession().getTransaction().isActive()){
+				sessionFactory.getCurrentSession().getTransaction().begin();
+			}
+			Query query = sessionFactory.getCurrentSession().createQuery("Select count(1) from User where login = ? and password = ?");
+			query.setString("username", username);
+			query.setString("password", password);
+			return (User) query.uniqueResult();
+		} catch (Exception e){
+			return null;
 		}
 	}
 
