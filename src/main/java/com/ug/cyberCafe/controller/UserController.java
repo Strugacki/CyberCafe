@@ -17,6 +17,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping
 	public String myPage(Model model){
 		
 		
