@@ -46,7 +46,66 @@
 			</div>
 		</nav>
 			
+		<div class="container">
 		
+			<div class="well lead">
+				<h2 class="text-center">Cennik</h2>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading-dark">
+					<h3><span class="glyphicon glyphicon-list-alt"></span> Normalne</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<li> 10zł/1h</li>
+						<li> 15zł/2h</li>
+						<li> 30zł/6h</li>
+					</ul>
+				</div>
+				<div class="panel-footer">
+					<span class="glyphicon glyphicon-warning-sign"></span><em> *Ceny obowiązują klientów bez zniżek</em>
+				</div>
+			</div>
+			<div class="panel panel-default">	
+				<div class="panel-heading-dark">
+					<h3><span class="glyphicon glyphicon-list-alt"></span> Ulgowe</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<li> 6zł/1h</li>
+						<li> 12zł/2h</li>
+						<li> 20zł/6h</li>
+					</ul>
+				</div>
+				<div class="panel-footer">
+					<span class="glyphicon glyphicon-warning-sign"></span><em> *Ceny obowiązują uczniów, studentów za okazaniem legitymacji</em>
+				</div>
+			</div>
+			<div class="panel panel-default">	
+				<div class="panel-heading-dark">
+					<h3><span class="glyphicon glyphicon-list-alt"></span> Grupowe</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						<li> 20zł/1h</li>
+						<li> 30zł/2h</li>
+						<li> 55zł/6h</li>
+						<br>
+						<li> karnet treningowy 100zł/1 dzień</li>
+						<li> karnet treningowy 150zł/1 dzień</li>
+						<li> karnet treningowy 300zł/7 dni</li>
+					</ul>
+				</div>
+				<div class="panel-footer">
+					<span class="glyphicon glyphicon-warning-sign"></span><em> *Ceny obowiązują grupy osób powyżej 3 graczy oraz drużyny e-sportowe( cena ulega ododatkowej obniżce o 20%) </em>
+				</div>
+			</div>
+		
+		
+		
+		
+		</div>
 			
 		<footer class="navbar-inverse">
 			<div class="container">
