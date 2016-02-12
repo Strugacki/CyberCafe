@@ -60,12 +60,10 @@
 			</div>
 			<div class="row">
 			
-				<div class="col-lg-4 col-md-4">
-					<div class="container">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2322.806442139043!2d18.577068598719432!3d54.395733755280574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x4d4128c9a5066e47!2sUniwersytet+Gda%C5%84ski!5e0!3m2!1spl!2spl!4v1455280807218" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-					</div>
+				<div class="col-lg-4 col-md-10 col-md-offset-1">
+					<img class="img-circle img-center" src="<c:url value="/resources/images/map.png" />" alt="banner" style="width:300px;height:300px">
 				</div>
-				<div class="col-lg-6 col-lg-offset-1 col-md-6 dark-bg">
+				<div class="col-lg-6 col-lg-offset-1 col-md-8 col-md-offset-2 dark-bg">
 					<br>
 					<form class="form" action="mailto:cybercafe@gmail.com" enctype="text/plain"  method="post">
 						<div class="form-group">
