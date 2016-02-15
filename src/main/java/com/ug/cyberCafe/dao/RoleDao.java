@@ -16,4 +16,6 @@ public interface RoleDao {
     
     void updateRole(Role role);
 
+	void deleteAllRoles();
+
 }
