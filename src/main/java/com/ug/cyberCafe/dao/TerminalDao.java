@@ -15,5 +15,7 @@ public interface TerminalDao {
     Terminal getTerminalById(long id);
     
     void updateTerminal(Terminal terminal);
+
+	void deleteAllTerminals();
 	
 }

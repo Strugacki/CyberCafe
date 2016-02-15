@@ -2,14 +2,10 @@ package com.ug.cyberCafe.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.ug.cyberCafe.domain.Address;
 import com.ug.cyberCafe.domain.Terminal;
 
 @Repository
@@ -46,6 +42,13 @@ public class TerminalDaoImpl extends AbstractDao<Integer, Terminal> implements T
 		terminalToUpdate.setAvailable(terminal.getAvailable());
 		terminalToUpdate.setType(terminal.getType());
 		sessionFactory.getCurrentSession().update(terminalToUpdate);
+	}
+	
+	@Override
+	public void deleteAllTerminals() {
+		for(Terminal terminal : getAllTerminals() ) {
+			deleteTerminal(terminal);
+		}
 	}
 
 }
