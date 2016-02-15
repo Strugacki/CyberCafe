@@ -63,7 +63,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	public boolean isValidUser(String login, String password) throws SQLException {
-		String query = "Select count(1) from User where login = ? and password = ?";
+		String query = "Select count(1) from User u where u.login = ? and u.password = ?";
 		PreparedStatement pstmt = dataSource.getConnection().prepareStatement(query);
 		pstmt.setString(1, login);
 		pstmt.setString(2, password);
