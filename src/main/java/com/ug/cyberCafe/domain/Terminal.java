@@ -18,6 +18,7 @@ public class Terminal {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "IDTERMINAL", nullable = false)
 	private long idTerminal;
 	
 	@Column(name = "TYPE", nullable = false)

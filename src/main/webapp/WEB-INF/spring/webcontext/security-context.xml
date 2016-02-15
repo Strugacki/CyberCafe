@@ -27,8 +27,9 @@
 
 <security:authentication-manager>
 	<security:authentication-provider>
-		<security:user-service data-source-ref="dataSource" users-by-username-query="select username,password,enabled from user_authentication where username=?"
-authorities-by-username-query="select u1.username, u2.role from user_authentication u1, user_authorization u2 where u1.user_id = u2.user_id and u1.username =?" />
+	<!-- 	<security:user-service data-source-ref="dataSource" 
+		users-by-username-query="select username,password,enabled from user_authentication where username=?"
+authorities-by-username-query="select u1.username, u2.role from user_authentication u1, user_authorization u2 where u1.user_id = u2.user_id and u1.username =?" /> !-->
 	</security:authentication-provider>
 </security:authentication-manager>
 </beans>

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 public class Address {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "IDADRESS", nullable = false)
 	private long idAddress;
 	
 	@Column(name = "CITY", nullable = true)
