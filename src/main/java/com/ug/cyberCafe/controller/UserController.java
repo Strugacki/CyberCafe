@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ug.cyberCafe.service.RoleService;
 import com.ug.cyberCafe.service.UserService;
+import com.ug.cyberCafe.domain.Role;
 import com.ug.cyberCafe.domain.User;
 
 @Controller
@@ -19,6 +21,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	@RequestMapping
 	public String myPage(Model model){
@@ -34,13 +39,20 @@ public class UserController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpSession session){
+		System.out.println(login);
+		System.out.println(password);
 		User toLogIn = userService.loginUser(login, password);
-
+		System.out.println(toLogIn.getFirstName());
+		System.out.println(toLogIn.getLastName());
+		System.out.println("WESZLO");
+		
 		if(!(toLogIn == null)){
 		session.setAttribute("user", toLogIn);
+		System.out.println("JEST");
 			return "redirect:about";
 		}else{
-			return "redirect:/registration";
+			System.out.println("NIE MA");
+			return "registration";
 		}
 	}
 	
@@ -65,7 +77,12 @@ public class UserController {
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.POST)
 	public String processAddNewUserForm(@ModelAttribute("newUser") User newUser){
+		/**
+		 * For tests
+		 */
+		Role role = roleService.getRoleById(0);
 		newUser.setActive(true);
+		newUser.setRole(role);
 		userService.addUser(newUser);
 		return "redirect:/user" ;
 	}

@@ -51,12 +51,12 @@
     	<div class="well lead">
     		<h2 class="text-center">Formularz logowania</h2>
     	</div>
-			<form lass="form-horizontal">
+			<form action="login" method="POST" class="form-horizontal">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="login">Login</label>
 						<div class="col-lg-5 col-md-5 col-sm-5">
-							<input id="login" name="login" type="text" class="form-control input-sm"/>
+							<input name="login" type="text" class="form-control input-sm"/>
 						</div>
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="password">Hasło</label>
 						<div class="col-lg-5 col-md-5 col-sm-5">
-							<input id="password" name="password" type="password" class="form-control input-sm"/>
+							<input name="password" type="password" class="form-control input-sm"/>
 						</div>
 					</div>
 				</div>
