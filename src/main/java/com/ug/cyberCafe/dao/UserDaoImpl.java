@@ -58,7 +58,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		userToUpdate.setPassword(user.getPassword());
 		userToUpdate.setAvatar(user.getAvatar());
 		userToUpdate.setAddresses(user.getAddresses());
-		userToUpdate.setRoles(user.getRoles());
+		userToUpdate.setRole(user.getRole());
 		sessionFactory.getCurrentSession().update(userToUpdate);
 	}
 
