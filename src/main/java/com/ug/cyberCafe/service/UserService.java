@@ -14,7 +14,7 @@ public interface UserService {
 
 	void deleteUser(User user);
 	
-	void loginUser (String username, String password);
+	User loginUser (String username, String password);
 
 	List<User> getAllUsers();
 

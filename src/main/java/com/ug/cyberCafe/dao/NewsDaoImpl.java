@@ -54,6 +54,7 @@ public class NewsDaoImpl extends AbstractDao<Integer, News> implements NewsDao {
 	}
 
 	@Override
+	@Transactional
 	public void deleteAllNews() {
 		for(News news : getAllNews() ) {
 			deleteNews(news);
