@@ -27,13 +27,21 @@ public class UserController {
 		return "profile";		
 	}
 	
+	@RequestMapping(value = "login")
+	public String loginForm(){
+		return "login";
+	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpSession session){
 		User toLogIn = userService.loginUser(login, password);
-		
-		
-		return "login";
+
+		if(!(toLogIn == null)){
+		session.setAttribute("user", toLogIn);
+			return "redirect:about";
+		}else{
+			return "redirect:/registration";
+		}
 	}
 	
 	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
