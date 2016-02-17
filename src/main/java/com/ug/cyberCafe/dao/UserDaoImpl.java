@@ -88,7 +88,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 			if(!sessionFactory.getCurrentSession().getTransaction().isActive()){
 				sessionFactory.getCurrentSession().getTransaction().begin();
 			}
-			Query query = sessionFactory.getCurrentSession().createQuery("Select count(1) from User where login = ? and password = ?");
+			Query query = sessionFactory.getCurrentSession().getNamedQuery("LOGIN_USER");
 			query.setString("username", username);
 			query.setString("password", password);
 			return (User) query.uniqueResult();
