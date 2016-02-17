@@ -42,14 +42,9 @@ public class UserController {
 		System.out.println(login);
 		System.out.println(password);
 		User toLogIn = userService.loginUser(login, password);
-		System.out.println(toLogIn.getFirstName());
-		System.out.println(toLogIn.getLastName());
-		System.out.println("WESZLO");
-		
 		if(!(toLogIn == null)){
 		session.setAttribute("user", toLogIn);
-		System.out.println("JEST");
-			return "redirect:about";
+			return "redirect:/about";
 		}else{
 			System.out.println("NIE MA");
 			return "registration";

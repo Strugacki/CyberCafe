@@ -17,7 +17,7 @@ public interface UserDao {
     
     void updateUser(User user);
     
-    public User login (String username, String password);
+    User login(String username, String password);
 
 	void deleteAllUsers();
 
