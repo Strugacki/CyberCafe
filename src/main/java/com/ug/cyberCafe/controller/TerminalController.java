@@ -30,7 +30,7 @@ public class TerminalController {
 		/**
 		 * 
 		 */
-		@RequestMapping(method = RequestMethod.GET)
+		@RequestMapping(value ="add", method = RequestMethod.GET)
 		public String getAddNewTerminalForm(Model model){
 			Terminal newTerminal = new Terminal();
 			model.addAttribute("newTerminal", newTerminal);
@@ -40,7 +40,7 @@ public class TerminalController {
 		/**
 		 * 
 		 */
-		@RequestMapping(method = RequestMethod.POST)
+		@RequestMapping(value="add", method = RequestMethod.POST)
 		public String processAddNewTerminalForm(@ModelAttribute("newTerminal") Terminal newTerminal){
 			terminalService.addTerminal(newTerminal);
 			return "redirect:/devices" ;

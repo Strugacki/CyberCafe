@@ -20,8 +20,7 @@
 		
 <security:http auto-config="true">
 	<security:access-denied-handler error-page="/"/>
-	<security:intercept-url pattern="/devices" access="ADMIN" />
-	<security:intercept-url pattern="/user/employee/*" access="ADMIN" />
+	<security:intercept-url pattern="/devices/*" access="ROLE_ADMIN" />
 	<security:form-login login-page="/user/login" username-parameter="login" password-parameter="password" authentication-failure-url="/"/>
 	<security:logout logout-success-url="/user/logout" />
 </security:http>

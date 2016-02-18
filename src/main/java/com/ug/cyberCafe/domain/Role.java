@@ -18,6 +18,7 @@ public class Role {
 	@Column(name = "IDROLE", nullable = false)
 	private long idRole;
 	
+	@Column(name = "ROLE", nullable=false)
 	private String role;
 
 	public long getIdRole() {

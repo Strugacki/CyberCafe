@@ -13,6 +13,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="USER")
@@ -27,27 +35,47 @@ public class User {
 	@Column(name = "IDUSER", nullable = false)
 	private long idUser;
 	
+	@NotNull
+	@Size(min=3, max=20, message="Dozwolona długość to 3-20 znaków")
+	@NotEmpty(message = "Podaj imię")
 	@Column(name = "FIRSTNAME", nullable = false)
 	private String firstName;
 	
+	@NotNull
+	@Size(min=3, max=20, message="Dozwolona długość to 3-20 znaków")
+	@NotEmpty(message = "Podaj nazwisko")
 	@Column(name = "LASTNAME", nullable = false)
 	private String lastName;
 	
+	@Email(message="Podaj właściwy adres email")
+	@NotNull
+	@NotEmpty(message = "Podaj właściwy adres email")
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
 	
+	@NotNull
 	@Column(name = "ACTIVE", nullable = false)
-	private Boolean active;
+	private Boolean active = true;
 	
+	@NotNull
+	@NotEmpty(message = "Pole nie może zostać puste 'rrrr-mm-dd' ")
+	@Pattern(regexp="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])", message="Podaj właściwą datę rrrr-mm-dd ")
 	@Column(name = "DATEOFBIRTH", nullable = false)
 	private String dateOfBirth;
+	
 	
 	@Column(name = "NICKNAME", nullable = true)
 	private String nickname=null;
 	
+	@NotNull
+	@Size(min=5, max=20, message="Dozwolona długość to 5-20 znaków")
+	@NotEmpty(message = "Podaj login")
 	@Column(name = "LOGIN", nullable = false)
 	private String login;
 	
+	@NotNull
+	@Size(min=6, max=20, message="Dozwolona długość to 6-20 znaków")
+	@NotEmpty(message = "Podaj hasło")
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 	

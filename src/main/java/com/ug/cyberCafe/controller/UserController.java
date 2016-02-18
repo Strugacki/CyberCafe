@@ -1,10 +1,14 @@
 package com.ug.cyberCafe.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,6 +48,9 @@ public class UserController {
 		User toLogIn = userService.loginUser(login, password);
 		if(!(toLogIn == null)){
 		session.setAttribute("user", toLogIn);
+		User us = (User) session.getAttribute("user");
+		System.out.println(us.getFirstName());
+		System.out.println(us.getLastName());
 			return "redirect:/";
 		}else{
 			return "registration";
@@ -62,6 +69,7 @@ public class UserController {
 	@RequestMapping(value = "registration", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
 		User newUser = new User();
+		newUser.setActive(true);
 		model.addAttribute("newUser", newUser);
 		return "registration";
 	}
@@ -70,15 +78,18 @@ public class UserController {
 	 * 
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.POST)
-	public String processAddNewUserForm(@ModelAttribute("newUser") User newUser){
-		/**
-		 * For tests
-		 */
-		Role role = roleService.getRoleById(0);
-		newUser.setActive(true);
-		newUser.setRole(role);
-		userService.addUser(newUser);
-		return "redirect:/user" ;
+	public String processAddNewUserForm(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model){
+		if(result.hasErrors()){
+			model.addAttribute("warn","Nie udało się wykonać rejestracji, spróbuj ponownie!");
+			System.out.println(result.toString());
+			return "registration";
+		}else{
+			newUser.setRole(null);
+			newUser.setAddresses(null);
+			newUser.setAvatar(null);
+			userService.addUser(newUser);
+			return "redirect:/" ;
+		}
 	}
 	
 	

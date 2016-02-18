@@ -1,4 +1,4 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
@@ -51,79 +51,106 @@
     	<div class="well lead">
     		<h2 class="text-center">Formularz rejestracji</h2>
     	</div>
-			<form:form modelAttribute="newUser" class="form-horizontal">
+			<form:form modelAttribute="newUser" class="form-horizontal" id="registrationForm">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="firstName">Imie</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:input id="firstName" path="firstName" type="text" class="form-control input-sm"/>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<form:input id="firstName" path="firstName" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
+						<form:errors path="firstName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="lastName">Nazwisko</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:input id="lastName" path="lastName" type="text" class="form-control input-sm"/>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<form:input id="lastName" path="lastName" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
+						<form:errors path="lastName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="email">Adres email</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:input id="email" path="email" type="text" class="form-control input-sm"/>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<form:input id="email" path="email" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
+						<form:errors path="email" class="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3 col-sm-3" for="dateOfBirth">Data urodzenia</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:input id="dateOfBirth" path="dateOfBirth" type="text" class="form-control input-sm"/>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<form:input id="dateOfBirth" path="dateOfBirth" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
+						<form:errors path="dateOfBirth" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="nickname">Pseudonim</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:input id="nickname" path="nickname" type="text" class="form-control input-sm"/>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<form:input id="nickname" path="nickname" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
+						<form:errors path="nickname" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="login">Login</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:input id="login" path="login" type="text" class="form-control input-sm"/>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<form:input id="login" path="login" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
+						<form:errors path="login" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="password">Hasło</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:input id="password" path="password" type="password" class="form-control input-sm"/>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<form:input id="password" path="password" type="password" required="reguired" class="form-control input-sm"/>
 						</div>
+						<form:errors path="password" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="avatar">Avatar</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
+						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="avatar" path="avatar" type="file" class="form-control input-sm"/>
 						</div>
+						<form:errors path="avatar" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
-					<div class="form-actions col-lg-5 col-md-5 col-sm-5 pull-right">
+					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
 						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a
 						href="<c:url value='/home' />">wróć</a>
 					</div>
 				</div>
 			</form:form>
 		</div>
+		<c:set var="warning" value="${warn}"/>
+		<c:if test="${!empty warning}">
+			<div id="myModal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4 class="modal-title">Informacja</h4>
+					      </div>
+					      <div class="modal-body">
+					        <p>${warn}</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+					      </div>
+					    </div>				
+				  </div>
+			</div>
+		</c:if>
 	
 	<footer class="navbar-inverse">
 			<div class="container">
@@ -153,6 +180,11 @@
 			</div>	
 	</footer>
 	<script src="<c:url value="/resources/js/jquery.js" />" ></script>
-	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>		
+	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
+	<script>
+		$(document).ready(function(){
+		        $("#myModal").modal();
+		    });
+</script>		
 	<body>
 </html>

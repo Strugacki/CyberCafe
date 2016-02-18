@@ -25,7 +25,7 @@
 								<li><a href="<c:url value="/contact/" /> ">Kontakt</a></li>
 								<li><a href="<c:url value="/pricing/" /> ">Cennik</a></li>
 								<li><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
-								<li><a href="<c:url value="/devices/" /> ">Sprzęt</a></li>
+								<li><a href="<c:url value="/devices/add" /> ">Sprzęt</a></li>
 								<li><a href="<c:url value="/events/" /> ">Turnieje</a></li>
 							</ul>
 						</div>

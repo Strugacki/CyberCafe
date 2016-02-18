@@ -8,7 +8,8 @@ CREATE TABLE User(
   nickname varchar(20),
   login varchar(20),
   password varchar(20),
-  avatar blob
+  avatar blob,
+  role_IDROLE bigint, FOREIGN KEY (role_IDROLE) REFERENCES Role(IDROLE)
 );
 
 CREATE TABLE Role(
