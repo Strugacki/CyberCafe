@@ -44,9 +44,8 @@ public class UserController {
 		User toLogIn = userService.loginUser(login, password);
 		if(!(toLogIn == null)){
 		session.setAttribute("user", toLogIn);
-			return "redirect:/about";
+			return "redirect:/";
 		}else{
-			System.out.println("NIE MA");
 			return "registration";
 		}
 	}

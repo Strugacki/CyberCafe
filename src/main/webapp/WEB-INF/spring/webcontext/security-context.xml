@@ -15,21 +15,22 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd 
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 		
 		
 <security:http auto-config="true">
-	<security:intercept-url pattern="/news/*" access="ADMIN" />
+	<security:access-denied-handler error-page="/"/>
+	<security:intercept-url pattern="/devices" access="ADMIN" />
 	<security:intercept-url pattern="/user/employee/*" access="ADMIN" />
-	<security:form-login login-page="/user/login"/>
+	<security:form-login login-page="/user/login" username-parameter="login" password-parameter="password" authentication-failure-url="/"/>
 	<security:logout logout-success-url="/user/logout" />
 </security:http>
 
 <security:authentication-manager>
 	<security:authentication-provider>
-	<!-- 	<security:user-service data-source-ref="dataSource" 
-		users-by-username-query="select username,password,enabled from user_authentication where username=?"
-authorities-by-username-query="select u1.username, u2.role from user_authentication u1, user_authorization u2 where u1.user_id = u2.user_id and u1.username =?" /> !-->
+	<security:jdbc-user-service data-source-ref="dataSource"
+	users-by-username-query="Select * from User u where login = ?"
+	authorities-by-username-query="Select Role.Role from Role Right Join User ON User.ROLE_IDROLE=ROLE.IDROLE where User.login = ? "/>
 	</security:authentication-provider>
 </security:authentication-manager>
 </beans>
