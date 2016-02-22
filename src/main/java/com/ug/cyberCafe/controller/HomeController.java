@@ -44,7 +44,7 @@ public class HomeController {
 			model.addAttribute("news",newsService.getAllNews());
 		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if( !(auth.getPrincipal() instanceof AnonymousAuthenticationToken)){
+		if( !(auth instanceof AnonymousAuthenticationToken)){
 			model.addAttribute("user",getPrincipal());
 			System.out.println(auth.getPrincipal().toString());
 		}else{
