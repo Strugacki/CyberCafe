@@ -32,6 +32,17 @@
 									<li class="nav-divider"></li>
 									<li><a href="<c:url value="/user/profile" />" class="btn-profile">Moje konto</a>
 								</c:if>
+								<c:choose>
+									<c:when test="${role == 'ROLE_ADMIN'}">
+										<jsp:include page="../templates/admin.jsp"></jsp:include>
+									</c:when>
+									<c:when test="${role == 'ROLE_EMPLOYEE'}">
+										<jsp:include page="../templates/admin.jsp"></jsp:include>
+									</c:when>
+									<c:when test="${role == 'ROLE_USER'}">
+										<jsp:include page="../templates/admin.jsp"></jsp:include>
+									</c:when>
+								</c:choose>
 							</ul>
 						</div>
 					<ul class="nav navbar-nav navbar-right">

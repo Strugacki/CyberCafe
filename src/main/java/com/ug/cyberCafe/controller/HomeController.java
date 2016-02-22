@@ -1,13 +1,16 @@
 package com.ug.cyberCafe.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -23,20 +26,6 @@ import com.ug.cyberCafe.service.NewsService;
 public class HomeController {
 	@Autowired
 	private NewsService newsService;
-	private HashMap<String, ArrayList> menu = new HashMap<String, ArrayList>();
-	
-	public HashMap<String, ArrayList> fillMenu(String who){
-		
-		ArrayList<String> user = new ArrayList();
-		
-		user.add("/user/add");
-		user.add("/user/delete");
-		user.add("/user/update");
-		user.add("/user/list");
-		
-		menu.put("user", user);
-		return menu;
-	}
 	
 	@RequestMapping
 	public String welcome(Model model){
@@ -45,7 +34,6 @@ public class HomeController {
 		}
 		
 		Authorization(model);
-		
 		return "home";
 	}
 	
@@ -100,12 +88,17 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if( !(auth instanceof AnonymousAuthenticationToken)){
 			model.addAttribute("user",getPrincipal());
-			System.out.println(auth.getPrincipal().toString());
+			if(auth.getAuthorities() != null){
+				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
+					String role = authority.getAuthority();
+					System.out.println(role);
+					model.addAttribute("role",role);
+				}
+			}
 		}else{
 			model.addAttribute("user", null);
 		}
 		
 		return model;
 	}
-		
 }

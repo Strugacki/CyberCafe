@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -98,7 +99,13 @@ public class UserController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if( !(auth instanceof AnonymousAuthenticationToken)){
 			model.addAttribute("user",getPrincipal());
-			System.out.println(auth.getPrincipal().toString());
+			if(auth.getAuthorities() != null){
+				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
+					String role = authority.getAuthority();
+					System.out.println(role);
+					model.addAttribute("role",role);
+				}
+			}
 		}else{
 			model.addAttribute("user", null);
 		}
