@@ -27,6 +27,10 @@
 								<li><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
 								<li><a href="<c:url value="/devices/" /> ">Sprzęt</a></li>
 								<li><a href="<c:url value="/events/" /> ">Turnieje</a></li>
+								<c:if test="${!empty user}">
+									<li class="nav-divider"></li>
+									<li><a href="<c:url value="/user/profile" />" class="btn-profile">Moje konto</a>
+								</c:if>
 							</ul>
 						</div>
 						<ul class="nav navbar-nav navbar-right">

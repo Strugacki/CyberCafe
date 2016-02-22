@@ -108,7 +108,14 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 			if(!sessionFactory.getCurrentSession().getTransaction().isActive()){
 				sessionFactory.getCurrentSession().getTransaction().begin();
 			}
-			return (User) sessionFactory.getCurrentSession().getNamedQuery("get.User.By.Id");
+			User user = null;
+			Query query = sessionFactory.getCurrentSession().getNamedQuery("get.User.By.Login");
+			query.setString(0, username);
+			List<User> results = query.list();
+			if (!results.isEmpty()) {
+				user = results.get(0);
+			}
+			return user;
 		} catch (Exception e) {
 			return null;
 		}

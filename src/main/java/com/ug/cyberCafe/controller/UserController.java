@@ -25,18 +25,11 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
-	
-	@RequestMapping
-	public String myPage(Model model){
-		
-		
-		return "profile";		
-	}
+
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(){
-		
+	public String login(Model model){
+		Authorization(model);
 		return "/user/login";
 	}
 	
@@ -52,18 +45,9 @@ public class UserController {
 	
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String profile(Model model){
-		String userName;
-		String userPassword;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User currentUser; 
-    	if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-            System.out.println(userName);
-            userPassword = ((UserDetails)principal).getPassword();
-            System.out.println(userPassword);
-            currentUser = userService.loginUser(userName, "admin123");
+            User currentUser = userService.getUserByUsername(getPrincipal());
+            Authorization(model);
             model.addAttribute("currentUser",currentUser);
-    	}
     	
     	return "/user/profile";
 	}
@@ -76,6 +60,7 @@ public class UserController {
 		User newUser = new User();
 		newUser.setActive(true);
 		model.addAttribute("newUser", newUser);
+		Authorization(model);
 		return "/user/registration";
 	}
 	

@@ -26,7 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="USER")
 @NamedQueries({ 
 	@NamedQuery(name = "get.All.Users", query = "Select u from User u"),
-	@NamedQuery(name = "get.User.By.Id", query = "Select u from User u where u.login = ?"),
+	@NamedQuery(name = "get.User.By.Login", query = "Select u from User u where u.login = ?"),
 	@NamedQuery(name = "log.In.User", query = "Select u from User u where u.login = ? and u.password = ?")
 })
 public class User {

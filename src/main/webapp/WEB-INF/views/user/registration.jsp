@@ -28,20 +28,21 @@
 								<li><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
 								<li><a href="<c:url value="/devices/" /> ">Sprzęt</a></li>
 								<li><a href="<c:url value="/events/" /> ">Turnieje</a></li>
+								<c:if test="${!empty user}">
+									<li class="nav-divider"></li>
+									<li><a href="<c:url value="/user/profile" />" class="btn-profile">Moje konto</a>
+								</c:if>
 							</ul>
 						</div>
-					<!--  <form class="col-lg-2">
-						<div class="form-group">
-							<input class="form-control input-sm" type="text" name="username" placeholder="Login"/>
-						</div>
-						<div class="form-group">
-							<input class="form-control input-sm" type="text" name="password" placeholder="Hasło" />
-						</div>
-						<a class="btn btn-primary" href="<c:url value='/user/registration' />" >Zaloguj</a>
-						<a class="btn btn-info" href="<c:url value='/user/registration' />" >Rejestracja</a>
-					</form> !-->
 					<ul class="nav navbar-nav navbar-right">
-						<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+						<c:choose >
+							<c:when test="${empty user}">
+								<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a class="btn btn-primary-outline" href="<c:url value='/user/logout' />" ><span class="glyphicon glyphicon-log-out" ></span> Wyloguj</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li><a class="btn btn-info-outline" href="<c:url value='/user/registration' />" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
 					</ul>
 			</div>

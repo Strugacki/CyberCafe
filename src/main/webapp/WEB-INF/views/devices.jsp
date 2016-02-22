@@ -30,6 +30,10 @@
 							<li><a href="<c:url value="/home/promotions/" /> ">Promocje</a></li>
 							<li class="active"><a href="<c:url value="/devices/" /> ">Sprzęt</a></li>
 							<li><a href="<c:url value="/home/events/" /> ">Turnieje</a></li>
+							<c:if test="${!empty user}">
+								<li class="nav-divider"></li>
+								<li><a href="<c:url value="/user/profile" />" class="btn-profile">Moje konto</a>
+							</c:if>
 						</ul>
 					</div>
 				</div>
