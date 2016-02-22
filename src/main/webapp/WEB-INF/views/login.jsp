@@ -54,12 +54,12 @@
     	</div>
     	<c:if test="${param.login_error != null}">
     			<div class="alert alert-danger" role="alert">
- 					 <p><strong>Uwaga!</strong> Nieprawidłowy login lub hasło!!</p>
+ 					 <p class="text-center"><strong>Uwaga!</strong> Nieprawidłowy login lub hasło!!</p>
 				</div>
     	</c:if>
     	<c:if test="${param.logout != null}">
     			<div class="alert alert-success" role="alert">
- 					 <p><strong>Do zobaczenia!</strong> Wylogowałeś się pomyślnie</p>
+ 					 <p class="text-center"><strong>Do zobaczenia!</strong> Wylogowałeś się pomyślnie</p>
 				</div>
     		</c:if>
 			<form action="${loginUrl}" method="POST" class="form-horizontal">
