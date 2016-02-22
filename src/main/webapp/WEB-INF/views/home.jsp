@@ -29,16 +29,6 @@
 								<li><a href="<c:url value="/events/" /> ">Turnieje</a></li>
 							</ul>
 						</div>
-					<!--  <form class="col-lg-2">
-						<div class="form-group">
-							<input class="form-control input-sm" type="text" name="username" placeholder="Login"/>
-						</div>
-						<div class="form-group">
-							<input class="form-control input-sm" type="text" name="password" placeholder="Hasło" />
-						</div>
-						<a class="btn btn-primary" href="<c:url value='/user/registration' />" >Zaloguj</a>
-						<a class="btn btn-info" href="<c:url value='/user/registration' />" >Rejestracja</a>
-					</form> !-->
 					<ul class="nav navbar-nav navbar-right">
 						<c:choose >
 							<c:when test="${empty user}">

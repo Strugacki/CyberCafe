@@ -1,10 +1,10 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe </title>
+		<title> Cyber Cafe - cennik</title>
 	</head>
 
 	<body>
@@ -29,18 +29,15 @@
 								<li><a href="<c:url value="/events/" /> ">Turnieje</a></li>
 							</ul>
 						</div>
-					<!--  <form class="col-lg-2">
-						<div class="form-group">
-							<input class="form-control input-sm" type="text" name="username" placeholder="Login"/>
-						</div>
-						<div class="form-group">
-							<input class="form-control input-sm" type="text" name="password" placeholder="Hasło" />
-						</div>
-						<a class="btn btn-primary" href="<c:url value='/user/registration' />" >Zaloguj</a>
-						<a class="btn btn-info" href="<c:url value='/user/registration' />" >Rejestracja</a>
-					</form> !-->
-					<ul class="nav navbar-nav navbar-right">
-						<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+						<ul class="nav navbar-nav navbar-right">
+						<c:choose >
+							<c:when test="${empty user}">
+								<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a class="btn btn-primary-outline" href="<c:url value='/user/logout' />" ><span class="glyphicon glyphicon-log-out" ></span> Wyloguj</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li><a class="btn btn-info-outline" href="<c:url value='/user/registration' />" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
 					</ul>
 			</div>

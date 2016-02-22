@@ -35,13 +35,9 @@ public class UserController {
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login(){
 		
-		return "login";
+		return "/user/login";
 	}
 	
-	@RequestMapping(value = "logins", method = RequestMethod.GET)
-	public String logins(){
-			return "logins";
-	}
 	
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response){
@@ -60,7 +56,7 @@ public class UserController {
 		User newUser = new User();
 		newUser.setActive(true);
 		model.addAttribute("newUser", newUser);
-		return "registration";
+		return "/user/registration";
 	}
 	
 	/**

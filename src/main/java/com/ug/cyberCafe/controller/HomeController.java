@@ -43,47 +43,43 @@ public class HomeController {
 		if(!newsService.getAllNews().isEmpty()){
 			model.addAttribute("news",newsService.getAllNews());
 		}
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if( !(auth instanceof AnonymousAuthenticationToken)){
-			model.addAttribute("user",getPrincipal());
-			System.out.println(auth.getPrincipal().toString());
-		}else{
-			model.addAttribute("user", null);
-		}
+		
+		Authorization(model);
+		
 		return "home";
 	}
 	
 	@RequestMapping("about")
 	public String about(Model model){
-		
+		Authorization(model);
 		
 		return "about";
 	}
 	
 	@RequestMapping("contact")
 	public String contact(Model model){
-		
+		Authorization(model);
 		
 		return "contact";
 	}
 	
 	@RequestMapping("pricing")
 	public String pricing(Model model){
-		
+		Authorization(model);
 		
 		return "pricing";
 	}
 	
 	@RequestMapping("promotions")
 	public String promotions(Model model){
-		
+		Authorization(model);
 		
 		return "promotions";
 	}
 	
 	@RequestMapping("events")
 	public String tournaments(Model model){
-		
+		Authorization(model);
 		
 		return "events";
 	}
@@ -99,5 +95,17 @@ public class HomeController {
         }
         return userName;
     }
+	
+	private Model Authorization(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if( !(auth instanceof AnonymousAuthenticationToken)){
+			model.addAttribute("user",getPrincipal());
+			System.out.println(auth.getPrincipal().toString());
+		}else{
+			model.addAttribute("user", null);
+		}
+		
+		return model;
+	}
 		
 }

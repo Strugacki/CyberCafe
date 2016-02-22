@@ -5,7 +5,7 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html"; charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe - registration</title>
+		<title> Cyber Cafe - rejestracja</title>
 	</head>
 
 	<body>
@@ -17,7 +17,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand " href="#">Cyber Cafe</a>
+							<a class="navbar-brand " href="<c:url value="/" /> ">Cyber Cafe</a>
 						</div>
 						
 						<div class="collapse navbar-collapse" id="mynavbar-content">
