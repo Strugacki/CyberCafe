@@ -45,7 +45,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	public User getUserById(long id) {
 		return (User) sessionFactory.getCurrentSession().get(User.class, id);
 	}
-	
+
 	@Override
 	public void updateUser(User user) {
 		User userToUpdate = getUserById(user.getIdUser());
@@ -77,27 +77,39 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 	@Override
 	public void deleteAllUsers() {
-		for(User user : getAllUsers() ) {
+		for (User user : getAllUsers()) {
 			deleteUser(user);
 		}
 	}
 
 	@Override
-	public User login(String username, String password) {
-		try{
-			if(!sessionFactory.getCurrentSession().getTransaction().isActive()){
+	public User logedUser(String username, String password) {
+		try {
+			if (!sessionFactory.getCurrentSession().getTransaction().isActive()) {
 				sessionFactory.getCurrentSession().getTransaction().begin();
 			}
-			User user=null;
+			User user = null;
 			Query query = sessionFactory.getCurrentSession().getNamedQuery("log.In.User");
 			query.setString(0, username);
 			query.setString(1, password);
 			List<User> results = query.list();
-			if(!results.isEmpty()){
+			if (!results.isEmpty()) {
 				user = results.get(0);
 			}
 			return user;
-		} catch (Exception e){
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		try{
+			if(!sessionFactory.getCurrentSession().getTransaction().isActive()){
+				sessionFactory.getCurrentSession().getTransaction().begin();
+			}
+			return (User) sessionFactory.getCurrentSession().getNamedQuery("get.User.By.Id");
+		} catch (Exception e) {
 			return null;
 		}
 	}
