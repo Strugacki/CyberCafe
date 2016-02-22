@@ -18,18 +18,27 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 		
 		
-<security:http auto-config="true">
-	<security:access-denied-handler error-page="/"/>
-	<security:intercept-url pattern="/devices/*" access="ROLE_ADMIN" />
-	<security:form-login login-page="/user/login" username-parameter="login" password-parameter="password" authentication-failure-url="/"/>
-	<security:logout logout-success-url="/user/logout" />
+<security:http use-expressions="true" authentication-manager-ref="authenticationManager">
+	<security:form-login login-page="/user/login"
+	username-parameter="username" 
+	password-parameter="password" 
+	authentication-failure-url="/user/login?login_error=true" 
+	default-target-url="/devices/add" />
+	<security:intercept-url pattern="/devices/**" access="hasRole('ROLE_ADMIN')" />
+	<security:intercept-url pattern="/user/login" access="permitAll" />
 </security:http>
 
-<security:authentication-manager>
+<security:authentication-manager id="authenticationManager">
 	<security:authentication-provider>
+	<security:password-encoder hash="plaintext"></security:password-encoder>
 	<security:jdbc-user-service data-source-ref="dataSource"
-	users-by-username-query="Select * from User u where login = ?"
-	authorities-by-username-query="Select Role.Role from Role Right Join User ON User.ROLE_IDROLE=ROLE.IDROLE where User.login = ? "/>
+		  users-by-username-query=
+		    "select u.login as username ,u.password as password, u.active as enabled from User u WHERE u.login= ? "
+		  authorities-by-username-query=
+		    "SELECT u.login as username, r.role as authorities FROM User u, Role r WHERE (u.ROLE_IDROLE=r.IDROLE) AND (u.login= ?)" />
+		<!-- <security:user-service>
+			<security:user name="Admin" password="Admin123" authorities="ROLE_ADMIN" />
+		</security:user-service> !-->
 	</security:authentication-provider>
 </security:authentication-manager>
 </beans>

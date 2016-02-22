@@ -6,6 +6,10 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,22 +23,18 @@ import com.ug.cyberCafe.service.NewsService;
 public class HomeController {
 	@Autowired
 	private NewsService newsService;
-	private HashMap<String, String> menu = new HashMap<String, String>();
+	private HashMap<String, ArrayList> menu = new HashMap<String, ArrayList>();
 	
-	public HashMap<String, String> fillMenu(HttpSession session){
+	public HashMap<String, ArrayList> fillMenu(String who){
 		
-		menu.put("/about", "O nas");
-		menu.put("/contact", "Kontakt");
-		menu.put("/pricing", "Cennik");
-		menu.put("/promotions", "Promocje");
-		menu.put("/devices", "Sprzęt");
-		menu.put("/events", "Trniejeu");
+		ArrayList<String> user = new ArrayList();
 		
-		if(session.getAttribute("user") != null){
-			User user = (User) session.getAttribute("user");
-			menu.put("/user/profile/?id="+ user.getIdUser(), "Konto");
-		}
+		user.add("/user/add");
+		user.add("/user/delete");
+		user.add("/user/update");
+		user.add("/user/list");
 		
+		menu.put("user", user);
 		return menu;
 	}
 	
@@ -42,6 +42,13 @@ public class HomeController {
 	public String welcome(Model model){
 		if(!newsService.getAllNews().isEmpty()){
 			model.addAttribute("news",newsService.getAllNews());
+		}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if( !(auth.getPrincipal() instanceof AnonymousAuthenticationToken)){
+			model.addAttribute("user",getPrincipal());
+			System.out.println(auth.getPrincipal().toString());
+		}else{
+			model.addAttribute("user", null);
 		}
 		return "home";
 	}
@@ -80,5 +87,17 @@ public class HomeController {
 		
 		return "events";
 	}
+	
+	private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ 
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
 		
 }

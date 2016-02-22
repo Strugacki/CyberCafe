@@ -1,9 +1,15 @@
 package com.ug.cyberCafe.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,31 +42,24 @@ public class UserController {
 		return "profile";		
 	}
 	
-	@RequestMapping(value = "login")
-	public String loginForm(){
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String login(){
+		
 		return "login";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(@RequestParam(value = "login") String login, @RequestParam(value = "password") String password, HttpSession session){
-		System.out.println(login);
-		System.out.println(password);
-		User toLogIn = userService.loginUser(login, password);
-		if(!(toLogIn == null)){
-		session.setAttribute("user", toLogIn);
-		User us = (User) session.getAttribute("user");
-		System.out.println(us.getFirstName());
-		System.out.println(us.getLastName());
-			return "redirect:/";
-		}else{
-			return "registration";
+	@RequestMapping(value = "logins", method = RequestMethod.GET)
+	public String logins(){
+			return "logins";
+	}
+	
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpServletResponse response){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth != null){
+			new SecurityContextLogoutHandler().logout(request,response,auth);
 		}
-	}
-	
-	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
-	public String loginError(Model model){
-		model.addAttribute("error",true);
-		return "login";
+		return "redirect:/user/login?logout";
 	}
 	
 	/**
@@ -91,6 +90,18 @@ public class UserController {
 			return "redirect:/" ;
 		}
 	}
+	
+	private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ 
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
 	
 	
 }

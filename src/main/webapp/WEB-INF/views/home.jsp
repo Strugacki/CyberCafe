@@ -18,7 +18,7 @@
 							</button>
 							<a class="navbar-brand " href="#">Cyber Cafe</a>
 						</div>
-						
+						<c:set var="user" value="${user}"/>
 						<div class="collapse navbar-collapse" id="mynavbar-content">
 							<ul class="nav navbar-nav">
 								<li><a href="<c:url value="/about/" /> ">O nas</a></li>
@@ -40,7 +40,14 @@
 						<a class="btn btn-info" href="<c:url value='/user/registration' />" >Rejestracja</a>
 					</form> !-->
 					<ul class="nav navbar-nav navbar-right">
-						<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+						<c:choose >
+							<c:when test="${empty user}">
+								<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a class="btn btn-primary-outline" href="<c:url value='/user/logout' />" ><span class="glyphicon glyphicon-log-in" ></span> Wyloguj</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li><a class="btn btn-info-outline" href="<c:url value='/user/registration' />" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
 					</ul>
 			</div>

@@ -1,4 +1,4 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
@@ -50,13 +50,24 @@
 	<div class="generic-container">
     	<div class="well lead">
     		<h2 class="text-center">Formularz logowania</h2>
+    		<c:url var="loginUrl" value="/login" />
     	</div>
-			<form action="login" method="POST" class="form-horizontal">
+    	<c:if test="${param.login_error != null}">
+    			<div class="alert alert-danger" role="alert">
+ 					 <p><strong>Uwaga!</strong> Nieprawidłowy login lub hasło!!</p>
+				</div>
+    	</c:if>
+    	<c:if test="${param.logout != null}">
+    			<div class="alert alert-success" role="alert">
+ 					 <p><strong>Do zobaczenia!</strong> Wylogowałeś się pomyślnie</p>
+				</div>
+    		</c:if>
+			<form action="${loginUrl}" method="POST" class="form-horizontal">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="login">Login</label>
+						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="username">Login</label>
 						<div class="col-lg-5 col-md-5 col-sm-5">
-							<input name="login" type="text" class="form-control input-sm"/>
+							<input id="username" name="username" type="text" class="form-control input-sm"/>
 						</div>
 					</div>
 				</div>
@@ -64,13 +75,14 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="password">Hasło</label>
 						<div class="col-lg-5 col-md-5 col-sm-5">
-							<input name="password" type="password" class="form-control input-sm"/>
+							<input id="password" name="password" type="password" class="form-control input-sm"/>
 						</div>
 					</div>
 				</div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="row">
 					<div class="form-actions col-lg-5 col-md-5 col-sm-5 pull-right">
-						<input type="submit" value="Zaloguj" class="btn btn-primary btn-sm"/> albo <a
+						<input type="submit" name="submit" value="Zaloguj" class="btn btn-primary btn-sm"/> albo <a
 						href="<c:url value='/home' />">wróć</a>
 					</div>
 				</div>
