@@ -70,22 +70,36 @@
 			</div>
 		</div>
 	    <c:forEach items="${terminals}" var="terminal">	    
-	    	<c:if test="${terminal.available == true }">						
-				<div class="panel panel-default">
-					<div class="panel-heading-dark">
-						<h3>${terminal.type}</h3>
-					</div>
-					<div class="panel-body">
-						<p>lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-						 lorem lorem lorem lorem lorem 
-						lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
-						 lorem lorem</p>
-					</div>
-					<div class="panel-footer">
-						<p class="alert alert-success"> Dostępny!! </p>
-					</div>
-				</div>
-	    	</c:if>
+	    	<c:choose>
+	    		<c:when test="${role == 'ROLE_ADMIN' or role == 'ROLE_EMPLOYEE'}">
+					<div class="panel panel-default">
+							<div class="panel-heading-dark">
+								<h3>${terminal.type}</h3>
+							</div>
+							<div class="panel-body">
+								${terminal.description}
+							</div>
+							<div class="panel-footer">
+								<a href="/cyberCafe/device/update?id=${terminal.idTerminal}" class="btn btn-primary">Edytuj</a> <a href="/cyberCafe/device/delete?id=${terminal.idTerminal}" class="btn btn-danger">Usuń</a>
+							</div>
+						</div>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${terminal.available == true }">						
+						<div class="panel panel-default">
+							<div class="panel-heading-dark">
+								<h3>${terminal.type}</h3>
+							</div>
+							<div class="panel-body">
+								${terminal.description}
+							</div>
+							<div class="panel-footer">
+								<p class="alert alert-success"> Dostępny!! </p>
+							</div>
+						</div>
+		    		</c:if>
+				</c:otherwise>
+	    	</c:choose>
 	    </c:forEach>    
     </div>
 

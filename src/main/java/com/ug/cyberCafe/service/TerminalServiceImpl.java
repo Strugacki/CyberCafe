@@ -28,7 +28,7 @@ public class TerminalServiceImpl implements TerminalService{
 
 	@Override
 	public void updateTerminal(Terminal terminal) {
-		// TODO Auto-generated method stub
+		dao.updateTerminal(terminal);
 		
 	}
 
