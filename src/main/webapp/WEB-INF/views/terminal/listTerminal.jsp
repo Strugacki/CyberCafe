@@ -1,11 +1,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
-		<meta http-equiv="Content-type" content="text/html"; charser="UTF-8">
+		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe - dodaj terminal</title>
+		<title> Cyber Cafe - terminale</title>
 	</head>
 
 	<body>
@@ -17,16 +16,17 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand " href="#">Cyber Cafe</a>
+							<a class="navbar-brand " href="<c:url value="/" /> ">CyberCafe</a>
 						</div>
 						<c:set var="user" value="${user}"/>
+						<c:set var="role" value="${role}"/>
 						<div class="collapse navbar-collapse" id="mynavbar-content">
 							<ul class="nav navbar-nav">
-								<li><a href="<c:url value="/about/" /> ">O nas</a></li>
+								<li class="active"><a href="<c:url value="/about/" /> ">O nas</a></li>
 								<li><a href="<c:url value="/contact/" /> ">Kontakt</a></li>
 								<li><a href="<c:url value="/pricing/" /> ">Cennik</a></li>
 								<li><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
-								<li><a href="<c:url value="/device/list" /> ">Sprzęt</a></li>
+								<li class="active"><a href="<c:url value="/device/list" /> ">Sprzęt</a></li>
 								<li><a href="<c:url value="/events/" /> ">Turnieje</a></li>
 								<c:if test="${!empty user}">
 									<li class="nav-divider"></li>
@@ -58,37 +58,37 @@
 					</ul>
 			</div>
 		</nav>
-	
-		<div class="generic-container">
-    	<div class="well lead text-center">Formularz dodawania sprzętu</div>
-			<form:form modelAttribute="newTerminal" class="form-horizontal">
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="type">Typ</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:input id="type" path="type" type="text" class="form-control input-sm"/>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="available">Dostępność</label>
-						<div class="col-lg-5 col-md-5 col-sm-5">
-							<form:select id="available" path="available" class="form-control input-sm">
-								<form:option value="TRUE">Tak</form:option>
-								<form:option value="FALSE">Nie</form:option>
-							</form:select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-actions col-lg-5 col-md-5 col-sm-5 pull-right">
-						<input type="submit" value="Dodaj" class="btn btn-primary btn-sm"/> albo <a
-						href="<c:url value='/' />">wróć</a>
-					</div>
-				</div>
-			</form:form>
+		
+	<!-- Page Content -->
+    <div class="container">
+	    <div class="well lead">
+			<h2 class="text-center">Nasz sprzęt</h2>
 		</div>
+		<div class="row">
+			<div class="col-lg-9 col-md-7  col-sm-12">
+				
+			</div>
+		</div>
+	    <c:forEach items="${terminals}" var="terminal">	    
+	    	<c:if test="${terminal.available == true }">						
+				<div class="panel panel-default">
+					<div class="panel-heading-dark">
+						<h3>${terminal.type}</h3>
+					</div>
+					<div class="panel-body">
+						<p>lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+						 lorem lorem lorem lorem lorem 
+						lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem
+						 lorem lorem</p>
+					</div>
+					<div class="panel-footer">
+						<p class="alert alert-success"> Dostępny!! </p>
+					</div>
+				</div>
+	    	</c:if>
+	    </c:forEach>    
+    </div>
+
 		
 		<footer class="navbar-inverse">
 			<div class="container">
@@ -102,7 +102,6 @@
 							<li class="text-center"><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
 						</ul>
 					</div>
-					
 					<div class="col-lg-4">
 						<ul class="nav nav-stacked">
 							<li class="text-center"><h5>Znajdź nas na: </h5></li>
@@ -117,8 +116,7 @@
 					<br>
 				</div>
 			</div>	
-		</footer>
-		
+		</footer>	
 		<script src="<c:url value="/resources/js/jquery.js" />" ></script>
 		<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 	</body>

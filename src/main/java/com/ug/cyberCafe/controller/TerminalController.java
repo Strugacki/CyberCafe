@@ -25,12 +25,11 @@ public class TerminalController {
 		private TerminalService terminalService;
 		
 	    
-	    @RequestMapping
+	    @RequestMapping("list")
 	    public  String list(Model model){
-	    	
-	    	model.addAttribute("products",terminalService.getAllTerminals());
-	    	
-	    	return "devices";
+	    	Authorization(model);
+	    	model.addAttribute("terminals",terminalService.getAllTerminals());
+	    	return "terminal/listTerminal";
 	    }
 		/**
 		 * 
@@ -52,6 +51,12 @@ public class TerminalController {
 			return "redirect:/" ;
 		}
 		
+		
+		
+		/**
+		 * 
+		 * @return
+		 */
 		private String getPrincipal(){
 	        String userName = null;
 	        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -64,6 +69,12 @@ public class TerminalController {
 	        return userName;
 	    }
 		
+		
+		/**
+		 * Method setting user attribute and setting appriopriate role attribute to model
+		 * @param model
+		 * @return model
+		 */
 		private Model Authorization(Model model){
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			if( !(auth instanceof AnonymousAuthenticationToken)){
