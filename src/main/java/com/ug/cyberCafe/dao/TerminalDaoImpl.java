@@ -41,6 +41,7 @@ public class TerminalDaoImpl extends AbstractDao<Integer, Terminal> implements T
 		Terminal terminalToUpdate = getTerminalById(terminal.getIdTerminal());
 		terminalToUpdate.setAvailable(terminal.getAvailable());
 		terminalToUpdate.setType(terminal.getType());
+		terminalToUpdate.setDescription(terminal.getDescription());
 		sessionFactory.getCurrentSession().update(terminalToUpdate);
 	}
 	

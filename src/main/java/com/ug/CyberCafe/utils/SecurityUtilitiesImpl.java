@@ -1,4 +1,4 @@
-package com.ug.CyberCafe.utils;
+package com.ug.cyberCafe.utils;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
