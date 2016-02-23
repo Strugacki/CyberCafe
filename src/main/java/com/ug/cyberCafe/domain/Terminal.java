@@ -26,6 +26,9 @@ public class Terminal {
 	
 	@Column(name = "AVAILABLE", nullable = false)
 	private Boolean available;
+	
+	@Column(name = "DESCRIPTION", nullable = false)
+	private String description;
 
 	public long getIdTerminal() {
 		return idTerminal;
@@ -50,4 +53,13 @@ public class Terminal {
 	public void setAvailable(Boolean available) {
 		this.available = available;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 }
