@@ -93,8 +93,8 @@
 				</div>
 				<div class="row">
 					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a
-						href="<c:url value='/home' />">wróć</a>
+						<input type="submit" value="Dodaj" class="btn btn-primary btn-sm"/> albo <a
+						href="<c:url value='/' />">wróć</a>
 					</div>
 				</div>
 			</form:form>

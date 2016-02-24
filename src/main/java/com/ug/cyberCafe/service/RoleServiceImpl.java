@@ -28,7 +28,7 @@ public class RoleServiceImpl implements RoleService{
 
 	@Override
 	public void updateRole(Role role) {
-		// TODO Auto-generated method stub
+		roleDao.updateRole(role);
 		
 	}
 
@@ -40,6 +40,11 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public List<Role> getAllRoles() {
 		return roleDao.getAllRoles();
+	}
+
+	@Override
+	public Role getRoleByName(String roleName) {
+		return roleDao.getRoleByName(roleName);
 	}
 
 }

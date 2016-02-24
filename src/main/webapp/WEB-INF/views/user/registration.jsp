@@ -37,10 +37,10 @@
 										<jsp:include page="../templates/admin.jsp"></jsp:include>
 									</c:when>
 									<c:when test="${role == 'ROLE_EMPLOYEE'}">
-										<jsp:include page="../templates/admin.jsp"></jsp:include>
+										<jsp:include page="../templates/employee.jsp"></jsp:include>
 									</c:when>
 									<c:when test="${role == 'ROLE_USER'}">
-										<jsp:include page="../templates/admin.jsp"></jsp:include>
+										<jsp:include page="../templates/user.jsp"></jsp:include>
 									</c:when>
 								</c:choose>
 							</ul>
@@ -131,9 +131,8 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="avatar">Avatar</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<form:input id="avatar" path="avatar" type="file" class="form-control input-sm"/>
+							<input id="avatar" type="file" class="form-control input-sm"/>
 						</div>
-						<form:errors path="avatar" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">

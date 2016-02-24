@@ -2,11 +2,13 @@ package com.ug.cyberCafe.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ug.cyberCafe.domain.Role;
+import com.ug.cyberCafe.domain.User;
 
 @Repository
 public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao {
@@ -48,6 +50,25 @@ public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao {
 	public void deleteAllRoles() {
 		for(Role role : getAllRoles() ) {
 			deleteRole(role);
+		}
+	}
+
+	@Override
+	public Role getRoleByName(String roleName) {
+		try {
+			if (!sessionFactory.getCurrentSession().getTransaction().isActive()) {
+				sessionFactory.getCurrentSession().getTransaction().begin();
+			}
+			Role role = null;
+			Query query = sessionFactory.getCurrentSession().getNamedQuery("get.Role.By.Name");
+			query.setString(0, roleName);
+			List<Role> results = query.list();
+			if (!results.isEmpty()) {
+				role = results.get(0);
+			}
+			return role;
+		} catch (Exception e) {
+			return null;
 		}
 	}
 }

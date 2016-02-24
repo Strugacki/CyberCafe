@@ -11,6 +11,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({ 
 	@NamedQuery(name = "get.All.Roles", query = "Select r from Role r"),
+	@NamedQuery(name = "get.Role.By.Name", query = "Select r from Role r WHERE r.role = ? ")
 })
 public class Role {
 	@Id

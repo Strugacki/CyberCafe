@@ -7,6 +7,8 @@ import com.ug.cyberCafe.domain.Role;
 public interface RoleService {
 	
 	Role getRoleById(long id);
+	
+	Role getRoleByName(String roleName);
 
 	void addRole(Role role);
 

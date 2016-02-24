@@ -14,6 +14,8 @@ public interface RoleDao {
  
     Role getRoleById(long id);
     
+    Role getRoleByName(String roleName);
+    
     void updateRole(Role role);
 
 	void deleteAllRoles();

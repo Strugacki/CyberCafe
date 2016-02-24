@@ -1,9 +1,15 @@
 package com.ug.cyberCafe.controller;
 
+import java.io.IOException;
+import java.sql.Blob;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +23,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.ug.cyberCafe.service.RoleService;
 import com.ug.cyberCafe.service.UserService;
 import com.ug.cyberCafe.domain.User;
 
@@ -27,6 +37,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private RoleService roleService;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login(Model model){
@@ -66,16 +78,21 @@ public class UserController {
 	}
 	
 	/**
+	 * @throws IOException 
+	 * @throws HibernateException 
 	 * 
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.POST)
-	public String processAddNewUserForm(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model){
+	public String processAddNewUserForm(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model) throws HibernateException, IOException{
+		//@RequestParam("avatar") MultipartFile file
 		if(result.hasErrors()){
 			model.addAttribute("warn","Nie udało się wykonać rejestracji, spróbuj ponownie!");
 			System.out.println(result.toString());
-			return "registration";
+			return "/user/registration";
 		}else{
-			newUser.setRole(null);
+			newUser.setRole(roleService.getRoleByName("ROLE_USER"));
+			//SessionFactory session = null;
+			//Blob blob = Hibernate.getLobCreator(session.getCurrentSession()).createBlob(file.getBytes());
 			newUser.setAddresses(null);
 			newUser.setAvatar(null);
 			userService.addUser(newUser);

@@ -22,7 +22,7 @@
 						<c:set var="role" value="${role}"/>
 						<div class="collapse navbar-collapse" id="mynavbar-content">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="<c:url value="/about/" /> ">O nas</a></li>
+								<li><a href="<c:url value="/about/" /> ">O nas</a></li>
 								<li><a href="<c:url value="/contact/" /> ">Kontakt</a></li>
 								<li><a href="<c:url value="/pricing/" /> ">Cennik</a></li>
 								<li><a href="<c:url value="/promotions/" /> ">Promocje</a></li>

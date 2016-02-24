@@ -3,7 +3,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
-		<meta http-equiv="Content-type" content="text/html"; charset="UTF-8">
+		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
 		<title> Cyber Cafe - rejestracja</title>
 	</head>
@@ -96,8 +96,8 @@
 				</div>
 				<div class="row">
 					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a
-						href="<c:url value='/home' />">wróć</a>
+						<input type="submit" value="Aktualizuj" class="btn btn-primary btn-sm"/> albo <a
+						href="<c:url value="/" />">wróć</a>
 					</div>
 				</div>
 			</form:form>
