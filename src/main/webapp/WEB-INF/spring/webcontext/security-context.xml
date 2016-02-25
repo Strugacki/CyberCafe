@@ -43,4 +43,8 @@
 		</security:user-service> !-->
 	</security:authentication-provider>
 </security:authentication-manager>
+
+	<bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000" />
+    </bean>
 </beans>

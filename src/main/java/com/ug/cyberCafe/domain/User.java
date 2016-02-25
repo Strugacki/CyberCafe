@@ -23,6 +23,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="USER")
@@ -82,8 +83,9 @@ public class User {
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 	
+	@Lob
 	@Column(name = "AVATAR", nullable = true)
-	private Blob avatar=null;
+	private byte[] avatar=null;
 	
 	@OneToMany
 	private Set<Address> addresses;
@@ -165,11 +167,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Blob getAvatar() {
+	public byte[]  getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(Blob avatar) {
+	public void setAvatar(byte[] avatar) {
 		this.avatar = avatar;
 	}
 

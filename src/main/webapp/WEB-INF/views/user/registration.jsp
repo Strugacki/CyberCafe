@@ -63,7 +63,7 @@
     	<div class="well lead">
     		<h2 class="text-center">Formularz rejestracji</h2>
     	</div>
-			<form:form modelAttribute="newUser" class="form-horizontal" id="registrationForm">
+			<form:form modelAttribute="newUser" class="form-horizontal" id="registrationForm" enctype="multipart/form-data">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="firstName">Imie</label>
@@ -131,10 +131,11 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="avatar">Avatar</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<input id="avatar" type="file" class="form-control input-sm"/>
+							<form:input id="avatar" name="avatar" path="avatar" type="file" class="form-control input-sm"/>
 						</div>
 					</div>
 				</div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="row">
 					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
 						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a

@@ -46,7 +46,14 @@
 							</ul>
 						</div>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+						<c:choose >
+							<c:when test="${empty user}">
+								<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a class="btn btn-primary-outline" href="<c:url value='/user/logout' />" ><span class="glyphicon glyphicon-log-out" ></span> Wyloguj</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li><a class="btn btn-info-outline" href="<c:url value='/user/registration' />" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
 					</ul>
 			</div>
@@ -58,6 +65,13 @@
     	</div>
     	<c:set var="userDetails" value="${currentUser}" />
 			<form:form  class="form-horizontal" id="registrationForm" >
+				<div class="row">
+					<div class="text-center">
+						<c:if test="${!empty userImage}">
+							<img  class="img-center" src="data:image/jpeg;base64,${userImage}" />
+						</c:if>
+					</div>
+				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="firstName">Imie</label>
