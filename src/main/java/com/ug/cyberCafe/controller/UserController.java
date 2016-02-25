@@ -84,6 +84,27 @@ public class UserController {
     	return "/user/profile";
 	}
 	
+	@RequestMapping(value = "profile/edit", method = RequestMethod.GET)
+	public String getUserProfilUpdateForm(Model model) throws IOException{
+			Authorization(model);
+			User userProfil = userService.getUserByUsername(getPrincipal());
+            model.addAttribute("userProfil",userProfil);
+            model.addAttribute("edit",true);
+    	return "/user/profile";
+	}
+	
+	@RequestMapping(value = "profile/edit", method = RequestMethod.POST)
+	public String processUserProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil,BindingResult result, Model model) throws IOException{
+            Authorization(model);
+			if(result.hasErrors()){
+				model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
+				return "/user/profile";
+			}else{
+				userService.updateUser(userProfil);
+				return "redirect:/user/profile";
+			}
+	}
+	
 	/**
 	 * 
 	 */

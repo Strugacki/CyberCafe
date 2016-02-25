@@ -2,12 +2,14 @@ package com.ug.cyberCafe.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.domain.News;
+import com.ug.cyberCafe.domain.User;
 
 @Component("newsDao")
 public class NewsDaoImpl extends AbstractDao<Integer, News> implements NewsDao {
@@ -58,6 +60,25 @@ public class NewsDaoImpl extends AbstractDao<Integer, News> implements NewsDao {
 	public void deleteAllNews() {
 		for(News news : getAllNews() ) {
 			deleteNews(news);
+		}
+	}
+
+	@Override
+	public User getUserByNewsId(long id) {
+		try{
+			if(!sessionFactory.getCurrentSession().getTransaction().isActive()){
+				sessionFactory.getCurrentSession().getTransaction().begin();
+			}
+			User user = null;
+			Query query = sessionFactory.getCurrentSession().getNamedQuery("get.User.By.News.Id");
+			query.setLong(0, id);
+			List<User> results = query.list();
+			if (!results.isEmpty()) {
+				user = results.get(0);
+			}
+			return user;
+		} catch (Exception e) {
+			return null;
 		}
 	}
 

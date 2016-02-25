@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 @Table(name="NEWS")
 @NamedQueries({ 
 	@NamedQuery(name = "get.All.News", query = "Select n from News n"),
+	@NamedQuery(name = "get.User.By.News.Id", query = "SELECT u.nickname FROM User u")
 })
 public class News {
 	
@@ -33,13 +36,14 @@ public class News {
 	@Column(name = "UPLOADDATE", nullable = false)
 	private String uploadDate;
 	
-	@OneToMany
-	private Set<User> users;
+	@ManyToOne
+	@JoinColumn(name="USER_IDUSER")
+	private User user;
 	
 	public News(){
 		
 	}
-	
+	//, News n WHERE (u.idUser=r.user.idUser) AND (n.idNews= ?)
 	public News(String title, String body, String uploadDate) {
 		super();
 		this.setTitle(title);
@@ -80,12 +84,12 @@ public class News {
 		this.uploadDate = uploadDate;
 	}
 
-	public Set<User> getUsers() {
-		return users;
+	public User getUsers() {
+		return user;
 	}
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public void setUsers(User user) {
+		this.user = user;
 	}
 	
 	

@@ -66,7 +66,7 @@
 			<form:form modelAttribute="newUser" class="form-horizontal" id="registrationForm" enctype="multipart/form-data">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="firstName">Imie</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="firstName" path="firstName" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
@@ -75,7 +75,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="lastName">Nazwisko</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="lastName">Nazwisko</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="lastName" path="lastName" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
@@ -84,7 +84,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="email">Adres email</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="email">Adres email</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="email" path="email" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
@@ -93,7 +93,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3 col-sm-3" for="dateOfBirth">Data urodzenia</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="dateOfBirth">Data urodzenia</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="dateOfBirth" path="dateOfBirth" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
@@ -102,7 +102,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="nickname">Pseudonim</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Pseudonim</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="nickname" path="nickname" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
@@ -111,7 +111,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="login">Login</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="login">Login</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="login" path="login" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
@@ -120,7 +120,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="password">Hasło</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="password">Hasło</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="password" path="password" type="password" required="reguired" class="form-control input-sm"/>
 						</div>
@@ -129,7 +129,7 @@
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="avatar">Avatar</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="avatar">Avatar</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 							<form:input id="avatar" name="avatar" path="avatar" type="file" class="form-control input-sm"/>
 						</div>
@@ -139,7 +139,7 @@
 				<div class="row">
 					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
 						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a
-						href="<c:url value='/home' />">wróć</a>
+						href="<c:url value='/' />">wróć</a>
 					</div>
 				</div>
 			</form:form>

@@ -59,90 +59,192 @@
 			</div>
 	</nav>
 	
-	<div class="generic-container">
-    	<div class="well lead">
-    		<h2 class="text-center">Moje dane</h2>
-    	</div>
-    	<c:set var="userDetails" value="${currentUser}" />
-			<form:form  class="form-horizontal" id="registrationForm" >
-				<div class="row">
-					<div class="text-center">
-						<c:if test="${!empty userImage}">
-							<img  class="img-center" src="data:image/jpeg;base64,${userImage}" />
-						</c:if>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="firstName">Imie</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<c:out value="${userDetails.firstName}"/>
+    	<c:choose>
+    		<c:when test="${!empty edit}" >
+    			<div class="generic-container">
+			    	<div class="well lead">
+			    		<h2 class="text-center">Formularz edycji</h2>
+			    	</div>
+					<form:form modelAttribute="userProfil" class="form-horizontal" id="registrationForm" enctype="multipart/form-data">
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<form:input id="firstName" path="firstName" value="${userProfil.firstName}" type="text" required="reguired" class="form-control input-sm"/>
+								</div>
+								<form:errors path="firstName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+							</div>
 						</div>
-						<form:errors path="firstName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="lastName">Nazwisko</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<c:out value="${userDetails.lastName}" />
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="lastName">Nazwisko</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<form:input id="lastName" path="lastName" value="${userProfil.lastName}" type="text" required="reguired" class="form-control input-sm"/>
+								</div>
+								<form:errors path="lastName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+							</div>
 						</div>
-						<form:errors path="lastName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="email">Adres email</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<c:out value="${userDetails.email}" />
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="email">Adres email</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<form:input id="email" path="email" value="${userProfil.email}" type="text" required="reguired" class="form-control input-sm"/>
+								</div>
+								<form:errors path="email" class="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
+							</div>
 						</div>
-						<form:errors path="email" class="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3 col-sm-3" for="dateOfBirth">Data urodzenia</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<c:out value="${userDetails.dateOfBirth}" />
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="dateOfBirth">Data urodzenia</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<form:input id="dateOfBirth" path="dateOfBirth" value="${userProfil.dateOfBirth}" type="text" required="reguired" class="form-control input-sm"/>
+								</div>
+								<form:errors path="dateOfBirth" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+							</div>
 						</div>
-						<form:errors path="dateOfBirth" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="nickname">Pseudonim</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<c:out value="${userDetails.nickname}" />
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Pseudonim</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<form:input id="nickname" path="nickname" value="${userProfil.nickname}" type="text" required="reguired" class="form-control input-sm"/>
+								</div>
+								<form:errors path="nickname" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+							</div>
 						</div>
-						<form:errors path="nickname" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="login">Login</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<c:out value="${userDetails.login}" />
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="login">Login</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<form:input id="login" path="login" type="text" value="${userProfil.login}" required="reguired" class="form-control input-sm"/>
+								</div>
+								<form:errors path="login" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+							</div>
 						</div>
-						<form:errors path="login" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="password">Hasło</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<c:out value="${userDetails.password}" />
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="password">Hasło</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<form:input id="password" path="password" value="${userProfil.password}" type="password" required="reguired" class="form-control input-sm"/>
+								</div>
+								<form:errors path="password" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
+							</div>
 						</div>
-						<form:errors path="password" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
-					</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="avatar">Avatar</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<form:input id="avatar" name="avatar" path="avatar" type="file" class="form-control input-sm"/>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<div class="row">
+							<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
+								<input type="submit" value="Aktualizuj profil" class="btn btn-primary btn-sm"/> albo <a
+								href="<c:url value='/user/profile' />">wróć</a>
+							</div>
+						</div>
+					</form:form>
+			</div>
+    		</c:when>
+    		<c:otherwise>
+    			<c:set var="userDetails" value="${currentUser}" />
+    			<div class="generic-container">
+			    	<div class="well lead">
+			    		<h2 class="text-center">Moje dane</h2>
+			    	</div>
+					<form:form  class="form-horizontal" id="registrationForm" >
+						<div class="row">
+							<div class="text-center">
+								<c:if test="${!empty userImage}">
+									<img  class="img-center" src="data:image/jpeg;base64,${userImage}" />
+								</c:if>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<p class="well"><c:out value="${userDetails.firstName}"/><p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="lastName">Nazwisko</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<p class="well"><c:out value="${userDetails.lastName}" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="email">Adres email</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<p class="well"><c:out value="${userDetails.email}" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="dateOfBirth">Data urodzenia</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<p class="well"><c:out value="${userDetails.dateOfBirth}" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Pseudonim</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<p class="well"><c:out value="${userDetails.nickname}" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="login">Login</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<p class="well"><c:out value="${userDetails.login}" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="password">Hasło</label>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<p class="well"><c:out value="${userDetails.password}" /></p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
+								<a href="<c:url value="/user/profile/edit" />" class="btn btn-primary">Edytuj</a>
+							</div>
+						</div>
+					</form:form>
 				</div>
-				<div class="row">
-					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a
-						href="<c:url value='/home' />">wróć</a>
-					</div>
-				</div>
-			</form:form>
-		</div>
+    		</c:otherwise>
+    	</c:choose>
+    	<c:set var="warning" value="${warn}"/>
+		<c:if test="${!empty warning}">
+			<div id="myModal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4 class="modal-title">Informacja</h4>
+					      </div>
+					      <div class="modal-body">
+					        <p>${warn}</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+					      </div>
+					    </div>				
+				  </div>
+			</div>
+		</c:if>
 	
 	<footer class="navbar-inverse">
 			<div class="container">

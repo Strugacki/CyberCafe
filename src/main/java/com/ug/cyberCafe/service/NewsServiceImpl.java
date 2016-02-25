@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.dao.NewsDao;
 import com.ug.cyberCafe.domain.News;
+import com.ug.cyberCafe.domain.User;
 
 @Service("newsService")
 @Transactional
@@ -39,6 +40,11 @@ public class NewsServiceImpl implements NewsService{
 	@Override
 	public List<News> getAllNews() {
 		return newsDao.getAllNews();
+	}
+
+	@Override
+	public User getUserByNewsId(long id) {
+		return newsDao.getUserByNewsId(id);
 	}
 
 }
