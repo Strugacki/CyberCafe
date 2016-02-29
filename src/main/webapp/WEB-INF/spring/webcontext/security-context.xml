@@ -24,11 +24,11 @@
 	password-parameter="password" 
 	authentication-failure-url="/user/login?login_error=true" 
 	default-target-url="/user/profile" />
-	<security:intercept-url pattern="/device/add"  access="hasRole('ROLE_ADMIN','ROLE_EMPLOYEE')" />
-	<security:intercept-url pattern="/device/update"  access="hasRole('ROLE_ADMIN','ROLE_EMPLOYEE')" />
-	<security:intercept-url pattern="/device/delete"  access="hasRole('ROLE_ADMIN','ROLE_EMPLOYEE')" />
+	<security:intercept-url pattern="/device/add"  access="hasRole('ROLE_ADMIN')" />
+	<security:intercept-url pattern="/device/update"  access="hasRole('ROLE_ADMIN')" />
+	<security:intercept-url pattern="/device/delete"  access="hasRole('ROLE_ADMIN')" />
 	<security:intercept-url pattern="/employee/**"  access="hasRole('ROLE_ADMIN')" />
-	<security:intercept-url pattern="/user/add"  access="hasRole('ROLE_ADMIN','ROLE_EMPLOYEE')" />
+	<security:intercept-url pattern="/user/add"  access="hasRole('ROLE_ADMIN')" />
 	<security:intercept-url pattern="/user/login" access="permitAll" />
 </security:http>
 

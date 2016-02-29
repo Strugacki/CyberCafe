@@ -23,6 +23,7 @@ import org.springframework.security.crypto.codec.Base64;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -33,8 +34,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
+import com.ug.cyberCafe.service.AddressService;
 import com.ug.cyberCafe.service.RoleService;
 import com.ug.cyberCafe.service.UserService;
+import com.ug.cyberCafe.domain.Address;
 import com.ug.cyberCafe.domain.User;
 
 @Controller
@@ -47,6 +50,8 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 	
+	@Autowired
+	private AddressService addressService;
 	
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder){
@@ -111,9 +116,11 @@ public class UserController {
 	@RequestMapping(value = "registration", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
 		User newUser = new User();
+		Address newAddress = new Address();
 		newUser.setActive(true);
 		model.addAttribute("newUser", newUser);
-		Authorization(model);
+		model.addAttribute("newAddress",newAddress);
+		//Authorization(model);
 		return "/user/registration";
 	}
 	
@@ -125,15 +132,17 @@ public class UserController {
 	 * 
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.POST)
-	public String processAddNewUserForm(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model) throws HibernateException, IOException, SerialException, SQLException{
-		if(result.hasErrors()){
+	public String processAddNewUserForm(@Valid @ModelAttribute("newUser") User newUser, BindingResult resultUser,@Valid @ModelAttribute("newAddress") Address newAddress, BindingResult resultAddress, ModelMap model) throws HibernateException, IOException, SerialException, SQLException{
+		if(resultUser.hasErrors() || resultUser.hasErrors()){
+			
 			model.addAttribute("warn","Nie udało się wykonać rejestracji, spróbuj ponownie!");
-			System.out.println(result.toString());
+			System.out.println(resultUser.toString());
+			System.out.println(newAddress.toString());
 			return "/user/registration";
 		}else{
 			newUser.setRole(roleService.getRoleByName("ROLE_USER"));
-			newUser.setAddresses(null);
-			System.out.println(newUser.getAvatar());
+			addressService.addAddress(newAddress);
+			newUser.setAddress(newAddress);
 			userService.addUser(newUser);
 			return "redirect:/" ;
 		}

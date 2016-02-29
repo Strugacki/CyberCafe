@@ -1,6 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
@@ -64,136 +63,76 @@
     	<div class="well lead">
     		<h2 class="text-center">Formularz rejestracji</h2>
     	</div>
-			<form class="form-horizontal" id="registrationForm" enctype="multipart/form-data" action="" method="post">
+			<form:form modelAttribute="newUser" class="form-horizontal" id="registrationForm" enctype="multipart/form-data">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.firstName">
-							<input id="firstName" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
+							<form:input id="firstName" path="firstName" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
-						<form:errors path="newUser.firstName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="firstName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="lastName">Nazwisko</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.lastName">
-							<input id="lastName" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
+							<form:input id="lastName" path="lastName" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
-						<form:errors path="newUser.lastName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="lastName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="email">Adres email</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.email">
-							<input id="email" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
+							<form:input id="email" path="email" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
-						<form:errors path="newUser.email" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="email" class="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="dateOfBirth">Data urodzenia</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.dateOfBirth">
-							<input id="dateOfBirth" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
+							<form:input id="dateOfBirth" path="dateOfBirth" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
-						<form:errors path="newUser.dateOfBirth" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
+						<form:errors path="dateOfBirth" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Pseudonim</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.nickname">
-							<input id="nickname" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
-						<form:errors path="newUser.nickname" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
+							<form:input id="nickname" path="nickname" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
+						<form:errors path="nickname" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="login">Login</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.login" >
-							<input id="login" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
+							<form:input id="login" path="login" type="text" required="reguired" class="form-control input-sm"/>
 						</div>
-						<form:errors path="newUser.login" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="login" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="password">Hasło</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.password">
-							<input id="password" type="password" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
+							<form:input id="password" path="password" type="password" required="reguired" class="form-control input-sm"/>
 						</div>
-						<form:errors path="newUser.password" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="password" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="avatar">Avatar</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.avatar">
-							<input id="avatar" name="avatar" type="file" class="form-control input-sm"/>
-						</spring:bind>
+							<form:input id="avatar" name="avatar" path="avatar" type="file" class="form-control input-sm"/>
 						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="city">Miasto</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newAddress.city">
-							<input id="city" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
-						</div>
-						<form:errors path="newAddress.city" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="postalCode">Kod pocztowy</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newAddress.postalCode">
-							<input id="postalCode" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
-						</div>
-						<form:errors path="newAddress.postalCode" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="street">Ulica</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newAddress.street">
-							<input id="street" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
-						</div>
-						<form:errors path="newAddress.street" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="localNumber">Numer</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newAddress.localNumber">
-							<input id="localNumber" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
-						</div>
-						<form:errors path="newAddress.localNumber" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -203,7 +142,7 @@
 						href="<c:url value='/' />">wróć</a>
 					</div>
 				</div>
-			</form>
+			</form:form>
 		</div>
 		<c:set var="warning" value="${warn}"/>
 		<c:if test="${!empty warning}">

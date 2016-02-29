@@ -47,6 +47,7 @@ public class AddressDaoImpl extends AbstractDao<Integer, Address> implements Add
 		addressToUpdate.setCity(address.getCity());
 		addressToUpdate.setPostalCode(address.getPostalCode());
 		addressToUpdate.setStreet(address.getStreet());
+		addressToUpdate.setLocalNumber(address.getLocalNumber());
 		sessionFactory.getCurrentSession().update(addressToUpdate);
 	}
 

@@ -87,8 +87,9 @@ public class User {
 	@Column(name = "AVATAR", nullable = true)
 	private byte[] avatar=null;
 	
-	@OneToMany
-	private Set<Address> addresses;
+	@ManyToOne
+	@JoinColumn(name="ADDRESS_IDADDRESS")
+	private Address address;
 	
 	@ManyToOne
 	@JoinColumn(name="ROLE_IDROLE")
@@ -175,12 +176,12 @@ public class User {
 		this.avatar = avatar;
 	}
 
-	public Set<Address> getAddresses() {
-		return addresses;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddresses(Set<Address> addresses) {
-		this.addresses = addresses;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public Role getRole() {
