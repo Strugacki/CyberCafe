@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name="NEWS")
 @NamedQueries({ 
 	@NamedQuery(name = "get.All.News", query = "Select n from News n"),
-	@NamedQuery(name = "get.User.By.News.Id", query = "SELECT u.nickname FROM User u, News n ON u.idUser=n.user and n.idNews = ?")
+	@NamedQuery(name = "get.User.By.News.Id", query = "SELECT u.nickname FROM User u")
 })
 public class News {
 	
