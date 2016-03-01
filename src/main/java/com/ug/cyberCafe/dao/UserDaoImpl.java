@@ -137,9 +137,9 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	@Override
-	public void deactivateUserAccount(long id) {
+	public void deactivateUserAccount(long id,boolean value) {
 		User userToUpdate = getUserById(id);
-		userToUpdate.setActive(false);
+		userToUpdate.setActive(value);
 		sessionFactory.getCurrentSession().update(userToUpdate);
 	}
 

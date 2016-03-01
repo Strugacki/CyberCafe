@@ -60,8 +60,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void deactivateUserAccount(long id) {
-		userDao.deactivateUserAccount(id);
+	public void deactivateUserAccount(long id,boolean value) {
+		userDao.deactivateUserAccount(id,value);
 	}
 
 }

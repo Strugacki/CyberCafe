@@ -58,14 +58,20 @@ public class CustomerController {
 		return "customer/listCustomer";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "deactive", method = RequestMethod.GET)
 	public String deactivate(@RequestParam("id")String idUser,Model model){
-		userService.deactivateUserAccount(Long.parseLong(idUser));
-		return "redirect:customer/list";
+		userService.deactivateUserAccount(Long.parseLong(idUser),false);
+		return "redirect:/customer/list";
+	}
+	
+	@RequestMapping(value = "active", method = RequestMethod.GET)
+	public String activate(@RequestParam("id")String idUser,Model model){
+		userService.deactivateUserAccount(Long.parseLong(idUser),true);
+		return "redirect:/customer/list";
 	}
 	
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
-	public String getUserProfilUpdateForm(@RequestParam("id") String idCustomer, Model model) throws IOException{
+	public String getCustomerProfilUpdateForm(@RequestParam("id") String idCustomer, Model model) throws IOException{
 			Authorization(model);
 			User userProfil = userService.getUserById(Long.parseLong(idCustomer));
 			Address userAddress = addressService.getAddressById(userProfil.getAddress().getIdAddress());
@@ -76,9 +82,13 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
-	public String processUserProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser, @RequestParam("id") String idTerminal, @Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
+	public String processCustomerProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@RequestParam("id") String idUser, @Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
             Authorization(model);
-            System.out.println(userProfil.getActive());
+            userProfil.setIdUser(Long.parseLong(idUser));
+            System.out.println(userProfil.getIdUser());
+            System.out.println(userProfil.getFirstName());
+            System.out.println(userProfil.getLastName());
+            System.out.println(idUser);
 			if(resultUser.hasErrors() || resultAddress.hasErrors()){
 				model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
 				System.out.println(resultUser.toString());
@@ -114,12 +124,8 @@ public class CustomerController {
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String processAddNewUserForm(@Valid @ModelAttribute("newUser") User newUser, BindingResult resultUser,@Valid @ModelAttribute("newAddress") Address newAddress, BindingResult resultAddress, Model model) throws HibernateException, IOException, SerialException, SQLException{
 		Authorization(model);
-		System.out.println(newUser.getActive().booleanValue());
 		if(resultUser.hasErrors() || resultUser.hasErrors()){
 			model.addAttribute("warn","Nie udało się dodać klienta, spróbuj ponownie!");
-			System.out.println(resultUser.getAllErrors().toString());
-			System.out.println(resultUser.getErrorCount());
-			System.out.println(resultAddress.getErrorCount());
 			return "/customer/addCustomer";
 		}else{
 			newUser.setRole(roleService.getRoleByName("ROLE_USER"));
