@@ -1,11 +1,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe - dodaj terminal</title>
+		<title> Cyber Cafe - Pracownicy</title>
 	</head>
 
 	<body>
@@ -17,9 +16,10 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand " href="#">Cyber Cafe</a>
+							<a class="navbar-brand " href="<c:url value="/" /> ">CyberCafe</a>
 						</div>
 						<c:set var="user" value="${user}"/>
+						<c:set var="role" value="${role}"/>
 						<div class="collapse navbar-collapse" id="mynavbar-content">
 							<ul class="nav navbar-nav">
 								<li><a href="<c:url value="/about/" /> ">O nas</a></li>
@@ -58,66 +58,60 @@
 					</ul>
 			</div>
 		</nav>
-	
-		<div class="generic-container">
-    	<div class="well lead text-center">Formularz dodawania sprzętu</div>
-			<form:form modelAttribute="newTerminal" class="form-horizontal" accept-charset="UTF-8">
-					<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="type">Typ</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<form:input id="type" path="type" type="text" required="reguired" class="form-control input-sm"/>
-						</div>
-						<form:errors path="type" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="description">Opis</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<form:textarea htmlEscape="false" id="description" path="description" class="form-control input-sm" required="reguired" cols="20" rows="10"/>
-						</div>
-						<form:errors path="description" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="available">Dostępność</label>
-						<div class="col-lg-3 col-md-3 col-sm-3">
-							<form:select id="available" path="available" class="form-control input-sm">
-								<form:option value="TRUE">Tak</form:option>
-								<form:option value="FALSE">Nie</form:option>
-							</form:select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-						<input type="submit" value="Dodaj" class="btn btn-primary btn-sm"/> albo <a
-						href="<c:url value='/' />">wróć</a>
-					</div>
-				</div>
-			</form:form>
+		
+	<!-- Page Content -->
+    <div class="container">
+	    <div class="well lead">
+			<h2 class="text-center">Lista pracowników</h2>
 		</div>
-		<c:set var="warning" value="${warn}"/>
-		<c:if test="${!empty warning}">
-			<div id="myModal" class="modal fade" role="dialog">
-				  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal">&times;</button>
-					        <h4 class="modal-title">Informacja</h4>
-					      </div>
-					      <div class="modal-body">
-					        <p>${warn}</p>
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-					      </div>
-					    </div>				
-				  </div>
+		<div class="row">
+			<div class="col-lg-9 col-md-7  col-sm-12">
+				
 			</div>
-		</c:if>
+		</div>
+		<table class="table table-bordered" style="background-color: #F5F5F5">
+ 			<thead>
+  				<tr>
+  					<th class="text-center">#</th>
+  					<th class="text-center">Imię</th>
+  					<th class="text-center">Nazwisko</th>
+  					<th class="text-center">Data urodzenia</th>
+  					<th class="text-center">Nick</th>
+  					<th class="txt-center">Aktywny</th>
+  				</tr>
+  			</thead>
+  			<tbody>
+	    <c:forEach items="${employees}" var="employee">	    
+	    		<tr>
+	    			<td></td>
+					<td class="text-center">${employee.firstName}</td>
+					<td class="text-center">${employee.lastName}</td>
+					<td class="text-center">${employee.dateOfBirth}</td>
+					<td class="text-center">${employee.nickname}</td>
+					<c:choose>
+						<c:when test="${employee.active == true }">
+							<td class="text-center success">Tak</td>
+						</c:when>
+						<c:otherwise>
+							<td class="text-center danger">Nie</td>
+						</c:otherwise>
+					</c:choose>
+					<td class="text-center"> <a href="/cyberCafe/employee/edit?id=${employee.idUser}" class="btn btn-primary">Edytuj</a> 
+						<c:choose>
+							<c:when test="${employee.active == true}">
+								<a href="/cyberCafe/employee/deactive?id=${employee.idUser}" class="btn btn-danger">Dezaktywuj</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/cyberCafe/employee/active?id=${employee.idUser}" class="btn btn-success">Aktywuj</a>
+							</c:otherwise>
+						</c:choose>
+					</td>
+				</tr>
+	    </c:forEach>
+	    </tbody>
+ 	</table>    
+    </div>
+
 		
 		<footer class="navbar-inverse">
 			<div class="container">
@@ -131,7 +125,6 @@
 							<li class="text-center"><a href="<c:url value="/promotions/" /> ">Promocje</a></li>
 						</ul>
 					</div>
-					
 					<div class="col-lg-4">
 						<ul class="nav nav-stacked">
 							<li class="text-center"><h5>Znajdź nas na: </h5></li>
@@ -146,14 +139,8 @@
 					<br>
 				</div>
 			</div>	
-		</footer>
-		
+		</footer>	
 		<script src="<c:url value="/resources/js/jquery.js" />" ></script>
 		<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
-		<script>
-		$(document).ready(function(){
-		        $("#myModal").modal();
-		    });
-	</script>	
 	</body>
 </html>

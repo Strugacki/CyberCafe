@@ -37,10 +37,10 @@
 										<jsp:include page="../templates/admin.jsp"></jsp:include>
 									</c:when>
 									<c:when test="${role == 'ROLE_EMPLOYEE'}">
-										<jsp:include page="../templates/admin.jsp"></jsp:include>
+										<jsp:include page="../templates/employee.jsp"></jsp:include>
 									</c:when>
 									<c:when test="${role == 'ROLE_USER'}">
-										<jsp:include page="../templates/admin.jsp"></jsp:include>
+										<jsp:include page="../templates/user.jsp"></jsp:include>
 									</c:when>
 								</c:choose>
 							</ul>
