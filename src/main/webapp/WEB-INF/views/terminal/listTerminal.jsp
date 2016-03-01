@@ -86,7 +86,7 @@
 	    			<td>
 					<td class="text-center">${terminal.type}</td>
 					<td class="text-center">${terminal.description}</td>
-					<td class="text-center"> <a href="/cyberCafe/device/update?id=${terminal.idTerminal}" class="btn btn-primary">Edytuj</a> <a href="/cyberCafe/device/delete?id=${terminal.idTerminal}" class="btn btn-danger">Usuń</a></td>
+					<td class="text-center"> <a href="/cyberCafe/device/update?id=${terminal.idTerminal}" class="btn btn-primary">Edytuj <span class="glyphicon glyphicon-wrench"></span></a> <a href="/cyberCafe/device/delete?id=${terminal.idTerminal}" class="btn btn-danger">Usuń <span class="glyphicon glyphicon-remove-circle"></span></a></td>
 				</tr>
 				</c:when>
 				<c:otherwise>

@@ -75,7 +75,7 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-3 col-md-3 col-sm-3" for="description">Opis</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-							<form:textarea htmlEscape="false" id="description" path="description" class="form-control input-sm" required="reguired" cols="20" rows="10"/>
+							<form:textarea htmlEscape="false" id="description" path="description" class="form-control" required="reguired" cols="20" rows="10"/>
 						</div>
 						<form:errors path="description" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>

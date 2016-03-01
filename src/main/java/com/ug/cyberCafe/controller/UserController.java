@@ -151,7 +151,7 @@ public class UserController {
 			addressService.addAddress(newAddress);
 			newUser.setAddress(newAddress);
 			userService.addUser(newUser);
-			return "redirect:/" ;
+			return "redirect:/user/profil" ;
 		}
 	}
 	

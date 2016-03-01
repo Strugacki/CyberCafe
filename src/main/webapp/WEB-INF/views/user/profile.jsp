@@ -219,10 +219,11 @@
 						<div class="row">
 							<div class="text-center">
 								<c:if test="${!empty userImage}">
-									<img  class="img-center" src="data:image/jpeg;base64,${userImage}" />
+									<img  class="img-rounded" src="data:image/jpeg;base64,${userImage}" width="150" height="150"" />
 								</c:if>
 							</div>
 						</div>
+						<br>
 						<div class="row">
 							<div class="form-group col-lg-12 col-md-12 col-sm-12">
 								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
@@ -313,7 +314,7 @@
 						</div>
 						<div class="row">
 							<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-								<a href="<c:url value="/user/profile/edit" />" class="btn btn-primary">Edytuj</a>
+								<a href="<c:url value="/user/profile/edit" />" class="btn btn-primary text-center">Edytuj <span class="glyphicon glyphicon-wrench"></span></a>
 							</div>
 						</div>
 					</form:form>

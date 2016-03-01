@@ -96,13 +96,13 @@
 							<td class="text-center danger">Nie</td>
 						</c:otherwise>
 					</c:choose>
-					<td class="text-center"> <a href="/cyberCafe/employee/edit?id=${employee.idUser}" class="btn btn-primary">Edytuj</a> 
+					<td class="text-center"> <a href="/cyberCafe/employee/edit?id=${employee.idUser}" class="btn btn-primary">Edytuj <span class="glyphicon glyphicon-wrench"></span></a> 
 						<c:choose>
 							<c:when test="${employee.active == true}">
-								<a href="/cyberCafe/employee/deactive?id=${employee.idUser}" class="btn btn-danger">Dezaktywuj</a>
+								<a href="/cyberCafe/employee/deactive?id=${employee.idUser}" class="btn btn-warning">Dezaktywuj <span class="glyphicon glyphicon-ban-circle"></span></a>
 							</c:when>
 							<c:otherwise>
-								<a href="/cyberCafe/employee/active?id=${employee.idUser}" class="btn btn-success">Aktywuj</a>
+								<a href="/cyberCafe/employee/active?id=${employee.idUser}" class="btn btn-success">Aktywuj <span class="glyphicon glyphicon-ok-circle"></span></a>
 							</c:otherwise>
 						</c:choose>
 					</td>
