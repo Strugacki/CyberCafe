@@ -4,7 +4,7 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe - terminale</title>
+		<title> Cyber Cafe - klienci</title>
 	</head>
 
 	<body>
@@ -62,7 +62,7 @@
 	<!-- Page Content -->
     <div class="container">
 	    <div class="well lead">
-			<h2 class="text-center">Nasz sprzęt</h2>
+			<h2 class="text-center">Lista klientów</h2>
 		</div>
 		<div class="row">
 			<div class="col-lg-9 col-md-7  col-sm-12">
@@ -73,33 +73,31 @@
  			<thead>
   				<tr>
   					<th class="text-center">#</th>
-  					<th class="text-center">Typ</th>
-  					<th class="text-center">Opis</th>
-  					<th class="text-center"> </th>
+  					<th class="text-center">Imię</th>
+  					<th class="text-center">Nazwisko</th>
+  					<th class="text-center">Data urodzenia</th>
+  					<th class="text-center">Nick</th>
+  					<th class="txt-center">Aktywny</th>
   				</tr>
   			</thead>
   			<tbody>
-	    <c:forEach items="${terminals}" var="terminal">	    
-	    	<c:choose>
-	    		<c:when test="${role == 'ROLE_ADMIN' or role == 'ROLE_EMPLOYEE'}">
+	    <c:forEach items="${customers}" var="customer">	    
 	    		<tr>
-	    			<td>
-					<td class="text-center">${terminal.type}</td>
-					<td class="text-center">${terminal.description}</td>
-					<td class="text-center"> <a href="/cyberCafe/device/update?id=${terminal.idTerminal}" class="btn btn-primary">Edytuj</a> <a href="/cyberCafe/device/delete?id=${terminal.idTerminal}" class="btn btn-danger">Usuń</a></td>
+	    			<td></td>
+					<td class="text-center">${customer.firstName}</td>
+					<td class="text-center">${customer.lastName}</td>
+					<td class="text-center">${customer.dateOfBirth}</td>
+					<td class="text-center">${customer.nickname}</td>
+					<c:choose>
+						<c:when test="${customer.active == true }">
+							<td class="text-center success">Tak</td>
+						</c:when>
+						<c:otherwise>
+							<td class="text-center danger">Nie</td>
+						</c:otherwise>
+					</c:choose>
+					<td class="text-center"> <a href="/cyberCafe/customer/update?id=${customer.idUser}" class="btn btn-primary">Edytuj</a> <a href="/cyberCafe/customer/delete?id=${customer.idUser}" class="btn btn-danger">Usuń</a></td>
 				</tr>
-				</c:when>
-				<c:otherwise>
-					<c:if test="${terminal.available == true }">
-						<tr>	
-							<td>					
-							<td class="text-center">${terminal.type}</td>
-							<td class="text-center">${terminal.description}</td>
-							<td class="text-center"><p class="alert alert-success"> Dostępny!! </p></td>
-						</tr>
-		    		</c:if>
-				</c:otherwise>
-	    	</c:choose>
 	    </c:forEach>
 	    </tbody>
  	</table>    

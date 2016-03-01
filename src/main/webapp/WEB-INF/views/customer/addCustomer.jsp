@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html"; charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe - profil</title>
+		<title> Cyber Cafe - dodawanie klienta</title>
 	</head>
 
 	<body>
@@ -60,65 +60,75 @@
 			</div>
 	</nav>
 	
-    	<c:choose>
-    		<c:when test="${!empty edit}" >
-    			<div class="generic-container">
-			    	<div class="well lead">
-			    		<h2 class="text-center">Formularz edycji</h2>
-			    	</div>
-					<form class="form-horizontal" id="registrationForm" enctype="multipart/form-data" action="" method="post">
+	<div class="generic-container">
+    	<div class="well lead">
+    		<h2 class="text-center">Formularz dodawania klienta</h2>
+    	</div>
+			<form class="form-horizontal" id="registrationForm" enctype="multipart/form-data" action="" method="post">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userProfil.firstName">
+						<spring:bind path="newUser.firstName">
 							<input id="firstName" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userProfil.firstName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newUser.firstName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="lastName">Nazwisko</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userProfil.lastName">
+						<spring:bind path="newUser.lastName">
 							<input id="lastName" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userProfil.lastName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newUser.lastName" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="email">Adres email</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userProfil.email">
+						<spring:bind path="newUser.email">
 							<input id="email" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userProfil.email" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newUser.email" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-lg-12 col-md-12 col-sm-12">
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="active">Aktywny</label>
+						<div class="col-lg-3 col-md-3 col-sm-3">
+							<form:select id="active" class="form-control input-sm" path="newUser.active">
+								<form:option value="true">Tak</form:option>
+								<form:option value="false">Nie</form:option>
+							</form:select>
+						</div>
+						<form:errors path="newUser.active" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="dateOfBirth">Data urodzenia</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userProfil.dateOfBirth">
+						<spring:bind path="newUser.dateOfBirth">
 							<input id="dateOfBirth" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userProfil.dateOfBirth" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
+						<form:errors path="newUser.dateOfBirth" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Pseudonim</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userProfil.nickname">
+						<spring:bind path="newUser.nickname">
 							<input id="nickname" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
-						<form:errors path="userProfil.nickname" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
+						<form:errors path="newUser.nickname" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
 						</div>
 					</div>
 				</div>
@@ -126,29 +136,29 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="login">Login</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userProfil.login" >
+						<spring:bind path="newUser.login" >
 							<input id="login" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userProfil.login" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newUser.login" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="password">Hasło</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userProfil.password">
+						<spring:bind path="newUser.password">
 							<input id="password" type="password" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userProfil.password" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newUser.password" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="avatar">Avatar</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userProfil.avatar">
+						<spring:bind path="newUser.avatar">
 							<input id="avatar" name="avatar" type="file" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
@@ -158,169 +168,56 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="city">Miasto</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userAddress.city">
+						<spring:bind path="newAddress.city">
 							<input id="city" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userAddress.city" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newAddress.city" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="postalCode">Kod pocztowy</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userAddress.postalCode">
+						<spring:bind path="newAddress.postalCode">
 							<input id="postalCode" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userAddress.postalCode" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newAddress.postalCode" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="street">Ulica</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userAddress.street">
+						<spring:bind path="newAddress.street">
 							<input id="street" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userAddress.street" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newAddress.street" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="localNumber">Numer</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="userAddress.localNumber">
+						<spring:bind path="newAddress.localNumber">
 							<input id="localNumber" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
 						</spring:bind>
 						</div>
-						<form:errors path="userAddress.localNumber" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
+						<form:errors path="newAddress.localNumber" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
 				</div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="row">
 					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-						<input type="submit" value="Aktualizuj profil" class="btn btn-primary btn-sm"/> albo <a
-						href="<c:url value='/user/profil' />">wróć</a>
+						<input type="submit" value="Dodaj" class="btn btn-primary btn-sm"/> albo <a
+						href="<c:url value='/' />">wróć</a>
 					</div>
 				</div>
 			</form>
-			</div>
-    		</c:when>
-    		<c:otherwise>
-    			<c:set var="userDetails" value="${currentUser}" />
-    			<c:set var="userAddressDetails" value="${currentAddress}" />
-    			<div class="generic-container">
-			    	<div class="well lead">
-			    		<h2 class="text-center">Moje dane</h2>
-			    	</div>
-					<form:form  class="form-horizontal" id="registrationForm" >
-						<div class="row">
-							<div class="text-center">
-								<c:if test="${!empty userImage}">
-									<img  class="img-center" src="data:image/jpeg;base64,${userImage}" />
-								</c:if>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.firstName}"/><p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="lastName">Nazwisko</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.lastName}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="email">Adres email</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.email}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="dateOfBirth">Data urodzenia</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.dateOfBirth}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Pseudonim</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.nickname}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="login">Login</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.login}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="password">Hasło</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.password}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Miasto</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userAddressDetails.city}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Kod pocztowy</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userAddressDetails.postalCode}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Ulica</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userAddressDetails.street}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Numer domu/mieszkania</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userAddressDetails.localNumber}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-								<a href="<c:url value="/user/profile/edit" />" class="btn btn-primary">Edytuj</a>
-							</div>
-						</div>
-					</form:form>
-				</div>
-    		</c:otherwise>
-    	</c:choose>
-    	<c:set var="warning" value="${warn}"/>
+		</div>
+		<c:set var="warning" value="${warn}"/>
 		<c:if test="${!empty warning}">
 			<div id="myModal" class="modal fade" role="dialog">
 				  <div class="modal-dialog">
@@ -368,6 +265,11 @@
 			</div>	
 	</footer>
 	<script src="<c:url value="/resources/js/jquery.js" />" ></script>
-	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>	
+	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
+	<script>
+		$(document).ready(function(){
+		        $("#myModal").modal();
+		    });
+</script>		
 	<body>
 </html>

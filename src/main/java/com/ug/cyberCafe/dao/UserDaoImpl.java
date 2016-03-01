@@ -57,7 +57,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		userToUpdate.setLogin(user.getLogin());
 		userToUpdate.setPassword(user.getPassword());
 		userToUpdate.setAvatar(user.getAvatar());
-		//userToUpdate.setAddresses(user.getAddresses());
+		//userToUpdate.setAddress(user.getAddress());
 		//userToUpdate.setRole(user.getRole());
 		sessionFactory.getCurrentSession().update(userToUpdate);
 	}
@@ -119,6 +119,28 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public List<User> getUsersByRole(String role) {
+		try{
+			if(!sessionFactory.getCurrentSession().getTransaction().isActive()){
+				sessionFactory.getCurrentSession().getTransaction().begin();
+			}
+			Query query = sessionFactory.getCurrentSession().getNamedQuery("get.Users.By.Role");
+			query.setString(0, role);
+			List<User> users = query.list();
+			return users;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public void deactivateUserAccount(long id) {
+		User userToUpdate = getUserById(id);
+		userToUpdate.setActive(false);
+		sessionFactory.getCurrentSession().update(userToUpdate);
 	}
 
 }

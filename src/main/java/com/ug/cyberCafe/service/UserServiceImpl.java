@@ -54,4 +54,14 @@ public class UserServiceImpl implements UserService{
 		return userDao.getUserByUsername(username);
 	}
 
+	@Override
+	public List<User> getUsersByRole(String role) {
+		return userDao.getUsersByRole(role);
+	}
+
+	@Override
+	public void deactivateUserAccount(long id) {
+		userDao.deactivateUserAccount(id);
+	}
+
 }

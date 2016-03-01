@@ -43,7 +43,7 @@ public class Address {
 	@Column(name = "LOCALNUMBER", nullable = false)
 	@Size(min=1, max=5, message="Dozwolona długość to 5-20 znaków")
 	@NotEmpty(message = "Podaj właściwy numer lokalu/domu!")
-	private String localNumber = "7";
+	private String localNumber;
 	
 	/**
 	 * 

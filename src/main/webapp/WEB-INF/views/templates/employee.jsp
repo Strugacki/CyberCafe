@@ -4,8 +4,8 @@
 	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Klient
 	<span class="caret"></span></a>
 	<ul class="dropdown-menu">
-	  <li><a href="<c:url value="/user/list" />" >Lista</a></li>
-	  <li><a href="<c:url value="/user/add" />" >Dodaj</a></li>
+	  <li><a href="<c:url value="/customer/list" />" >Lista</a></li>
+	  <li><a href="<c:url value="/customer/add" />" >Dodaj</a></li>
 	</ul>
 </li>
 <li class="dropdown">

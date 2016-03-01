@@ -258,6 +258,9 @@ th {
   .table {
     border-collapse: collapse !important;
   }
+  .table-white{
+  	background-color: #F5F5F5 !important;
+  }
   .table td,
   .table th {
     background-color: #fff !important;

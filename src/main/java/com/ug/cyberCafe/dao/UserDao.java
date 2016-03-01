@@ -22,5 +22,9 @@ public interface UserDao {
 	void deleteAllUsers();
 	
 	User getUserByUsername(String username);
+	
+	List<User> getUsersByRole(String role);
+	
+	void deactivateUserAccount(long id);
 
 }

@@ -28,7 +28,7 @@ public class AddressServiceImpl implements AddressService{
 
 	@Override
 	public void updateAddress(Address address) {
-
+		addressDao.updateAddress(address);
 	}
 
 	@Override
