@@ -7,8 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="ROLE")
 @NamedQueries({ 
 	@NamedQuery(name = "get.All.Roles", query = "Select r from Role r"),
 	@NamedQuery(name = "get.Role.By.Name", query = "Select r from Role r WHERE r.role = ? ")
@@ -16,10 +18,10 @@ import javax.persistence.NamedQuery;
 public class Role {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDROLE", nullable = false)
+	@Column(name = "IDROLE")
 	private long idRole;
 	
-	@Column(name = "ROLE", nullable=false)
+	@Column(name = "ROLE")
 	private String role;
 
 	public long getIdRole() {

@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ug.cyberCafe.dao.UserDao;
 import com.ug.cyberCafe.domain.User;
 
-@ContextConfiguration(locations = { "classpath:/applicationContext.xml"})
+@ContextConfiguration(locations = { "classpath:/applicationContext-test.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 
 @Transactional("transactionManager")

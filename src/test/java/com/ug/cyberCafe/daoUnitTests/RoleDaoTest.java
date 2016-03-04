@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ug.cyberCafe.dao.RoleDao;
 import com.ug.cyberCafe.domain.Role;
 
-@ContextConfiguration(locations = { "classpath:/applicationContext.xml"})
+@ContextConfiguration(locations = { "classpath:/applicationContext-test.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 
 @Transactional("transactionManager")
@@ -78,7 +78,7 @@ public class RoleDaoTest {
 		roleDao.updateRole(roleToUpdate);
 		
 		List<Role> retrievedRolesAfterUpdate = roleDao.getAllRoles();
-		assertEquals("Sierakowice",retrievedRolesAfterUpdate.get(0).getRole());
+		assertEquals("Something else",retrievedRolesAfterUpdate.get(0).getRole());
 	}
 	
 	@Test
