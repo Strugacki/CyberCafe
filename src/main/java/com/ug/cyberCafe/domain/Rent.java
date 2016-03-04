@@ -34,10 +34,10 @@ public class Rent {
 	@Column(name = "TERMINAL", nullable = false)
 	private Terminal terminal;
 	
-	@Column(name = "CUSTOMER", nullable = false)
+	@JoinColumn(name = "USER_IDCUSTOMER", nullable = false)
 	private User customer;
 	
-	@Column(name = "EMPLOYEE", nullable = false)
+	@JoinColumn(name = "USER_IDEMPLOYEE", nullable = false)
 	private User employee;
 	
 	@Column(name = "PRICE", nullable = false)

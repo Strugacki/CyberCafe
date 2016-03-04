@@ -1,13 +1,21 @@
 
 INSERT INTO Role(role) VALUES('ROLE_ADMIN');
 
+INSERT INTO Role(role) VALUES('ROLE_USER');
+
+INSERT INTO Role(role) VALUES('ROLE_EMPLOYEE');
+
+INSERT INTO "PUBLIC"."ADDRESS"
+("CITY", "POSTALCODE", "STREET", "LOCALNUMBER" )
+VALUES ('Czarna Woda', '83-262', 'OkrÄ™Å¼na','14');
+
 INSERT INTO "PUBLIC"."USER"
 ( "FIRSTNAME", "LASTNAME", "EMAIL", "ACTIVE", "DATEOFBIRTH", "NICKNAME", "LOGIN", "PASSWORD", "AVATAR", "ROLE_IDROLE" )
 VALUES ('Marcin', 'Hallman', 'mhallman94@gmail.com',true, '1994-10-06', 'Strugacki', 'admin', 'admin123',null,0)
 
-INSERT INTO News(title,body,uploadDate) VALUES('Turniej League of Legends','W najbli¿szy weekend w CyberCafe odbêdzie siê turniej League of Legends dla graczy z ca³ej Polski. Na uczestników czekaj¹ upominki a na zwyciêzców wspania³e nagrody ufundowane przez Intela. Zapraszamy!!','2016-02-12');
+INSERT INTO News(title,body,uploadDate) VALUES('Turniej League of Legends','W najbliÅ¼szy weekend w CyberCafe odbÄ™dzie siÄ™ turniej League of Legends dla graczy z caÅ‚ej Polski. Na uczestnikÃ³w czekajÄ… upominki a na zwyciÄ™zcÃ³w wspaniaÅ‚e nagrody ufundowane przez Intela. Zapraszamy!!','2016-02-12');
 
-INSERT INTO News(title,body,uploadDate) VALUES('Turniej CS:GO','W najbli¿szy weekend w CyberCafe odbêdzie siê turniej CS:GO dla graczy z ca³ej Polski. Na uczestników czekaj¹ upominki a na zwyciêzców wspania³e nagrody ufundowane przez Intela. Zapraszamy!!','2016-02-12');
+INSERT INTO News(title,body,uploadDate) VALUES('Turniej CS:GO','W najbliÅ¼szy weekend w CyberCafe odbÄ™dzie siÄ™ turniej CS:GO dla graczy z caÅ‚ej Polski. Na uczestnikÃ³w czekajÄ… upominki a na zwyciÄ™zcÃ³w wspaniaÅ‚e nagrody ufundowane przez Intela. Zapraszamy!!','2016-02-12');
 
-INSERT INTO News(title,body,uploadDate) VALUES('Rozpoczêcie dzia³alnoœci','CyberCafe, miejsce, w którym mo¿esz siê zrelaksowaæ graj¹c na konsoli i PC ze znajomymi w³aœnie rozpoczê³o dzia³alnoœæ. Zapraszamy!!','2016-02-12');
+INSERT INTO News(title,body,uploadDate) VALUES('RozpoczÄ™cie dziaÅ‚alnoÅ›ci','CyberCafe, miejsce, w ktÃ³rym moÅ¼esz siÄ™ zrelaksowaÄ‡ grajÄ…c na konsoli i PC ze znajomymi wÅ‚aÅ›nie rozpoczÄ™Å‚o dziaÅ‚alnoÅ›Ä‡. Zapraszamy!!','2016-02-12');
 
