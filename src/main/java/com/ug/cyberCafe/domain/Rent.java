@@ -32,12 +32,15 @@ public class Rent {
 	@Column(name = "IDRENT", nullable = false)
 	private long idRent;
 	
-	@Column(name = "TERMINAL_IDTERMINAL", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "TERMINAL_IDTERMINAL", nullable = false)
 	private Terminal terminal;
 	
+	@ManyToOne
 	@JoinColumn(name = "USER_IDCUSTOMER", nullable = false)
 	private User customer;
 	
+	@ManyToOne
 	@JoinColumn(name = "USER_IDEMPLOYEE", nullable = false)
 	private User employee;
 	
