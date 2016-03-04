@@ -21,7 +21,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name="RENT")
 @NamedQueries({ 
-	//@NamedQuery(name = "get.All.Rent", query = "Select r from Rent r"),
+	@NamedQuery(name = "get.All.Rents", query = "Select r from Rent r"),
+	@NamedQuery(name = "get.Rent.By.Terminal.And.Date", query = "Select r from Rent r Where r.terminal = ? And r.date = ?")
 })
 
 public class Rent {
@@ -31,7 +32,7 @@ public class Rent {
 	@Column(name = "IDRENT", nullable = false)
 	private long idRent;
 	
-	@Column(name = "TERMINAL", nullable = false)
+	@Column(name = "TERMINAL_IDTERMINAL", nullable = false)
 	private Terminal terminal;
 	
 	@JoinColumn(name = "USER_IDCUSTOMER", nullable = false)
