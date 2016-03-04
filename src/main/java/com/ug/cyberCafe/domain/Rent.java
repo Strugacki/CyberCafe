@@ -117,5 +117,5 @@ public class Rent {
 	public void setTimeEnd(Integer time_end) {
 		this.time_end = time_end;
 	}
-	
+	 
 }
