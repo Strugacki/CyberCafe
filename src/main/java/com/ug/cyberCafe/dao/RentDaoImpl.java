@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ug.cyberCafe.domain.Rent;
 
-@Repository("rentDao")
+@Repository
 public class RentDaoImpl implements RentDao {
 
 	@Autowired

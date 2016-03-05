@@ -51,10 +51,10 @@ public class Rent {
 	private String date;
 	
 	@Column(name = "TIMESTART", nullable = false)
-	private Integer time_start;
+	private Integer timeStart;
 	
 	@Column(name = "TIMEEND", nullable = false)
-	private Integer time_end;
+	private Integer timeEnd;
 	
 	
 	
@@ -107,19 +107,19 @@ public class Rent {
 	}
 	
 	public Integer getTimeStart() {
-		return time_start;
+		return timeStart;
 	}
 
 	public void setTimeStart(Integer time_start) {
-		this.time_start = time_start;
+		this.timeStart = time_start;
 	}
 	
 	public Integer getTimeEnd() {
-		return time_end;
+		return timeEnd;
 	}
 
 	public void setTimeEnd(Integer time_end) {
-		this.time_end = time_end;
+		this.timeEnd = time_end;
 	}
 	 
 }

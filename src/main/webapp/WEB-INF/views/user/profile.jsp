@@ -4,7 +4,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
-		<meta http-equiv="Content-type" content="text/html"; charset="UTF-8">
+		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
 		<title> Cyber Cafe - profil</title>
 	</head>
@@ -211,114 +211,35 @@
     		<c:otherwise>
     			<c:set var="userDetails" value="${currentUser}" />
     			<c:set var="userAddressDetails" value="${currentAddress}" />
-    			<div class="generic-container">
-			    	<div class="well lead">
-			    		<h2 class="text-center">Moje dane</h2>
-			    	</div>
-					<form:form  class="form-horizontal" id="registrationForm" >
-						<div class="row">
-							<div class="text-center">
-								<c:if test="${!empty userImage}">
-									<img  class="img-rounded" src="data:image/jpeg;base64,${userImage}" width="150" height="150"" />
+    			<div class="row">
+    				<div class="col-lg-6 col-lg-push-3 col-md-8 col-md-push-2 col-sm-12">
+    					<div class="panel panel-default">
+		    				<div class="panel-heading-dark text-center">
+		    					<c:if test="${!empty userImage}">
+											<img  class="img-rounded" src="data:image/jpeg;base64,${userImage}" width="150" height="150" />
 								</c:if>
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.firstName}"/><p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="lastName">Nazwisko</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.lastName}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="email">Adres email</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.email}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="dateOfBirth">Data urodzenia</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.dateOfBirth}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Pseudonim</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.nickname}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="login">Login</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.login}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="password">Hasło</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userDetails.password}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Miasto</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userAddressDetails.city}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Kod pocztowy</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userAddressDetails.postalCode}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Ulica</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userAddressDetails.street}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Numer domu/mieszkania</label>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<p class="well"><c:out value="${userAddressDetails.localNumber}" /></p>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-								<a href="<c:url value="/user/profile/edit" />" class="btn btn-primary text-center">Edytuj <span class="glyphicon glyphicon-wrench"></span></a>
-							</div>
-						</div>
-					</form:form>
-				</div>
+								<p><c:out value="${userDetails.nickname}"></c:out></p>
+		    				</div>
+		    				<div class="panel-body">
+		    					<p><c:out value="${userDetails.firstName}"></c:out></p>
+		    					<p><c:out value="${userDetails.lastName}"></c:out></p>
+		    					<p><c:out value="${userDetails.dateOfBirth}"></c:out></p>
+		    					<p><c:out value="${userDetails.email}"></c:out></p>
+		    					<button class="btn btn-info btn-sm" id="moreDetails">Pokaż więcej</button>
+		    					<div class="details-fadeIn">
+		    						<p><c:out value="${userDetails.login}"></c:out></p>
+		    						<p><c:out value="${userDetails.password}"></c:out></p>
+		    						<p><c:out value="${userAddressDetails.city}"></c:out> <c:out value="${userAddressDetails.postalCode}"></c:out></p>
+		    						<p><c:out value="${userAddressDetails.street}"></c:out> <c:out value="${userAddressDetails.localNumber}"></c:out></p>
+		    					</div>
+		    				
+		    				</div>
+		    				<div class="panel-footer">
+		    					<a href="<c:url value="/user/profile/edit" />" class="btn btn-primary text-center">Edytuj <span class="glyphicon glyphicon-wrench"></span></a>
+		    				</div>
+    					</div>
+    				</div>
+    			</div>
     		</c:otherwise>
     	</c:choose>
     	<c:set var="warning" value="${warn}"/>
@@ -369,6 +290,14 @@
 			</div>	
 	</footer>
 	<script src="<c:url value="/resources/js/jquery.js" />" ></script>
-	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>	
+	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
+	<script type="text/javascript">
+		$(function(){
+			$("div.details-fadeIn").hide();
+			$('#moreDetails').on('click',function(){
+				$('div.details-fadeIn').slideToggle('slow');
+			});
+		})
+	</script>	
 	<body>
 </html>
