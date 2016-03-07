@@ -43,8 +43,7 @@
 									</c:when>
 								</c:choose>
 							</ul>
-						</div>
-					<ul class="nav navbar-nav navbar-right">
+							<ul class="nav navbar-nav navbar-right">
 						<c:choose >
 							<c:when test="${empty user}">
 								<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
@@ -55,6 +54,8 @@
 						</c:choose>
 						<li><a class="btn btn-info-outline" href="<c:url value='/user/registration' />" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
 					</ul>
+						</div>
+					
 			</div>
 		</nav>
 		

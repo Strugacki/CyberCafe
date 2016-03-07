@@ -43,8 +43,7 @@
 									</c:when>
 								</c:choose>
 							</ul>
-						</div>
-					<ul class="nav navbar-nav navbar-right">
+							<ul class="nav navbar-nav navbar-right">
 						<c:choose >
 							<c:when test="${empty user}">
 								<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
@@ -55,6 +54,8 @@
 						</c:choose>
 						<li><a class="btn btn-info-outline" href="<c:url value='/user/registration' />" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
 					</ul>
+						</div>
+					
 			</div>
 		</nav>
 		
@@ -73,7 +74,11 @@
 			<div class="row">
 			
 				<div class="col-lg-4 col-md-10 col-md-offset-1">
-					<img class="img-circle img-center" src="<c:url value="/resources/images/map.png" />" alt="banner" style="width:300px;height:300px">
+					<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2322.783697367557!2d18.572131615920135!3d54.3961354802124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x941e636535ec29c2!2sWydzia%C5%82+Matematyki%2C+Fizyki+i+Informatyki+UG!5e0!3m2!1spl!2spl!4v1457383475924"
+					width="450"
+					height="400"
+					> 
+					</iframe>
 				</div>
 				<div class="col-lg-6 col-lg-offset-1 col-md-8 col-md-offset-2 dark-bg">
 					<br>
