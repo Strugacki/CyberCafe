@@ -63,10 +63,10 @@
     <div class="container">
 	    <div class="well lead">
 			<h2 class="text-center">Lista klientów</h2>
-		</div>
-		<div class="row">
-			<div class="col-lg-9 col-md-7  col-sm-12">
-				
+			<div class="row text-center">
+		    	<c:if test="${role == 'ROLE_ADMIN' or role == 'ROLE_EMPLOYEE'}">
+					<a href="/cyberCafe/customer/add" class="btn btn-success text-center">Dodaj <span class="glyphicon glyphicon-plus-sign"></span></a>
+				</c:if>
 			</div>
 		</div>
 		<table class="table table-bordered" style="background-color: #F5F5F5">

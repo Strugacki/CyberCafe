@@ -221,18 +221,27 @@
 								<p><c:out value="${userDetails.nickname}"></c:out></p>
 		    				</div>
 		    				<div class="panel-body">
-		    					<p><c:out value="${userDetails.firstName}"></c:out></p>
-		    					<p><c:out value="${userDetails.lastName}"></c:out></p>
-		    					<p><c:out value="${userDetails.dateOfBirth}"></c:out></p>
-		    					<p><c:out value="${userDetails.email}"></c:out></p>
-		    					<button class="btn btn-info btn-sm" id="moreDetails">Pokaż więcej</button>
+		    					<p class="small text-center">Podstawowe informacje</p>
+		    					<hr>
+		    					<p><label class="control-label">Imię:</label> <c:out value="${userDetails.firstName}"></c:out></p>
+			    				<p><label class="control-label">Nazwisko:</label> <c:out value="${userDetails.lastName}"></c:out></p>
+			    				<p><label class="control-label">Data urodzenia:</label> <c:out value="${userDetails.dateOfBirth}"></c:out></p>
+			    				<p><label class="control-label">Adres email:</label> <c:out value="${userDetails.email}"></c:out></p>
+		    					<button class="btn btn-info btn-sm" id="moreDetails">Pokaż więcej <span class="glyphicon glyphicon-chevron-down"></span></button>
 		    					<div class="details-fadeIn">
-		    						<p><c:out value="${userDetails.login}"></c:out></p>
-		    						<p><c:out value="${userDetails.password}"></c:out></p>
-		    						<p><c:out value="${userAddressDetails.city}"></c:out> <c:out value="${userAddressDetails.postalCode}"></c:out></p>
-		    						<p><c:out value="${userAddressDetails.street}"></c:out> <c:out value="${userAddressDetails.localNumber}"></c:out></p>
+		    						<hr>
+		    						<p><label class="control-label">Login:</label> <c:out value="${userDetails.login}"></c:out></p>
+		    						<div class="form-inline">
+		    							<div class="form-group">
+		    								<label class="form-control-label" for="password">Hasło:</label><input id="password" type="password" class="form-control input-sm" value="<c:out value="${userDetails.password}"></c:out>" disabled/>
+		    								<div class="checkbox">
+		    									<label><input type="checkbox" id="showPassword" /> Pokaż</label>
+		    								</div>
+		    							</div>
+		    						</div>
+		    						<p><label class="control-label">Miejscowość:</label> <c:out value="${userAddressDetails.city}"></c:out> <c:out value="${userAddressDetails.postalCode}"></c:out></p>
+		    						<p><label class="control-label">Ulica:</label> <c:out value="${userAddressDetails.street}"></c:out> <c:out value="${userAddressDetails.localNumber}"></c:out></p>
 		    					</div>
-		    				
 		    				</div>
 		    				<div class="panel-footer">
 		    					<a href="<c:url value="/user/profile/edit" />" class="btn btn-primary text-center">Edytuj <span class="glyphicon glyphicon-wrench"></span></a>
@@ -296,7 +305,19 @@
 			$("div.details-fadeIn").hide();
 			$('#moreDetails').on('click',function(){
 				$('div.details-fadeIn').slideToggle('slow');
+				if($('#moreDetails > span').attr('class') == 'glyphicon glyphicon-chevron-down'){
+					$('#moreDetails > span').attr('class','glyphicon glyphicon-chevron-up')
+				}else{
+					$('#moreDetails > span').attr('class','glyphicon glyphicon-chevron-down')
+				}
 			});
+			$('#showPassword').change(function(){
+				if($(this).is(":checked")){
+					$('#password').attr('type','text')
+				}else{
+					$('#password').attr('type','password');
+				}
+			})
 		})
 	</script>	
 	<body>

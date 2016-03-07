@@ -9,6 +9,7 @@
 	</head>
 
 	<body>
+
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 						<div class="navbar-header">
@@ -65,70 +66,76 @@
 	    <div class="well lead">
 			<h2 class="text-center">Dodaj wypożyczenie</h2>
 		</div>
-		<div class="row">
-			<div class="dropdown">
-			    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Klienci<span class="caret"></span></button>
-			    <ul class="dropdown-menu customers">
-			    	<c:forEach items="${customers}" var="customer">
-			    		<li><a><c:out value=" ${customer.nickname}"></c:out></a><input type="hidden" value='<c:out value="${customer.idUser}"></c:out>'/></li>
-			    	</c:forEach>
-			    </ul>
-			    <input class="customer" />
+		<div class="col-lg-8 col-lg-push-2 col-md-8 col-md-push-2 col-sm-12">
+			<div class="panel panel-default">
+				<div class="panel-heading-dark text-center">
+				
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-4 col-md-5 col-sm-10">
+						    <select class="form-control customers">
+						    	<option value="null">-- Wybierz klienta --</option>
+						    	<c:forEach items="${customers}" var="customer">
+						    		<option value="<c:out value=" ${customer.idUser}" />"><c:out value="${customer.nickname}"></c:out></option>
+						    	</c:forEach>
+						    </select>
+						    <input class="customer" />
+				    	</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-lg-4 col-md-5 col-sm-10">
+							<select class="form-control terminals">
+								<option value="null">-- Wybierz terminal --</option>
+						    	<c:forEach items="${terminals}" var="terminal">
+						    		<option value="<c:out value=" ${terminal.idTerminal}" />"><c:out value="${terminal.type}"></c:out></option>
+						    	</c:forEach>
+					   		</select>
+					   		<input class="terminal" />
+					   	</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#checkTerm">Sprawdź termin</button>
+				</div>
 			</div>
-			<div class="dropdown">
-			    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Terminale<span class="caret"></span></button>
-			    <ul class="dropdown-menu terminals">
-			    	<c:forEach items="${terminals}" var="terminal">
-			    		<li><a><c:out value=" ${terminal.type}"></c:out></a><input type="hidden" value='<c:out value="${terminal.idTerminal}"></c:out>'/></li>
-			    	</c:forEach>
-			    </ul>
-			</div>
-			<input class="terminal" />
-			<button id="check">Sprawdź dostępność</button>
-			<div class='input-group date' id='datetimepicker2'>
-						                    <input type='text' class="form-control" />
-						                    <span class="input-group-addon">
-						                        <span class="glyphicon glyphicon-calendar"></span>
-						                    </span>
-						                </div>
 		</div>
-		
-		
-		
-		<div id="checkTerm" class="modal fade" role="dialog">
-				  <div class="modal-dialog">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal">&times;</button>
-					        <h4 class="modal-title">Sprawdź dostępność sprzętu w wybranym terminie</h4>
-					      </div>
-					      <div class="modal-body">
-					        <div class="row">
-						        <div class='col-sm-6'>
-						            <div class="form-group">
-						                <div class='input-group date' id='datetimepicker2'>
-						                    <input type='text' class="form-control" />
-						                    <span class="input-group-addon">
-						                        <span class="glyphicon glyphicon-calendar"></span>
-						                    </span>
-						                </div>
-						            </div>
-						        </div>						        
-						    </div>
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-					      </div>
-					    </div>				
-				  </div>
-			</div>
-			
-			
-			
-			
-			
-			
-    </div>
+				<!-- Modal -->
+			  <div class="modal fade" id="checkTerm" role="dialog">
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Sprawdzanie terminu rezerwacji</h4>
+			        </div>
+			        <div class="modal-body">
+			        <input class="terminal" />
+			          <p>Some text in the modal.</p>
+			          
+			          <div class="input-group date" data-provide="datepicker">
+					    <input type="text" class="form-control">
+					    <div class="input-group-addon">
+					        <span class="glyphicon glyphicon-th"></span>
+	    				</div>
+			          </div>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>	
+			<!--	<div class="input-group date" data-provide="datepicker">
+				    <input type="text" class="form-control">
+				    <div class="input-group-addon">
+				        <span class="glyphicon glyphicon-th"></span>
+    			</div>  !-->
+</div>
+    	</div>
 
 		<c:set var="warning" value="${warn}"/>
 		<c:if test="${!empty warning}">
@@ -183,6 +190,7 @@
 		<script src="<c:url value="/resources/js/transition.js" />" ></script>
 		<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 		<script src="<c:url value="/resources/js/bootstrap-datepicker.js" />" ></script>
+		<script src="<c:url value="/resources/js/datepickerpl.min.js" />" ></script>
 		<script>
 		$(document).ready(function(){
 		        $("#myModal").modal();
@@ -190,24 +198,17 @@
 		</script>
 		<script type="text/javascript">
 			$(function(){
-				$('ul.terminals > li > a').on('click', function(){
-					var idTerminal = $(this).parent().find('input:hidden').val();
+				$('select.terminals').change(function(){
+					var idTerminal = $(this).val();
 					$('input.terminal').val(idTerminal);
 				});
-				$('ul.customers > li > a').on('click', function(){
-					var idCustomer = $(this).parent().find('input:hidden').val();
+				$('select.customers').change(function(){
+					var idCustomer = $(this).val();
 					$('input.customer').val(idCustomer);
 				});
 				
-				$('button#check').on('click', function(){
-					$('#checkTerm').modal();
-					$('#datetimepicker2').datepicker({
-						locale: 'pl'
-					});
-				});
-				
-				$('#datetimepicker2').datepicker({
-					locale: 'pl'
+				$('.datepicker').datepicker({
+					language: "pl"
 				});
 			});
 		</script>		
