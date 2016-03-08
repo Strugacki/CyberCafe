@@ -51,5 +51,11 @@ public class TerminalDaoImpl extends AbstractDao<Integer, Terminal> implements T
 			deleteTerminal(terminal);
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Terminal> getAllAvailableTerminals() {
+		return sessionFactory.getCurrentSession().getNamedQuery("get.All.Available.Terminals").list();
+	}
 
 }

@@ -73,26 +73,24 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-lg-4 col-md-5 col-sm-10">
+						<div class="col-lg-5 col-md-5 col-sm-10">
 						    <select class="form-control customers">
 						    	<option value="null">-- Wybierz klienta --</option>
 						    	<c:forEach items="${customers}" var="customer">
-						    		<option value="<c:out value=" ${customer.idUser}" />"><c:out value="${customer.nickname}"></c:out></option>
+						    		<option value="<c:out value="${customer.idUser}" />"><c:out value="${customer.firstName}"></c:out> '<c:out value="${customer.nickname}"></c:out>' <c:out value="${customer.lastName}"></c:out></option>
 						    	</c:forEach>
 						    </select>
-						    <input class="customer" />
 				    	</div>
 					</div>
 					<br>
 					<div class="row">
-						<div class="col-lg-4 col-md-5 col-sm-10">
+						<div class="col-lg-5 col-md-5 col-sm-10">
 							<select class="form-control terminals">
 								<option value="null">-- Wybierz terminal --</option>
 						    	<c:forEach items="${terminals}" var="terminal">
-						    		<option value="<c:out value=" ${terminal.idTerminal}" />"><c:out value="${terminal.type}"></c:out></option>
+						    		<option value="<c:out value="${terminal.idTerminal}" />"><c:out value="${terminal.type}"></c:out></option>
 						    	</c:forEach>
 					   		</select>
-					   		<input class="terminal" />
 					   	</div>
 					</div>
 				</div>
@@ -101,41 +99,42 @@
 				</div>
 			</div>
 		</div>
-				<!-- Modal -->
-			  <div class="modal fade" id="checkTerm" role="dialog">
-			    <div class="modal-dialog">
-			    
-			      <!-- Modal content-->
-			      <div class="modal-content">
-			        <div class="modal-header">
-			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          <h4 class="modal-title">Sprawdzanie terminu rezerwacji</h4>
-			        </div>
-			        <div class="modal-body">
-			        <input class="terminal" />
-			          <p>Some text in the modal.</p>
-			          
+			<!-- Modal -->
+		  <div class="modal fade" id="checkTerm" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Sprawdzanie terminu rezerwacji</h4>
+		        </div>
+		        <div class="modal-body">
+			        <input class="customer" hidden="hidden"/>
+			        <p><label class="control-label">Klient: </label><span id="userDetails"></span></p>
+			        <p><label class="control-label">Terminal: </label><span id="terminalType"></span></p>
+			        <input class="terminal" hidden="hidden"/>
 			          <div class="input-group date" data-provide="datepicker">
-					    <input type="text" class="form-control">
+					    <input type="text" class="form-control" id="rentDate">
 					    <div class="input-group-addon">
-					        <span class="glyphicon glyphicon-th"></span>
+					        <span class="glyphicon glyphicon-calendar"></span>
 	    				</div>
 			          </div>
-			        </div>
-			        <div class="modal-footer">
-			          <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-			        </div>
-			      </div>
-			      
-			    </div>
-			  </div>	
-			<!--	<div class="input-group date" data-provide="datepicker">
-				    <input type="text" class="form-control">
-				    <div class="input-group-addon">
-				        <span class="glyphicon glyphicon-th"></span>
-    			</div>  !-->
-</div>
-    	</div>
+			          <br>
+			          <div class="form-label">
+			          	<a href="<c:url value="/rent/search" />" class="btn btn-success btn-sm" id="search">Sprawdź</a>
+			          </div>
+			          <div class="results">
+			          
+			          </div>
+			     </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>	
+	</div>
 
 		<c:set var="warning" value="${warn}"/>
 		<c:if test="${!empty warning}">
@@ -200,15 +199,39 @@
 			$(function(){
 				$('select.terminals').change(function(){
 					var idTerminal = $(this).val();
+					var terminalDetails = $('select.terminals option:selected').text();
 					$('input.terminal').val(idTerminal);
+					$('span#terminalType').text(terminalDetails);
 				});
 				$('select.customers').change(function(){
 					var idCustomer = $(this).val();
+					var customerDetails = $('select.customers option:selected').text();
 					$('input.customer').val(idCustomer);
+					$('span#userDetails').text(customerDetails);
 				});
 				
-				$('.datepicker').datepicker({
-					language: "pl"
+				$.fn.datepicker.defaults.language = 'pl';
+				$('.datepicker').datepicker({});
+				
+				$('a#search').on('click',function(e){
+					e.preventDefault();
+					var idTerminal = $('input.terminal').val();
+					var date = $('input#rentDate').val();
+					//var url = $(this).attr('href');
+					//$('div.results').text("${pageContext.request.contextPath}/rent/search");
+					$.ajax({
+						type: "GET",
+						url: "${pageContext.request.contextPath}/rent/search",
+						data: "idTerminal="+idTerminal+"&date="+date,
+						success: function(data){
+							console.log("response:",data);
+							$('div.results').html(data)
+						},
+						error: function(e){
+							console.log("ERROR:",e);
+							$('div.results').text(e)
+						}
+					})
 				});
 			});
 		</script>		

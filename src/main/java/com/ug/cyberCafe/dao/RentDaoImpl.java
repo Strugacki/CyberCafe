@@ -1,5 +1,6 @@
 package com.ug.cyberCafe.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -53,22 +54,21 @@ public class RentDaoImpl implements RentDao {
 		return (Rent) sessionFactory.getCurrentSession().get(Rent.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Rent getRentByIdTerminal(long id, String date) {
+	public List<Rent> getRentByIdTerminal(long id, String date) {
 		try {
 			if (!sessionFactory.getCurrentSession().getTransaction().isActive()) {
 				sessionFactory.getCurrentSession().getTransaction().begin();
 			}
-			Rent rent = null;
 			Query query = sessionFactory.getCurrentSession().getNamedQuery("get.Rent.By.Terminal.And.Date");
 			query.setLong(0, id);
-			query.setString(0, date);
-			List<Rent> results = query.list();
-			if (!results.isEmpty()) {
-				rent = results.get(0);
-			}
-			return rent;
+			query.setString(1, date);
+			List<Rent> results = new ArrayList<Rent>();
+			results = query.list();
+			return results;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

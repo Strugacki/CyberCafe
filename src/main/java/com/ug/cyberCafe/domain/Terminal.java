@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="TERMINAL")
 @NamedQueries({ 
 	@NamedQuery(name = "get.All.Terminals", query = "Select t from Terminal t"),
+	@NamedQuery(name = "get.All.Available.Terminals", query = "Select t from Terminal t Where t.available=true"),
 })
 public class Terminal {
 	

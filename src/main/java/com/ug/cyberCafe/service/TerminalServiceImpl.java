@@ -42,4 +42,9 @@ public class TerminalServiceImpl implements TerminalService{
 		return dao.getAllTerminals();
 	}
 
+	@Override
+	public List<Terminal> getAllAvailableTerminals() {
+		return dao.getAllAvailableTerminals();
+	}
+
 }

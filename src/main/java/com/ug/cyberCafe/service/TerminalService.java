@@ -15,5 +15,7 @@ public interface TerminalService {
 	void deleteTerminal(Terminal terminal);
 
 	List<Terminal> getAllTerminals();
+	
+	List<Terminal> getAllAvailableTerminals();
 
 }

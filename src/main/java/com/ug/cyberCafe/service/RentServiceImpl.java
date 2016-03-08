@@ -42,7 +42,7 @@ public class RentServiceImpl implements RentService {
 	}
 
 	@Override
-	public Rent getRentByIdTerminal(long id, String date) {
+	public List<Rent> getRentByIdTerminal(long id, String date) {
 		return rentDao.getRentByIdTerminal(id, date);
 	}
 

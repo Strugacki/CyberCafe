@@ -16,6 +16,6 @@ void addRent(Rent rent);
 	
 	Rent getRentById(long id);
 	
-	Rent getRentByIdTerminal(long id, String date);
+	List<Rent> getRentByIdTerminal(long id, String date);
 	
 }

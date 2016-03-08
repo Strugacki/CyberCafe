@@ -11,6 +11,8 @@ public interface TerminalDao {
     void deleteTerminal(Terminal terminal);
      
     List<Terminal> getAllTerminals();
+    
+    List<Terminal> getAllAvailableTerminals();
  
     Terminal getTerminalById(long id);
     

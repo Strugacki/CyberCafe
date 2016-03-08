@@ -1,5 +1,9 @@
 package com.ug.cyberCafe.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,6 +16,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ug.cyberCafe.domain.Rent;
 import com.ug.cyberCafe.service.RentService;
@@ -39,13 +45,35 @@ public class RentController {
 		return "/rent/listRent";
 	}
 	
+	@RequestMapping(value = "search", method=RequestMethod.GET)
+	public @ResponseBody String reservationCheck(@RequestParam("idTerminal") String idTerminal, @RequestParam("date") String date){
+		Long idTerminall = Long.parseLong(idTerminal);
+		String datee = date;
+		List<Rent> dbResults = new ArrayList<Rent>();
+		dbResults = rentService.getRentByIdTerminal(idTerminall, datee);
+		System.out.println(dbResults);
+		String response = "";
+		for(int i=10;i<23;i++){
+			if(dbResults.size()>0){
+				for(int j=0;j<dbResults.size();j++){
+					if((i<dbResults.get(j).getTimeStart() && i<=dbResults.get(j).getTimeEnd()) || (i>=dbResults.get(j).getTimeStart() && i>dbResults.get(j).getTimeEnd())){
+						response+="<li><label>"+i+":00 <input id='"+i+"' type='radio' name='hour' value='"+i+"' /></label></li>";
+					}
+				}
+			}else{
+				response+="<li><label>"+i+":00 <input id='"+i+"' type='radio' name='hour' value='"+i+"' /></label></li>";
+			}
+		}
+		return response;
+	}
+	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddRentForm(Model model){
 		authorization(model);
 		Rent newRent = new Rent();
 		model.addAttribute("newRent",newRent);
 		model.addAttribute("customers", userService.getUsersByRole("ROLE_USER"));
-		model.addAttribute("terminals",terminalService.getAllTerminals());
+		model.addAttribute("terminals",terminalService.getAllAvailableTerminals());
 		return "/rent/addRent";
 	}
 	

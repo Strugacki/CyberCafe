@@ -1809,7 +1809,7 @@
 			today: "Today",
 			clear: "Clear",
 			titleFormat: "MM yyyy"
-		}
+		},
 	};
 
 	var DPGlobal = {
