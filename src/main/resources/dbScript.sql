@@ -47,7 +47,7 @@ CREATE TABLE Rent(
   user_IDCUSTOMER bigint, FOREIGN KEY (user_IDCUSTOMER) REFERENCES User(IDUSER),
   user_IDEMPLOYEE bigint, FOREIGN KEY (user_IDEMPLOYEE) REFERENCES User(IDUSER),
   price double,
-  date varhcar(11),
+  date varchar(11),
   timeStart varchar(11),
   timeEnd varchar(11),
 );
