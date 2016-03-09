@@ -1,4 +1,4 @@
-package com.ug.cyberCafe.service;
+package com.ug.cyberCafe.service.email;
 
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.mail.MailSender;
