@@ -20,7 +20,7 @@ public class EmailServiceTest {
 		
 		String body = "Test body";
 		String subject = "Test subject";
-		String from = "dajminazwe@gmail.com";
+		String from = "cybercafeteamproject@gmail.com";
 		String to = "dajminazwe@gmail.com";
 		emailService.sendEmail(to, from, subject, body);
 	}
