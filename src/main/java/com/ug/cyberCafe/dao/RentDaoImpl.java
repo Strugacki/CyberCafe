@@ -44,7 +44,7 @@ public class RentDaoImpl implements RentDao {
 		rentToUpdate.setEmployee(rent.getEmployee());
 		rentToUpdate.setDate(rent.getDate());
 		rentToUpdate.setTimeStart(rent.getTimeStart());
-		rentToUpdate.setTimeEnd(rent.getTimeEnd());
+		rentToUpdate.setHours(rent.getHours());
 		sessionFactory.getCurrentSession().update(rentToUpdate);
 		
 	}

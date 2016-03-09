@@ -29,7 +29,7 @@ CREATE TABLE User(
   login varchar(20),
   password varchar(20),
   avatar blob,
-  role_IDROLE bigint, FOREIGN KEY (role_IDROLE) REFERENCES Role(IDROLE),
+  role_IDROLE bigint, FOREIGN KEY (role_IDROLE) REFERENCES Role(IDROLE) ON UPDATE CASCADE ON DELETE CASCADE,
   address_IDADDRESS bigint, FOREIGN KEY (address_IDADDRESS) REFERENCES Address(IDADDRESS)
 );
 
@@ -49,5 +49,5 @@ CREATE TABLE Rent(
   price double,
   date varchar(11),
   timeStart varchar(11),
-  timeEnd varchar(11),
+  hours varchar(11),
 );

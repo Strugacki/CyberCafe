@@ -1,7 +1,9 @@
 package com.ug.cyberCafe.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,15 +35,15 @@ public class Rent {
 	private long idRent;
 	
 	@ManyToOne
-	@JoinColumn(name = "TERMINAL_IDTERMINAL", nullable = false)
+	@JoinColumn(name = "TERMINAL_IDTERMINAL")
 	private Terminal terminal;
 	
 	@ManyToOne
-	@JoinColumn(name = "USER_IDCUSTOMER", nullable = false)
+	@JoinColumn(name = "USER_IDCUSTOMER")
 	private User customer;
 	
 	@ManyToOne
-	@JoinColumn(name = "USER_IDEMPLOYEE", nullable = false)
+	@JoinColumn(name = "USER_IDEMPLOYEE")
 	private User employee;
 	
 	@Column(name = "PRICE", nullable = false)
@@ -53,8 +55,8 @@ public class Rent {
 	@Column(name = "TIMESTART", nullable = false)
 	private Integer timeStart;
 	
-	@Column(name = "TIMEEND", nullable = false)
-	private Integer timeEnd;
+	@Column(name = "HOURS", nullable = false)
+	private Integer hours;
 	
 	
 	
@@ -114,12 +116,12 @@ public class Rent {
 		this.timeStart = time_start;
 	}
 	
-	public Integer getTimeEnd() {
-		return timeEnd;
+	public Integer getHours() {
+		return hours;
 	}
 
-	public void setTimeEnd(Integer time_end) {
-		this.timeEnd = time_end;
+	public void setHours(Integer hours) {
+		this.hours = hours;
 	}
 	 
 }

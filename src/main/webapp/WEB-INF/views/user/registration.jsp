@@ -4,7 +4,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <PUBLIC! html>
 	<head>
-		<meta http-equiv="Content-type" content="text/html"; charset="UTF-8">
+		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
 		<title> Cyber Cafe - rejestracja</title>
 	</head>

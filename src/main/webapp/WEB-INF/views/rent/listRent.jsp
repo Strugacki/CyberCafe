@@ -78,7 +78,8 @@
   					<th class="text-center">Klient</th>
   					<th class="text-center">Pracownik</th>
   					<th class="text-center">Data</th>
-  					<th class="txt-center">Godzina</th>
+  					<th class="txt-center">Godzina wypożyczenia</th>
+  					<th class="txt-center">Ilość godzin</th>
   					<th class="txt-center">Cena</th>
   				</tr>
   			</thead>
@@ -87,11 +88,12 @@
 	    		<tr>
 	    			<td></td>
 					<td class="text-center">${rent.terminal.type}</td>
-					<td class="text-center">${rent.customer.lastName}</td>
-					<td class="text-center">${customer.employee.LastName}</td>
-					<td class="text-center">${customer.date}</td>
-					<td class="text-center">${customer.timeStart}</td>
-					<td class="text-center">${customer.price}</td>
+					<td class="text-center">${rent.customer.firstName} '${rent.customer.nickname}' ${rent.customer.lastName}</td>
+					<td class="text-center">${rent.employee.firstName} ${rent.employee.lastName}</td>
+					<td class="text-center">${rent.date}</td>
+					<td class="text-center">${rent.timeStart}</td>
+					<td class="text-center">${rent.hours}</td>
+					<td class="text-center">${rent.price}</td>
 				</tr>
 	    </c:forEach>
 	    </tbody>

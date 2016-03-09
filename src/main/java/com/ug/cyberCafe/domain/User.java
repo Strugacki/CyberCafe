@@ -1,5 +1,6 @@
 package com.ug.cyberCafe.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -82,11 +84,11 @@ public class User {
 	@Column(name = "AVATAR", nullable = true)
 	private byte[] avatar=null;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="ADDRESS_IDADDRESS")
 	private Address address;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name="ROLE_IDROLE")
 	private Role role;
 //	private Set<Role> roles;

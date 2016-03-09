@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <PUBLIC! html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
@@ -111,24 +112,40 @@
 		          <h4 class="modal-title">Sprawdzanie terminu rezerwacji</h4>
 		        </div>
 		        <div class="modal-body">
-			        <input class="customer" hidden="hidden"/>
-			        <p><label class="control-label">Klient: </label><span id="userDetails"></span></p>
-			        <p><label class="control-label">Terminal: </label><span id="terminalType"></span></p>
-			        <input class="terminal" hidden="hidden"/>
-			          <div class="input-group date" data-provide="datepicker">
-					    <input type="text" class="form-control" id="rentDate">
-					    <div class="input-group-addon">
-					        <span class="glyphicon glyphicon-calendar"></span>
-	    				</div>
-			          </div>
-			          <br>
-			          <div class="form-label">
-			          	<a href="<c:url value="/rent/search" />" class="btn btn-success btn-sm" id="search">Sprawdź</a>
-			          </div>
-			          <div class="results">
-			          
-			          </div>
-			     </div>
+		        	<form:form modelAttribute="newRent" class="form-horizontal" accept-charset="UTF-8">
+		        		<form:input  path="terminal.idTerminal" type="text" required="reguired" class="terminal" />
+		        		<form:input  path="customer.idUser" type="text" required="reguired" class="customer" />
+				        <p><label class="control-label">Klient: </label><span id="userDetails"></span></p>
+				        <form:input id="type" path="employee.idUser" type="text" required="reguired" value="${idEmployee}"/>
+				        <p><label class="control-label">Terminal: </label><span id="terminalType"></span></p>
+
+					    <div class="input-group date" data-provide="datepicker">
+					 		<form:input type="text" path="date" class="form-control" id="rentDate" />
+					 		<div class="input-group-addon">
+					    		<span class="glyphicon glyphicon-calendar"></span>
+							</div>
+					   </div>
+					   <br>
+					     
+					   <div class="form-label">
+					     <a href="<c:url value="/rent/search" />" class="btn btn-success btn-sm" id="search">Sprawdź</a>
+					   </div>
+					   <div class="results">
+					   	<ul id="radioHoursList">
+					   		
+					   	</ul>
+					   </div>
+					   <form:input type="text" path="timeStart" class="form-control" id="timeStart" />
+					   <form:input type="text" path="hours" class="form-control" id="hours" />
+					    <form:input type="text" path="price" class="form-control" id="price" />
+						<div class="row">
+							<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
+								<input type="submit" value="Dodaj" class="btn btn-primary btn-sm"/> albo <a
+								href="<c:url value='/' />">wróć</a>
+							</div>
+						</div>
+					</form:form>
+			</div>
 		        <div class="modal-footer">
 		          <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
 		        </div>
@@ -201,13 +218,13 @@
 				$('select.terminals').change(function(){
 					var idTerminal = $(this).val();
 					var terminalDetails = $('select.terminals option:selected').text();
-					$('input.terminal').val(idTerminal);
+					$('.terminal').val(idTerminal);
 					$('span#terminalType').text(terminalDetails);
 				});
 				$('select.customers').change(function(){
 					var idCustomer = $(this).val();
 					var customerDetails = $('select.customers option:selected').text();
-					$('input.customer').val(idCustomer);
+					$('.customer').val(idCustomer);
 					$('span#userDetails').text(customerDetails);
 				});
 				
@@ -218,15 +235,14 @@
 					e.preventDefault();
 					var idTerminal = $('input.terminal').val();
 					var date = $('input#rentDate').val();
-					//var url = $(this).attr('href');
-					//$('div.results').text("${pageContext.request.contextPath}/rent/search");
 					$.ajax({
 						type: "GET",
 						url: "${pageContext.request.contextPath}/rent/search",
 						data: "idTerminal="+idTerminal+"&date="+date,
 						success: function(data){
 							console.log("response:",data);
-							$('div.results').html(data)
+							$('.radioHours').remove();
+							$(data).insertAfter("#radioHoursList");
 						},
 						error: function(e){
 							console.log("ERROR:",e);
@@ -234,6 +250,12 @@
 						}
 					})
 				});
+				
+				$(document).on('click','div.results input[type=radio]',function(){
+					var timeStart = $(this).val();
+					$('#timeStart').val(timeStart);
+				});
+					
 			});
 		</script>		
 	</body>
