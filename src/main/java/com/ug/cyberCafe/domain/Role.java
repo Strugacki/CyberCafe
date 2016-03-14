@@ -9,12 +9,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name="ROLE")
 @NamedQueries({ 
 	@NamedQuery(name = "get.All.Roles", query = "Select r from Role r"),
 	@NamedQuery(name = "get.Role.By.Name", query = "Select r from Role r WHERE r.role = ? ")
 })
+@Data
 public class Role {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,21 +26,5 @@ public class Role {
 	
 	@Column(name = "ROLE")
 	private String role;
-
-	public long getIdRole() {
-		return idRole;
-	}
-
-	public void setIdRole(long idRole) {
-		this.idRole = idRole;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 	
 }

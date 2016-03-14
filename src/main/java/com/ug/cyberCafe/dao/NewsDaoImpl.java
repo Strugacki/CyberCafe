@@ -51,7 +51,7 @@ public class NewsDaoImpl extends AbstractDao<Integer, News> implements NewsDao {
 		newsToUpdate.setTitle(news.getTitle());
 		newsToUpdate.setBody(news.getBody());
 		newsToUpdate.setUploadDate(news.getUploadDate());
-		newsToUpdate.setUsers(news.getUsers());
+		newsToUpdate.setUser(news.getUser());
 		sessionFactory.getCurrentSession().update(newsToUpdate);
 	}
 

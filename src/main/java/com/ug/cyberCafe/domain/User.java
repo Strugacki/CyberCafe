@@ -20,6 +20,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import lombok.Data;
+
 @Entity
 @Table(name="USER")
 @NamedQueries({ 
@@ -29,6 +31,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 	@NamedQuery(name = "get.Users.By.Role", query = "Select u from User u, Role r WHERE u.role=r.idRole AND r.role=? "),
 	@NamedQuery(name = "set.Active.User.Account", query = "Update User u Set u.active = ? Where u.idUser = ?")
 })
+@Data
 public class User {
 	
 	@Id
@@ -92,101 +95,5 @@ public class User {
 	@JoinColumn(name="ROLE_IDROLE")
 	private Role role;
 //	private Set<Role> roles;
-
-	public long getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(long idUser) {
-		this.idUser = idUser;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Boolean getActive() {
-		return active;
-	}
-
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
-
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public byte[]  getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(byte[] avatar) {
-		this.avatar = avatar;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}	
 	
 }

@@ -13,12 +13,15 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import lombok.Data;
+
 @Entity
 @Table(name="TERMINAL")
 @NamedQueries({ 
 	@NamedQuery(name = "get.All.Terminals", query = "Select t from Terminal t"),
 	@NamedQuery(name = "get.All.Available.Terminals", query = "Select t from Terminal t Where t.available=true"),
 })
+@Data
 public class Terminal {
 	
 	@Id
@@ -40,37 +43,5 @@ public class Terminal {
 	@NotEmpty(message = "Podaj opis")
 	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
-
-	public long getIdTerminal() {
-		return idTerminal;
-	}
-
-	public void setIdTerminal(long idTerminal) {
-		this.idTerminal = idTerminal;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public Boolean getAvailable() {
-		return available;
-	}
-
-	public void setAvailable(Boolean available) {
-		this.available = available;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	
 }
