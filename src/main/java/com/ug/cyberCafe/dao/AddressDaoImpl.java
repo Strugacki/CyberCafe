@@ -11,7 +11,7 @@ import com.ug.cyberCafe.domain.Address;
 
 
 @Component("addressDao")
-public class AddressDaoImpl extends AbstractDao<Integer, Address> implements AddressDao {
+public class AddressDaoImpl implements AddressDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;

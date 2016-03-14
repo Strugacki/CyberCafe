@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ug.cyberCafe.domain.Terminal;
 
 @Repository
-public class TerminalDaoImpl extends AbstractDao<Integer, Terminal> implements TerminalDao {
+public class TerminalDaoImpl implements TerminalDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;

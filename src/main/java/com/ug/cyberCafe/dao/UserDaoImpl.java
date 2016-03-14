@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.ug.cyberCafe.domain.User;
 
 @Repository("userDao")
-public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
+public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;

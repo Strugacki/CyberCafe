@@ -12,7 +12,7 @@ import com.ug.cyberCafe.domain.News;
 import com.ug.cyberCafe.domain.User;
 
 @Component("newsDao")
-public class NewsDaoImpl extends AbstractDao<Integer, News> implements NewsDao {
+public class NewsDaoImpl implements NewsDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;

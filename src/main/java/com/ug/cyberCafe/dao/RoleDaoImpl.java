@@ -11,7 +11,7 @@ import com.ug.cyberCafe.domain.Role;
 import com.ug.cyberCafe.domain.User;
 
 @Repository
-public class RoleDaoImpl extends AbstractDao<Integer, Role> implements RoleDao {
+public class RoleDaoImpl implements RoleDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
