@@ -7,6 +7,7 @@ import java.util.List;
 import javax.sql.rowset.serial.SerialException;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -34,6 +35,8 @@ import com.ug.cyberCafe.service.UserService;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
+	
+	final static Logger LOGGER = Logger.getLogger(CustomerController.class);
 
 	@Autowired
 	private UserService userService;
@@ -53,7 +56,7 @@ public class CustomerController {
 	public String list(Model model){
 		Authorization(model);
 		List<User> Customers = userService.getUsersByRole("ROLE_USER");
-		System.out.println(Customers.size());
+		LOGGER.info(Customers.size());
 		model.addAttribute("customers",Customers);
 		return "customer/listCustomer";
 	}
@@ -85,14 +88,14 @@ public class CustomerController {
 	public String processCustomerProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@RequestParam("id") String idUser, @Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
             Authorization(model);
             userProfil.setIdUser(Long.parseLong(idUser));
-            System.out.println(userProfil.getIdUser());
-            System.out.println(userProfil.getFirstName());
-            System.out.println(userProfil.getLastName());
-            System.out.println(idUser);
+            LOGGER.info(userProfil.getIdUser());
+            LOGGER.info(userProfil.getFirstName());
+            LOGGER.info(userProfil.getLastName());
+            LOGGER.info(idUser);
 			if(resultUser.hasErrors() || resultAddress.hasErrors()){
 				model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
-				System.out.println(resultUser.toString());
-				System.out.println(userAddress.toString());
+				LOGGER.info(resultUser.toString());
+				LOGGER.info(userAddress.toString());
 				return "/customer/updateCustomer";
 			}else{
 				addressService.updateAddress(userAddress);
@@ -156,7 +159,7 @@ public class CustomerController {
 			if(auth.getAuthorities() != null){
 				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
 					String role = authority.getAuthority();
-					System.out.println(role);
+					LOGGER.info(role);
 					model.addAttribute("role",role);
 				}
 			}

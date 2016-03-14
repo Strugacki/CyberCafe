@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialException;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -36,6 +37,8 @@ import com.ug.cyberCafe.domain.User;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+	final static Logger LOGGER = Logger.getLogger(UserController.class);
 
 	@Autowired
 	private UserService userService;
@@ -97,11 +100,11 @@ public class UserController {
 	@RequestMapping(value = "profile/edit", method = RequestMethod.POST)
 	public String processUserProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
             Authorization(model);
-            System.out.println(userProfil.getIdUser());
+            LOGGER.info(userProfil.getIdUser());
 			if(resultUser.hasErrors() || resultAddress.hasErrors()){
 				model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
-				System.out.println(resultUser.toString());
-				System.out.println(userAddress.toString());
+				LOGGER.info(resultUser.toString());
+				LOGGER.info(userAddress.toString());
 				return "/user/profile";
 			}else{
 				addressService.updateAddress(userAddress);
@@ -136,8 +139,8 @@ public class UserController {
 		Authorization(model);
 		if(resultUser.hasErrors() || resultUser.hasErrors()){
 			model.addAttribute("warn","Nie udało się wykonać rejestracji, spróbuj ponownie!");
-			System.out.println(resultUser.toString());
-			System.out.println(newAddress.toString());
+			LOGGER.info(resultUser.toString());
+			LOGGER.info(newAddress.toString());
 			return "/user/registration";
 		}else{
 			newUser.setRole(roleService.getRoleByName("ROLE_USER"));
@@ -166,7 +169,7 @@ public class UserController {
 			if(auth.getAuthorities() != null){
 				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
 					String role = authority.getAuthority();
-					System.out.println(role);
+					LOGGER.info(role);
 					model.addAttribute("role",role);
 				}
 			}

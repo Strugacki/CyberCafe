@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,9 @@ import com.ug.cyberCafe.service.NewsService;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+	
+	final static Logger LOGGER = Logger.getLogger(HomeController.class);
+	
 	@Autowired
 	private NewsService newsService;
 	
@@ -91,7 +95,7 @@ public class HomeController {
 			if(auth.getAuthorities() != null){
 				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
 					String role = authority.getAuthority();
-					System.out.println(role);
+					LOGGER.info(role);
 					model.addAttribute("role",role);
 				}
 			}

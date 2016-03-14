@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -34,6 +35,8 @@ import com.ug.cyberCafe.service.UserService;
 @Controller
 @RequestMapping("/rent")
 public class RentController {
+	
+	final static Logger LOGGER = Logger.getLogger(RentController.class);
 	
 	@Autowired
 	private RentService rentService;
@@ -94,7 +97,7 @@ public class RentController {
 		String datee = date;
 		List<Rent> dbResults = new ArrayList<Rent>();
 		dbResults = rentService.getRentByIdTerminal(idTerminall, datee);
-		System.out.println(dbResults);
+		LOGGER.info(dbResults);
 		String response = "";
 		for(int i=10;i<23;i++){
 			if(dbResults.size()>0){
@@ -130,7 +133,7 @@ public class RentController {
 		if(rentResult.hasErrors()){
 			model.addAttribute("warn","Nie udało się dodać wypożyczenia, spróbuj ponownie!");
 			
-			System.out.println(rentResult);
+			LOGGER.info(rentResult);
 			return "rent/addRent";
 		}else{
 			rentService.addRent(newRent);
@@ -157,7 +160,7 @@ public class RentController {
 			if(auth.getAuthorities() != null){
 				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
 					String role = authority.getAuthority();
-					System.out.println(role);
+					LOGGER.info(role);
 					model.addAttribute("role",role);
 				}
 			}

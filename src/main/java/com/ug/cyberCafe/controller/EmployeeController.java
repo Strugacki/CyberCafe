@@ -7,6 +7,7 @@ import java.util.List;
 import javax.sql.rowset.serial.SerialException;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -34,6 +35,8 @@ import com.ug.cyberCafe.service.UserService;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
+	
+	final static Logger LOGGER = Logger.getLogger(EmployeeController.class);
 
 	@Autowired
 	private UserService userService;
@@ -54,7 +57,7 @@ public class EmployeeController {
 	public String list(Model model){
 		Authorization(model);
 		List<User> Employees = userService.getUsersByRole("ROLE_EMPLOYEE");
-		System.out.println(Employees.size());
+		LOGGER.info(Employees.size());
 		model.addAttribute("employees",Employees);
 		return "employee/listEmployee";
 	}
@@ -86,14 +89,14 @@ public class EmployeeController {
 	public String processEmployeeProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@RequestParam("id") String idUser, @Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
             Authorization(model);
             userProfil.setIdUser(Long.parseLong(idUser));
-            System.out.println(userProfil.getIdUser());
-            System.out.println(userProfil.getFirstName());
-            System.out.println(userProfil.getLastName());
-            System.out.println(idUser);
+            LOGGER.info(userProfil.getIdUser());
+            LOGGER.info(userProfil.getFirstName());
+            LOGGER.info(userProfil.getLastName());
+            LOGGER.info(idUser);
 			if(resultUser.hasErrors() || resultAddress.hasErrors()){
 				model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
-				System.out.println(resultUser.toString());
-				System.out.println(userAddress.toString());
+				LOGGER.info(resultUser.toString());
+				LOGGER.info(userAddress.toString());
 				return "/employee/updateEmployee";
 			}else{
 				addressService.updateAddress(userAddress);
@@ -157,7 +160,7 @@ public class EmployeeController {
 			if(auth.getAuthorities() != null){
 				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
 					String role = authority.getAuthority();
-					System.out.println(role);
+					LOGGER.info(role);
 					model.addAttribute("role",role);
 				}
 			}
