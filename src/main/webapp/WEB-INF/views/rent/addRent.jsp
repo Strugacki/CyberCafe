@@ -97,7 +97,7 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#checkTerm">Sprawdź termin</button>
+					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#checkTerm" id="checkTermModalButton" disabled>Sprawdź termin</button>
 				</div>
 			</div>
 		</div>
@@ -113,33 +113,71 @@
 		        </div>
 		        <div class="modal-body">
 		        	<form:form modelAttribute="newRent" class="form-horizontal" accept-charset="UTF-8">
-		        		<form:input  path="terminal.idTerminal" type="text" required="reguired" class="terminal" />
-		        		<form:input  path="customer.idUser" type="text" required="reguired" class="customer" />
-				        <p><label class="control-label">Klient: </label><span id="userDetails"></span></p>
-				        <form:input id="type" path="employee.idUser" type="text" required="reguired" value="${idEmployee}"/>
-				        <p><label class="control-label">Terminal: </label><span id="terminalType"></span></p>
-
-					    <div class="input-group date" data-provide="datepicker">
-					 		<form:input type="text" path="date" class="form-control" id="rentDate" />
-					 		<div class="input-group-addon">
-					    		<span class="glyphicon glyphicon-calendar"></span>
+		        		<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-3 col-md-3 col-sm-3" for="userDetails">Klient: </label>
+								<div class="col-lg-8 col-md-8 col-sm-8">
+									<div class="form-control col-lg-8 col-md-8 col-sm-8" id="userDetails"></div>
+								</div>
 							</div>
-					   </div>
+						</div>
+						<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-3 col-md-3 col-sm-3" for="terminalType">Terminal: </label>
+								<div class="col-lg-8 col-md-8 col-sm-8">
+									<div class="form-control col-lg-8 col-md-8 col-sm-8" id="terminalType"></div>
+								</div>
+							</div>
+						</div>
+		        		<form:input  path="terminal" type="text" required="reguired" class="terminal" hidden="hidden"/>
+		        		<form:input  path="customer" type="text" required="reguired" class="customer" hidden="hidden"/>
+				        <form:input id="type" path="employee" type="text" required="reguired" value="${idEmployee}" hidden="hidden"/>
+					   	<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-3 col-md-3 col-sm-3" for="rentDate">Data: </label>
+								<div class="col-lg-8 col-md-8 col-sm-8">
+									<div class="input-group date" data-provide="datepicker">
+					 					<form:input type="text" path="date" class="form-control" id="rentDate" />
+								 		<div class="input-group-addon">
+								    		<span class="glyphicon glyphicon-calendar"></span>
+										</div>
+					   				</div>
+								</div>
+							</div>
+						</div>
+					   
 					   <br>
-					     
-					   <div class="form-label">
-					     <a href="<c:url value="/rent/search" />" class="btn btn-success btn-sm" id="search">Sprawdź</a>
+					   <div class="row text-center">
+					   		<div class="form-label">
+					     		<a href="<c:url value="/rent/search" />" class="btn btn-success btn-sm" id="search">Sprawdź</a>
+					   		</div>
 					   </div>
 					   <div class="results">
 					   	<ul id="radioHoursList">
 					   		
 					   	</ul>
 					   </div>
-					   <form:input type="text" path="timeStart" class="form-control" id="timeStart" />
-					   <form:input type="text" path="hours" class="form-control" id="hours" />
-					    <form:input type="text" path="price" class="form-control" id="price" />
+					   
+					   <form:input type="text" hidden="hidden" path="timeStart" id="timeStart" />
+					   
+					   	<div class="row">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-3 col-md-3 col-sm-3" for="hours">Ilość godzin: </label>
+								<div class="col-lg-8 col-md-8 col-sm-8">
+									<form:input type="text" path="hours" class="form-control" id="hours" />
+								</div>
+							</div>
+						</div>
 						<div class="row">
-							<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
+							<div class="form-group col-lg-12 col-md-12 col-sm-12">
+								<label class="control-label col-lg-3 col-md-3 col-sm-3" for="price">Cena: </label>
+								<div class="col-lg-8 col-md-8 col-sm-8">
+									<form:input type="text" path="price" class="form-control" id="price" />
+								</div>
+							</div>
+						</div>
+						<div class="row text-center">
+							<div class="form-actions col-lg-12 col-md-12 col-sm-12">
 								<input type="submit" value="Dodaj" class="btn btn-primary btn-sm"/> albo <a
 								href="<c:url value='/' />">wróć</a>
 							</div>
@@ -219,13 +257,13 @@
 					var idTerminal = $(this).val();
 					var terminalDetails = $('select.terminals option:selected').text();
 					$('.terminal').val(idTerminal);
-					$('span#terminalType').text(terminalDetails);
+					$('div#terminalType').text(terminalDetails);
 				});
 				$('select.customers').change(function(){
 					var idCustomer = $(this).val();
 					var customerDetails = $('select.customers option:selected').text();
 					$('.customer').val(idCustomer);
-					$('span#userDetails').text(customerDetails);
+					$('div#userDetails').text(customerDetails);
 				});
 				
 				$.fn.datepicker.defaults.language = 'pl';
@@ -249,6 +287,19 @@
 							$('div.results').text(e)
 						}
 					})
+				});
+				
+				$(document).change(function(){
+						var terminalsValue = $('select.terminals').val();
+						var customersValue = $('select.customers').val();
+						console.log(terminalsValue);
+						console.log(customersValue);
+						
+						if(terminalsValue === 'null' || customersValue === 'null'){
+							$('button#checkTermModalButton').prop('disabled',true);
+						}else{
+							$('button#checkTermModalButton').removeAttr('disabled');
+						}
 				});
 				
 				$(document).on('click','div.results input[type=radio]',function(){
