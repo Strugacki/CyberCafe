@@ -5,10 +5,10 @@ package com.ug.cyberCafe.service.email;
 	import org.springframework.mail.SimpleMailMessage;
 	import org.springframework.stereotype.Service;
 	 
-	@Service("email")
+	//@Service("email")
 	public class EmailService {
 	 
-		@Autowired
+		//@Autowired
 		private MailSender email;
 		
 		public void sendEmail(String toAddress, String fromAddress, String subject, String msgBody) {
