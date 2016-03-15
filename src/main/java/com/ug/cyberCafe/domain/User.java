@@ -91,7 +91,7 @@ public class User {
 	@JoinColumn(name="ADDRESS_IDADDRESS")
 	private Address address;
 	
-	@ManyToOne(optional=false)
+	@OneToOne(optional=false)
 	@JoinColumn(name="ROLE_IDROLE")
 	private Role role;
 //	private Set<Role> roles;
