@@ -152,34 +152,41 @@
 					     		<a href="<c:url value="/rent/search" />" class="btn btn-success btn-sm" id="search">Sprawdź</a>
 					   		</div>
 					   </div>
-					   <div class="results">
-					   	<ul id="radioHoursList">
-					   		
-					   	</ul>
-					   </div>
-					   
-					   <form:input type="text" hidden="hidden" path="timeStart" id="timeStart" />
-					   
-					   	<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-3 col-md-3 col-sm-3" for="hours">Ilość godzin: </label>
-								<div class="col-lg-8 col-md-8 col-sm-8">
-									<form:input type="text" path="hours" class="form-control" id="hours" />
+					   <br>
+					   <div class="toggleSlidder">
+						   <div class="row">
+								<div class="form-group col-lg-12 col-md-12 col-sm-12">
+									<label class="control-label col-lg-3 col-md-3 col-sm-3" for="hours">Godzina rezerwacji: </label>
+									<div class="results col-lg-8 col-md-8 col-sm-8">
+										<select class="form-control" id="hoursList">
+						   		
+						   				</select>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-lg-12 col-md-12 col-sm-12">
-								<label class="control-label col-lg-3 col-md-3 col-sm-3" for="price">Cena: </label>
-								<div class="col-lg-8 col-md-8 col-sm-8">
-									<form:input type="text" path="price" class="form-control" id="price" />
+						   <form:input type="text" hidden="hidden" path="timeStart" id="timeStart" />
+						   
+						   	<div class="row">
+								<div class="form-group col-lg-12 col-md-12 col-sm-12">
+									<label class="control-label col-lg-3 col-md-3 col-sm-3" for="hours">Ilość godzin: </label>
+									<div class="col-lg-8 col-md-8 col-sm-8">
+										<form:input type="text" path="hours" class="form-control" id="hours" />
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row text-center">
-							<div class="form-actions col-lg-12 col-md-12 col-sm-12">
-								<input type="submit" value="Dodaj" class="btn btn-primary btn-sm"/> albo <a
-								href="<c:url value='/' />">wróć</a>
+							<div class="row">
+								<div class="form-group col-lg-12 col-md-12 col-sm-12">
+									<label class="control-label col-lg-3 col-md-3 col-sm-3" for="price">Cena: </label>
+									<div class="col-lg-8 col-md-8 col-sm-8">
+										<form:input type="text" path="price" class="form-control" id="price" />
+									</div>
+								</div>
+							</div>
+							<div class="row text-center">
+								<div class="form-actions col-lg-12 col-md-12 col-sm-12">
+									<input type="submit" value="Dodaj" class="btn btn-primary btn-sm"/> albo <a
+									href="<c:url value='/' />">wróć</a>
+								</div>
 							</div>
 						</div>
 					</form:form>
@@ -253,6 +260,10 @@
 		</script>
 		<script type="text/javascript">
 			$(function(){
+				
+				$('.toggleSlidder').hide();
+				
+				
 				$('select.terminals').change(function(){
 					var idTerminal = $(this).val();
 					var terminalDetails = $('select.terminals option:selected').text();
@@ -271,6 +282,7 @@
 				
 				$('a#search').on('click',function(e){
 					e.preventDefault();
+					$('.toggleSlidder').slideToggle();
 					var idTerminal = $('input.terminal').val();
 					var date = $('input#rentDate').val();
 					$.ajax({
@@ -279,8 +291,8 @@
 						data: "idTerminal="+idTerminal+"&date="+date,
 						success: function(data){
 							console.log("response:",data);
-							$('.radioHours').remove();
-							$(data).insertAfter("#radioHoursList");
+							$('.optionHours').remove();
+							$('#hoursList').append(data);
 						},
 						error: function(e){
 							console.log("ERROR:",e);
@@ -288,6 +300,18 @@
 						}
 					})
 				});
+				
+				$(document).change(function(){
+					var date = $('#rentDate').val();
+					var date_regex = /^(19|20)\d\d[\-\/.](0[1-9]|1[012])[\-\/.](0[1-9]|[12][0-9]|3[01])$/;
+					console.log(date);
+					if((date.length !== 0) && (date.match(date_regex))){
+						$('a#search').fadeIn();
+					}else{
+						$('a#search').hide();
+					}
+				});
+				
 				
 				$(document).change(function(){
 						var terminalsValue = $('select.terminals').val();

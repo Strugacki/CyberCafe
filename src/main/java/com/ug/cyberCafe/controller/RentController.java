@@ -107,9 +107,9 @@ public class RentController {
 						i=i+calcError;
 					}
 				}
-				response+="<li class='radioHours'><label>"+i+":00 <input id='"+i+"' type='radio' name='hour' value='"+i+"' /></label></li>";
+				response+="<option class='optionHours' value='"+i+"'>"+i+":00</option>"  ;
 			}else{
-				response+="<li class='radioHours'><label>"+i+":00 <input id='"+i+"' type='radio' name='hour' value='"+i+"' /></label></li>";
+				response+="<option class='optionHours' value='"+i+"'>"+i+":00</option>"  ;
 			}
 		}
 		return response;
