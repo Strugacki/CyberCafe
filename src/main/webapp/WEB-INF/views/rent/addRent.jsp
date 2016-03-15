@@ -164,13 +164,16 @@
 									</div>
 								</div>
 							</div>
-						   <form:input type="text" hidden="hidden" path="timeStart" id="timeStart" />
+						   <form:input type="text"  path="timeStart" id="timeStart" />
 						   
 						   	<div class="row">
 								<div class="form-group col-lg-12 col-md-12 col-sm-12">
 									<label class="control-label col-lg-3 col-md-3 col-sm-3" for="hours">Ilość godzin: </label>
 									<div class="col-lg-8 col-md-8 col-sm-8">
 										<form:input type="text" path="hours" class="form-control" id="hours" />
+										<select class="form-select hours">
+										
+										</select>
 									</div>
 								</div>
 							</div>
@@ -270,6 +273,8 @@
 					$('.terminal').val(idTerminal);
 					$('div#terminalType').text(terminalDetails);
 				});
+				
+				
 				$('select.customers').change(function(){
 					var idCustomer = $(this).val();
 					var customerDetails = $('select.customers option:selected').text();
@@ -304,7 +309,6 @@
 				$(document).change(function(){
 					var date = $('#rentDate').val();
 					var date_regex = /^(19|20)\d\d[\-\/.](0[1-9]|1[012])[\-\/.](0[1-9]|[12][0-9]|3[01])$/;
-					console.log(date);
 					if((date.length !== 0) && (date.match(date_regex))){
 						$('a#search').fadeIn();
 					}else{
@@ -316,21 +320,24 @@
 				$(document).change(function(){
 						var terminalsValue = $('select.terminals').val();
 						var customersValue = $('select.customers').val();
-						console.log(terminalsValue);
-						console.log(customersValue);
-						
 						if(terminalsValue === 'null' || customersValue === 'null'){
 							$('button#checkTermModalButton').prop('disabled',true);
 						}else{
 							$('button#checkTermModalButton').removeAttr('disabled');
 						}
 				});
-				
-				$(document).on('click','div.results input[type=radio]',function(){
+			
+				$('#hoursList').change(function(){
 					var timeStart = $(this).val();
+					console.log(timeStart);
+					console.log("TAK");
+					var next = $('select#hoursList option:selected').next().val();
+					console.log(timeStart);
+					console.log(next);
+					var possibleTimeLength = next - timeStart;
+					console.log(possibleTimeLength);
 					$('#timeStart').val(timeStart);
-				});
-					
+					});		
 			});
 		</script>		
 	</body>
