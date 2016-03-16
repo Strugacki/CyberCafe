@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ug.cyberCafe.domain.Rent;
+import com.ug.cyberCafe.domain.Role;
 
 @Repository
 public class RentDaoImpl implements RentDao {
@@ -71,6 +72,14 @@ public class RentDaoImpl implements RentDao {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public void deleteAllRents() {
+		for(Rent rent : getAllRents() ) {
+			deleteRent(rent);
+		}
+		
 	}
 
 }

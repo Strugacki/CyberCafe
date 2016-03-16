@@ -18,4 +18,6 @@ public interface RentDao {
 	
 	List<Rent> getRentByIdTerminal(long id, String date);
 	
+	void deleteAllRents();
+	
 }
