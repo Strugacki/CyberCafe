@@ -168,4 +168,13 @@ public class RentDaoTest {
 		List<Rent> retrievedRentsAfterDelete = rentDao.getAllRents();
 		assertEquals(retrievedRentsAfterDelete, new ArrayList<>(0));
 	}
+	
+	@Test
+	public void getRentByIdCheck() {
+		List<Rent> retrievedRents = rentDao.getAllRents();
+		Rent rentToCompare = retrievedRents.get(0);
+		Long idToCompare = retrievedRents.get(0).getIdRent();
+		Rent rentToCompare2 = rentDao.getRentById(idToCompare);
+		assertEquals(rentToCompare, rentToCompare2);
+	}
 }
