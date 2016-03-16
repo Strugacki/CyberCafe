@@ -152,5 +152,9 @@ public class RentDaoTest {
 		assertEquals(HOURS,retrievedRents.get(0).getHours());
 	}
 
-	
+	@Test
+	public void getAllRentsCheck() {
+		List<Rent> retrievedRents = rentDao.getAllRents();
+		assertEquals(2, retrievedRents.size());
+	}
 }
