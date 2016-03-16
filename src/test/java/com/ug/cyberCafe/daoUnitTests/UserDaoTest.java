@@ -15,8 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.dao.AddressDao;
+import com.ug.cyberCafe.dao.RoleDao;
 import com.ug.cyberCafe.dao.UserDao;
 import com.ug.cyberCafe.domain.Address;
+import com.ug.cyberCafe.domain.Role;
 import com.ug.cyberCafe.domain.User;
 
 @ContextConfiguration(locations = { "classpath:/applicationContext-test.xml" })
@@ -30,6 +32,9 @@ public class UserDaoTest {
 	
 	@Autowired
 	AddressDao addressDao;
+	
+	@Autowired
+	RoleDao roleDao;
 
 	private String FIRSTNAME = "John";
 	private String LASTNAME = "Smith";
@@ -160,6 +165,24 @@ public class UserDaoTest {
 		List<User> retrievedUsersAfterUpdate = userDao.getAllUsers();
 		User userAfterUpdate = retrievedUsersAfterUpdate.get(0);
 		assertEquals(userAfterUpdate.getAddress().getIdAddress(),addressToAdd.getIdAddress());
+		addressDao.deleteAllAddresses();
+	}
+	
+	@Test
+	public void addRoleToUserCheck() {
+		List<User> retrievedUsers = userDao.getAllUsers();
+		User userToUpdate = retrievedUsers.get(0);
+		Role roleToAdd = new Role();
+		roleToAdd.setRole("ADMIN");
+		roleDao.addRole(roleToAdd);
+		List<Role> retrievedRoles = roleDao.getAllRoles();
+		roleToAdd = retrievedRoles.get(0);
+		userToUpdate.setRole(roleToAdd);
+		userDao.updateUser(userToUpdate);
+		List<User> retrievedUsersAfterUpdate = userDao.getAllUsers();
+		User userAfterUpdate = retrievedUsersAfterUpdate.get(0);
+		assertEquals(userAfterUpdate.getRole().getIdRole(),roleToAdd.getIdRole());
+		roleDao.deleteAllRoles();
 	}
 
 }
