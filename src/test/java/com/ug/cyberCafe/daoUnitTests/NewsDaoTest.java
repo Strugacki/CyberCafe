@@ -27,7 +27,7 @@ public class NewsDaoTest {
 	NewsDao newsDao;
 	
 	private String BODY = "This is testing body";
-	private String UPLOADDATE = "12-12-12";
+	private String UPLOADDATE = "1922-12-12";
 	
 	/*Initialization method that cleares the news table from database and add few records before starting test method*/
 	@Before public void initialize() {
@@ -79,12 +79,12 @@ public class NewsDaoTest {
 		List<News> retrievedNews = newsDao.getAllNews();
 		News newsToUpdate = retrievedNews.get(0);
 		newsToUpdate.setBody("Something else");
-		newsToUpdate.setUploadDate("1-1-1");
+		newsToUpdate.setUploadDate("2010-01-10");
 		newsDao.updateNews(newsToUpdate);
 		
 		List<News> retrievedNewsAfterUpdate = newsDao.getAllNews();
-		assertEquals("Sierakowice",retrievedNewsAfterUpdate.get(0).getBody());
-		assertEquals("20-200", retrievedNewsAfterUpdate.get(0).getUploadDate());
+		assertEquals("Something else",retrievedNewsAfterUpdate.get(0).getBody());
+		assertEquals("2010-01-10", retrievedNewsAfterUpdate.get(0).getUploadDate());
 	}
 	
 	@Test
