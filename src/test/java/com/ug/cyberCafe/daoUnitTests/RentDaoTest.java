@@ -1,7 +1,9 @@
 package com.ug.cyberCafe.daoUnitTests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -156,5 +158,14 @@ public class RentDaoTest {
 	public void getAllRentsCheck() {
 		List<Rent> retrievedRents = rentDao.getAllRents();
 		assertEquals(2, retrievedRents.size());
+	}
+	
+	@Test
+	public void deleteAllRentsCheck() {
+		List<Rent> retrievedRents = rentDao.getAllRents();
+		assertNotNull(retrievedRents);
+		rentDao.deleteAllRents();
+		List<Rent> retrievedRentsAfterDelete = rentDao.getAllRents();
+		assertEquals(retrievedRentsAfterDelete, new ArrayList<>(0));
 	}
 }
