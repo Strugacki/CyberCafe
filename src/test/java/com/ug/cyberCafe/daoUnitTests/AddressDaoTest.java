@@ -29,6 +29,7 @@ public class AddressDaoTest {
 	private String CITY = "Gdansk";
 	private String POSTALCODE = "80-126";
 	private String STREET = "Spokojna";
+	private String LOCALNUMBER = "1";
 	
 	/*Initialization method that cleares the address table from database and add few records before starting test method*/
 	@Before public void initialize() {
@@ -39,6 +40,7 @@ public class AddressDaoTest {
 		addressToAdd.setCity(CITY);
 		addressToAdd.setPostalCode(POSTALCODE);
 		addressToAdd.setStreet(STREET);
+		addressToAdd.setLocalNumber(LOCALNUMBER);
 		addressDao.addAddress(addressToAdd);
 		
 		/*Second address added*/
@@ -46,6 +48,7 @@ public class AddressDaoTest {
 		addressToAdd2.setCity(CITY);
 		addressToAdd2.setPostalCode(POSTALCODE);
 		addressToAdd2.setStreet(STREET);
+		addressToAdd2.setLocalNumber(LOCALNUMBER);
 		addressDao.addAddress(addressToAdd2);
 	}
 	
@@ -60,7 +63,9 @@ public class AddressDaoTest {
 		List<Address> retrievedAddresses = addressDao.getAllAddresses();
 		assertEquals(CITY,retrievedAddresses.get(0).getCity());
 		assertEquals(POSTALCODE,retrievedAddresses.get(0).getPostalCode());
-		assertEquals(STREET,retrievedAddresses.get(0).getStreet());	
+		assertEquals(STREET,retrievedAddresses.get(0).getStreet());
+		assertEquals(LOCALNUMBER,retrievedAddresses.get(0).getLocalNumber());
+		
 	}
 	
 	@Test
@@ -85,12 +90,14 @@ public class AddressDaoTest {
 		addressToUpdate.setCity("Sierakowice");
 		addressToUpdate.setPostalCode("20-200");
 		addressToUpdate.setStreet("Dzika");
+		addressToUpdate.setLocalNumber("2");
 		addressDao.updateAddress(addressToUpdate);
 		
 		List<Address> retrievedAddressesAfterUpdate = addressDao.getAllAddresses();
 		assertEquals("Sierakowice",retrievedAddressesAfterUpdate.get(0).getCity());
 		assertEquals("20-200", retrievedAddressesAfterUpdate.get(0).getPostalCode());
 		assertEquals("Dzika", retrievedAddressesAfterUpdate.get(0).getStreet());
+		assertEquals("2", retrievedAddressesAfterUpdate.get(0).getLocalNumber());
 	}
 	
 	@Test
