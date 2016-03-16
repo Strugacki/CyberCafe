@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ug.cyberCafe.service.TerminalService;
 import com.ug.cyberCafe.domain.Terminal;
-import com.ug.cyberCafe.domain.User;
 
 @Controller
 @RequestMapping("/device")

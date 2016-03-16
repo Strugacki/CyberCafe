@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ug.cyberCafe.domain.Role;
-import com.ug.cyberCafe.domain.User;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {
