@@ -28,6 +28,7 @@ public class TerminalDaoTest {
 	
 	private String TYPE = "PC";
 	private Boolean AVAILABLE = true;
+	private String DESCRIPTION = "The best PC ever";
 	
 	/*Initialization method that clears the news table from database and add few records before starting test method*/
 	@Before public void initialize() {
@@ -37,12 +38,14 @@ public class TerminalDaoTest {
 		Terminal terminalToAdd = new Terminal();
 		terminalToAdd.setType(TYPE);
 		terminalToAdd.setAvailable(AVAILABLE);
+		terminalToAdd.setDescription(DESCRIPTION);
 		terminalDao.addTerminal(terminalToAdd);
 		
 		/*Second address added*/
 		Terminal terminalToAdd2 = new Terminal();
 		terminalToAdd2.setType(TYPE);
 		terminalToAdd2.setAvailable(AVAILABLE);
+		terminalToAdd2.setDescription(DESCRIPTION);
 		terminalDao.addTerminal(terminalToAdd2);
 	}
 	
@@ -57,6 +60,7 @@ public class TerminalDaoTest {
 		List<Terminal> retrievedTerminals = terminalDao.getAllTerminals();
 		assertEquals(TYPE,retrievedTerminals.get(0).getType());
 		assertEquals(AVAILABLE,retrievedTerminals.get(0).getAvailable());
+		assertEquals(DESCRIPTION,retrievedTerminals.get(0).getDescription());
 	}
 	
 	@Test
