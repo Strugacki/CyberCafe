@@ -22,7 +22,6 @@
    	 <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-	<import resource="applicationContext.xml" />
 	
 	<!-- Needed to add static resources -->	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
