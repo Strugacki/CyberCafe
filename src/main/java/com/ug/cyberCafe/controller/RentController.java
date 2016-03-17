@@ -136,6 +136,9 @@ public class RentController {
 			LOGGER.info(rentResult);
 			return "rent/addRent";
 		}else{
+			LOGGER.info(newRent.getTimeStart());
+			LOGGER.info(newRent.getHours());
+			LOGGER.info(newRent.getPrice());
 			rentService.addRent(newRent);
 		}
 		return "redirect: /rent/list";

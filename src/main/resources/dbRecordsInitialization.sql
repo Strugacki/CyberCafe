@@ -37,10 +37,10 @@ INSERT INTO "PUBLIC"."RENT"
 ( "TERMINAL_IDTERMINAL", "USER_IDCUSTOMER", "USER_IDEMPLOYEE", "PRICE", "DATE", "TIMESTART", "HOURS" )
 VALUES (0 ,1 ,2 ,100 , '2016-03-18', '15', '2');
 
-INSERT INTO News(title,body,uploadDate) VALUES('Turniej League of Legends','W najbliższy weekend w CyberCafe odbędzie się turniej League of Legends dla graczy z całej Polski. Na uczestników czekają upominki a na zwycięzców wspaniałe nagrody ufundowane przez Intela. Zapraszamy!!','2016-02-12');
+INSERT INTO News(title,body,uploadDate,user_iduser) VALUES('Turniej League of Legends','W najbliższy weekend w CyberCafe odbędzie się turniej League of Legends dla graczy z całej Polski. Na uczestników czekają upominki a na zwycięzców wspaniałe nagrody ufundowane przez Intela. Zapraszamy!!','2016-02-12',0);
 
-INSERT INTO News(title,body,uploadDate) VALUES('Turniej CS:GO','W najbliższy weekend w CyberCafe odbędzie się turniej CS:GO dla graczy z całej Polski. Na uczestników czekają upominki a na zwycięzców wspaniałe nagrody ufundowane przez Intela. Zapraszamy!!','2016-02-12');
+INSERT INTO News(title,body,uploadDate,user_iduser) VALUES('Turniej CS:GO','W najbliższy weekend w CyberCafe odbędzie się turniej CS:GO dla graczy z całej Polski. Na uczestników czekają upominki a na zwycięzców wspaniałe nagrody ufundowane przez Intela. Zapraszamy!!','2016-02-12',0);
 
-INSERT INTO News(title,body,uploadDate) VALUES('Rozpoczęcie działalności','CyberCafe, miejsce, w którym możesz się zrelaksować grając na konsoli i PC ze znajomymi właśnie rozpoczęło działalność. Zapraszamy!!','2016-02-12');
+INSERT INTO News(title,body,uploadDate,user_iduser) VALUES('Rozpoczęcie działalności','CyberCafe, miejsce, w którym możesz się zrelaksować grając na konsoli i PC ze znajomymi właśnie rozpoczęło działalność. Zapraszamy!!','2016-02-12',0);
 
 

@@ -6,7 +6,7 @@ import com.ug.cyberCafe.domain.Rent;
 
 public interface RentService {
 
-void addRent(Rent rent);
+	void addRent(Rent rent);
 	
 	void deleteRent(Rent rent);
 	

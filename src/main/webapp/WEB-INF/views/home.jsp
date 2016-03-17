@@ -130,7 +130,7 @@
 								<p>${single.body}</p>
 							</div>
 							<div class="panel-footer">
-								<span class="glyphicon glyphicon-calendar"></span> ${single.uploadDate}
+								<p><span class="glyphicon glyphicon-calendar"></span> ${single.uploadDate}  <span class="text-muted">@${single.user.nickname}</span></p>
 							</div>
 						</div>
 						
