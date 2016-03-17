@@ -158,22 +158,21 @@
 								<div class="form-group col-lg-12 col-md-12 col-sm-12">
 									<label class="control-label col-lg-3 col-md-3 col-sm-3" for="hours">Godzina rezerwacji: </label>
 									<div class="results col-lg-8 col-md-8 col-sm-8">
-										<select class="form-control" id="hoursList">
+										<form:select class="form-control" id="hoursList" path="timeStart">
 						   		
-						   				</select>
+						   				</form:select>
 									</div>
 								</div>
 							</div>
-						   <form:input type="text"  path="timeStart" id="timeStart" />
+						   <!--<form:input type="text"  path="timeStart" id="timeStart" hidden="hidden"/>!-->
 						   
 						   	<div class="row">
 								<div class="form-group col-lg-12 col-md-12 col-sm-12">
 									<label class="control-label col-lg-3 col-md-3 col-sm-3" for="hours">Ilość godzin: </label>
 									<div class="col-lg-8 col-md-8 col-sm-8">
-										<form:input type="text" path="hours" class="form-control" id="hours" />
-										<select class="form-select hours">
+										<form:select class="form-control hours" path="hours">
 										
-										</select>
+										</form:select>
 									</div>
 								</div>
 							</div>
@@ -330,15 +329,23 @@
 				$('#hoursList').change(function(){
 					var timeStart = $(this).val();
 					console.log(timeStart);
-					console.log("TAK");
-					var next = $('select#hoursList option:selected').next().val();
-					console.log(timeStart);
-					console.log(next);
-					var possibleTimeLength = next - timeStart;
-					console.log(possibleTimeLength);
 					$('#timeStart').val(timeStart);
+					var optionSelected = $('select#hoursList option:selected');
+					var hoursQuantity = 1 ;
+					while(optionSelected.next().is('option.optionHours')){
+						var next = optionSelected.next();
+						console.log(next.val());
+						
+						if((next.val() - optionSelected.val()) == 1) {
+							$('.hours').append('<option value="'+hoursQuantity+'">'+hoursQuantity+'</option>');
+						}
+						
+						hoursQuantity = hoursQuantity + 1;
+						optionSelected = optionSelected.next();
+					}
 					});		
-			});
+				});
+			
 		</script>		
 	</body>
 </html>
