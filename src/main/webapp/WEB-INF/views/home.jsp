@@ -16,7 +16,9 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand " href="#">Cyber Cafe</a>
+							<a style="padding-top: 0"class="navbar-brand " href="">
+								<img class="img-responsive" src="<c:url value="/resources/images/logo.png" />"/>
+							</a>
 						</div>
 						<c:set var="user" value="${user}"/>
 						<c:set var="role" value="${role}"/>
@@ -125,6 +127,15 @@
 						<div class="panel panel-default">
 							<div class="panel-heading-dark">
 								<h3 id="${single.title}"><span class="glyphicon glyphicon-paperclip"></span> ${single.title}</h3>
+								<c:if test="${(role == 'ROLE_EMPLOYEE') || (role == 'ROLE_ADMIN')}">
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<div class="col-lg-3 col-lg-push-8 col-md-5 col-md-push-6 col-sm-12 text-center">
+										<a href="/cyberCafe/news/update?id=${single.idNews}" class="btn btn-primary">Edytuj <span class="glyphicon glyphicon-wrench"></span></a> <a href="/cyberCafe/news/delete?id=${single.idNews}" class="btn btn-danger">Usuń <span class="glyphicon glyphicon-remove-circle"></span></a>
+									</div>
+									</div>
+								</div>
+								</c:if>
 							</div>
 							<div class="panel-body">
 								<p>${single.body}</p>
@@ -141,11 +152,11 @@
 						
 						<div class="panel panel-default">
 							<div class="panel-heading-dark">
-								<h3><span class="glyphicon glyphicon-tags"> Short newsy </h3>
+								<h3><span class="glyphicon glyphicon-tags"></span> Short newsy </h3>
 							</div>
 							<c:forEach items="${news}" var="single">
 								<ul class="list-group">
-									<a href="#<c:out value="${single.title}"/>"><li class="list-group-item">${single.title}</li></a>
+									<li class="list-group-item"><a href="#<c:out value="${single.title}"/>">${single.title}</a></li>
 								</ul>
 							</c:forEach>
 						</div>
