@@ -23,5 +23,9 @@ public interface UserService {
 	List<User> getUsersByRole(String role);
 	
 	void deactivateUserAccount(long id,boolean value);
+	
+	boolean checkUniqueLogin (String login);
+	
+	boolean checkUniqueNickname (String nickname);
 
 }

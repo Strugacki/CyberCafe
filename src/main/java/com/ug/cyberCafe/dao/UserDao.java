@@ -26,5 +26,9 @@ public interface UserDao {
 	List<User> getUsersByRole(String role);
 	
 	void deactivateUserAccount(long id,boolean value);
+	
+	List<User> checkUniqueNickname(String nickname);
+	
+	List<User> checkUniqueLogin(String login);
 
 }

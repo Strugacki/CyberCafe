@@ -141,4 +141,20 @@ public class UserDaoImpl implements UserDao {
 		sessionFactory.getCurrentSession().update(userToUpdate);
 	}
 
+	@Override
+	public List<User> checkUniqueNickname(String nickname) {
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("get.Users.By.Role");
+		query.setString(0,nickname);
+		List<User> results = query.list();
+		return results;
+	}
+
+	@Override
+	public List<User> checkUniqueLogin(String login) {
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("get.Users.By.Role");
+		query.setString(0,login);
+		List<User> results = query.list();
+		return results;
+	}
+
 }
