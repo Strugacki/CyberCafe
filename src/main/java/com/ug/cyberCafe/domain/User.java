@@ -28,8 +28,8 @@ import lombok.Data;
 		@NamedQuery(name = "log.In.User", query = "Select u from User u where u.login = ? and u.password = ?"),
 		@NamedQuery(name = "get.Users.By.Role", query = "Select u from User u, Role r WHERE u.role=r.idRole AND r.role=? "),
 		@NamedQuery(name = "set.Active.User.Account", query = "Update User u Set u.active = ? Where u.idUser = ?"),
-		@NamedQuery(name = "check.Unique.Login", query = "Select u from User u WHERE login = ?"),
-		@NamedQuery(name = "check.Unique.Nickname", query = "Select u from User u WHERE nickname = ?")})
+		@NamedQuery(name = "check.Unique.Login", query = "Select u.firstName from User u WHERE u.login = ?"),
+		@NamedQuery(name = "check.Unique.Nickname", query = "Select u.firstName from User u WHERE u.nickname = ?")})
 @Data
 public class User {
 

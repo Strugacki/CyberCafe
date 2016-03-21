@@ -258,7 +258,7 @@
 				$.fn.datepicker.defaults.language = 'pl';
 				$('.datepicker').datepicker({});
 				
-				$('a#search').on('click',function(e){
+				$('input#rentDate').on('click',function(e){
 					e.preventDefault();
 					$('.toggleSlidder').slideToggle();
 					var idTerminal = $('input.terminal').val();

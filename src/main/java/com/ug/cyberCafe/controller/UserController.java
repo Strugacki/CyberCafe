@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 import com.ug.cyberCafe.service.AddressService;
@@ -149,6 +151,33 @@ public class UserController {
 			userService.addUser(newUser);
 			return "redirect:/user/profil" ;
 		}
+	}
+	
+	
+	@RequestMapping(value = "checkNickname", method = RequestMethod.GET)
+	public @ResponseBody String checkNickname(@RequestParam("nickname") String nickname){
+		String response = "not";
+		boolean result;
+		result = userService.checkUniqueNickname(nickname);
+		if(result){
+			response = "yes";
+		}else{
+			response = "not";
+		}
+		return response;
+	}
+	
+	@RequestMapping(value = "checkLogin", method = RequestMethod.GET)
+	public @ResponseBody String checkLogin(@RequestParam("login") String login){
+		String response = "not";
+		boolean result;
+		result = userService.checkUniqueLogin(login);
+		if(result){
+			response = "yes";
+		}else{
+			response = "not";
+		}
+		return response;
 	}
 	
 	private String getPrincipal(){
