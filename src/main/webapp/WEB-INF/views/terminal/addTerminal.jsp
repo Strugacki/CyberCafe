@@ -17,7 +17,9 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand " href="#">Cyber Cafe</a>
+							<a style="padding-top: 0"class="navbar-brand " href="">
+								<img class="img-responsive" src="<c:url value="/resources/images/logo.png" />"/>
+							</a>
 						</div>
 						<c:set var="user" value="${user}"/>
 						<div class="collapse navbar-collapse" id="mynavbar-content">

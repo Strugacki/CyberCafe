@@ -18,7 +18,9 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand " href="<c:url value="/" /> ">Cyber Cafe</a>
+							<a style="padding-top: 0"class="navbar-brand " href="">
+								<img class="img-responsive" src="<c:url value="/resources/images/logo.png" />"/>
+							</a>
 						</div>
 						
 						<div class="collapse navbar-collapse" id="mynavbar-content">
@@ -346,8 +348,7 @@
 			});
 			
 			$('a.avatarChangeBtn').on('click',function(){
-				$('div.avatar').append("<spring:bind path='userProfil.avatar'>"+"<input id='nickname' type='text' name='avatar' class='form-control input-sm'/>"+
-					"</spring:bind>");
+				
 			});
 		})
 	</script>	

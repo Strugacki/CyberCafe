@@ -27,6 +27,9 @@
 	<security:intercept-url pattern="/device/add"  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')" />
 	<security:intercept-url pattern="/device/update"  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')" />
 	<security:intercept-url pattern="/device/delete"  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')" />
+	<security:intercept-url pattern="/rent/add"  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')" />
+	<security:intercept-url pattern="/rent/update"  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')" />
+	<security:intercept-url pattern="/rent/delete"  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')" />
 	<security:intercept-url pattern="/employee/**"  access="hasRole('ROLE_ADMIN')" />
 	<security:intercept-url pattern="/user/add"  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')" />
 	<security:intercept-url pattern="/user/edit"  access="hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')" />
@@ -43,9 +46,6 @@
 		    "select u.login as username ,u.password as password, u.active as enabled from User u WHERE u.login= ? "
 		  authorities-by-username-query=
 		    "SELECT u.login as username, r.role as authorities FROM User u, Role r WHERE (u.ROLE_IDROLE=r.IDROLE) AND (u.login= ?)" />
-		<!-- <security:user-service>
-			<security:user name="Admin" password="Admin123" authorities="ROLE_ADMIN" />
-		</security:user-service> !-->
 	</security:authentication-provider>
 </security:authentication-manager>
 
