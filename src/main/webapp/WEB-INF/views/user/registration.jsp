@@ -208,7 +208,7 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="row">
 					<div class="form-actions col-lg-8 col-md-8 col-sm-8 pull-right">
-						<input type="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a
+						<input type="submit" name="submit" value="Rejestruj" class="btn btn-primary btn-sm"/> albo <a
 						href="<c:url value='/' />">wróć</a>
 					</div>
 				</div>
@@ -283,7 +283,14 @@
 					console.log("ERROR");
 				}
 			})
-		})
+		});
+		
+		$("input[name='submit']").on('click',function(e){
+			if($('div#checkLoginDiv').hasClass('has-warning') || $('div#checkNicknameDiv').hasClass('has-warning')){
+			e.preventDefault();
+			
+			}
+		});
 </script>		
 	<body>
 </html>
