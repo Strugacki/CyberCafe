@@ -81,26 +81,6 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User logedUser(String username, String password) {
-		try {
-			if (!sessionFactory.getCurrentSession().getTransaction().isActive()) {
-				sessionFactory.getCurrentSession().getTransaction().begin();
-			}
-			User user = null;
-			Query query = sessionFactory.getCurrentSession().getNamedQuery("log.In.User");
-			query.setString(0, username);
-			query.setString(1, password);
-			List<User> results = query.list();
-			if (!results.isEmpty()) {
-				user = results.get(0);
-			}
-			return user;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	@Override
 	public User getUserByUsername(String username) {
 		try{
 			if(!sessionFactory.getCurrentSession().getTransaction().isActive()){

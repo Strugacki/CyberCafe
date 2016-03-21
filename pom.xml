@@ -208,6 +208,12 @@
 			<version>1.16.8</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.nuiton.i18n</groupId>
+			<artifactId>nuiton-i18n</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>cyberCafe</finalName>

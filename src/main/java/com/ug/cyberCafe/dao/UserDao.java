@@ -16,8 +16,6 @@ public interface UserDao {
     User getUserById(long id);
     
     void updateUser(User user);
-    
-    User logedUser(String username, String password);
 
 	void deleteAllUsers();
 	
