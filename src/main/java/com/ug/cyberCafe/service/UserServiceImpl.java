@@ -63,4 +63,22 @@ public class UserServiceImpl implements UserService{
 		userDao.deactivateUserAccount(id,value);
 	}
 
+	@Override
+	public boolean checkUniqueLogin(String login) {
+		List<User> results = userDao.checkUniqueLogin(login);
+		if(results.isEmpty()){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean checkUniqueNickname(String nickname) {
+		List<User> results = userDao.checkUniqueNickname(nickname);
+		if(results.isEmpty()){
+			return true;
+		}
+		return false;
+	}
+
 }
