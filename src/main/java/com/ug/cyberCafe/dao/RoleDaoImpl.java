@@ -40,9 +40,7 @@ public class RoleDaoImpl implements RoleDao {
 
 	@Override
 	public void updateRole(Role role) {
-		Role roleToUpdate = getRoleById(role.getIdRole());
-		roleToUpdate.setRole(role.getRole());
-		sessionFactory.getCurrentSession().update(roleToUpdate);
+		sessionFactory.getCurrentSession().update(role);
 	}
 	
 	@Override

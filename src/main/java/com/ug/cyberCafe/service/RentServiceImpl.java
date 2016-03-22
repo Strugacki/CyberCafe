@@ -11,11 +11,11 @@ import com.ug.cyberCafe.domain.Rent;
 
 @Service("rentService")
 @Transactional
-public class RentServiceImpl extends UtilitiesService implements RentService{
+public class RentServiceImpl extends UtilitiesService implements RentService {
 
 	@Autowired
 	RentDao rentDao;
-	
+
 	@Override
 	public void addRent(Rent rent) {
 		rentDao.addRent(rent);
@@ -33,7 +33,14 @@ public class RentServiceImpl extends UtilitiesService implements RentService{
 
 	@Override
 	public void updateRent(Rent rent) {
-		rentDao.updateRent(rent);
+		Rent rentToUpdate = getRentById(rent.getIdRent());
+		rentToUpdate.setTerminal(rent.getTerminal());
+		rentToUpdate.setCustomer(rent.getCustomer());
+		rentToUpdate.setEmployee(rent.getEmployee());
+		rentToUpdate.setDate(rent.getDate());
+		rentToUpdate.setTimeStart(rent.getTimeStart());
+		rentToUpdate.setHours(rent.getHours());
+		rentDao.updateRent(rentToUpdate);
 	}
 
 	@Override

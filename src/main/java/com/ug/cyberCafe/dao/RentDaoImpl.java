@@ -18,8 +18,7 @@ public class RentDaoImpl implements RentDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	private DataSource dataSource;
-	
+
 	@Override
 	public void addRent(Rent rent) {
 		sessionFactory.getCurrentSession().save(rent);
@@ -29,9 +28,10 @@ public class RentDaoImpl implements RentDao {
 	public void deleteRent(Rent rent) {
 		rent = (Rent) sessionFactory.getCurrentSession().get(Rent.class, rent.getIdRent());
 		sessionFactory.getCurrentSession().delete(rent);
-		
+
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Rent> getAllRents() {
 		return sessionFactory.getCurrentSession().getNamedQuery("get.All.Rents").list();
@@ -39,15 +39,7 @@ public class RentDaoImpl implements RentDao {
 
 	@Override
 	public void updateRent(Rent rent) {
-		Rent rentToUpdate = getRentById(rent.getIdRent());
-		rentToUpdate.setTerminal(rent.getTerminal());
-		rentToUpdate.setCustomer(rent.getCustomer());
-		rentToUpdate.setEmployee(rent.getEmployee());
-		rentToUpdate.setDate(rent.getDate());
-		rentToUpdate.setTimeStart(rent.getTimeStart());
-		rentToUpdate.setHours(rent.getHours());
-		sessionFactory.getCurrentSession().update(rentToUpdate);
-		
+		sessionFactory.getCurrentSession().update(rent);
 	}
 
 	@Override
@@ -76,10 +68,10 @@ public class RentDaoImpl implements RentDao {
 
 	@Override
 	public void deleteAllRents() {
-		for(Rent rent : getAllRents() ) {
+		for (Rent rent : getAllRents()) {
 			deleteRent(rent);
 		}
-		
+
 	}
 
 }

@@ -28,7 +28,12 @@ public class AddressServiceImpl extends UtilitiesService implements AddressServi
 
 	@Override
 	public void updateAddress(Address address) {
-		addressDao.updateAddress(address);
+		Address addressToUpdate = getAddressById(address.getIdAddress());
+		addressToUpdate.setCity(address.getCity());
+		addressToUpdate.setPostalCode(address.getPostalCode());
+		addressToUpdate.setStreet(address.getStreet());
+		addressToUpdate.setLocalNumber(address.getLocalNumber());
+		addressDao.updateAddress(addressToUpdate);
 	}
 
 	@Override

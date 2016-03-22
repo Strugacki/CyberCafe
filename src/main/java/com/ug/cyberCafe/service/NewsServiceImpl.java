@@ -29,7 +29,12 @@ public class NewsServiceImpl extends UtilitiesService implements NewsService{
 
 	@Override
 	public void updateNews(News news) {
-		
+		News newsToUpdate = getNewsById(news.getIdNews());
+		newsToUpdate.setTitle(news.getTitle());
+		newsToUpdate.setBody(news.getBody());
+		newsToUpdate.setUploadDate(news.getUploadDate());
+		newsToUpdate.setUser(news.getUser());
+		newsDao.updateNews(newsToUpdate);
 	}
 
 	@Override

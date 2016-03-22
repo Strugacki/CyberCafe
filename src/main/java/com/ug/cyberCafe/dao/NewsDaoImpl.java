@@ -47,12 +47,7 @@ public class NewsDaoImpl implements NewsDao {
 	@Override
 	@Transactional
 	public void updateNews(News news) {
-		News newsToUpdate = getNewsById(news.getIdNews());
-		newsToUpdate.setTitle(news.getTitle());
-		newsToUpdate.setBody(news.getBody());
-		newsToUpdate.setUploadDate(news.getUploadDate());
-		newsToUpdate.setUser(news.getUser());
-		sessionFactory.getCurrentSession().update(newsToUpdate);
+		sessionFactory.getCurrentSession().update(news);
 	}
 
 	@Override

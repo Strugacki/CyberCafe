@@ -43,12 +43,8 @@ public class AddressDaoImpl implements AddressDao {
 
 	@Override
 	public void updateAddress(Address address) {
-		Address addressToUpdate = getAddressById(address.getIdAddress());
-		addressToUpdate.setCity(address.getCity());
-		addressToUpdate.setPostalCode(address.getPostalCode());
-		addressToUpdate.setStreet(address.getStreet());
-		addressToUpdate.setLocalNumber(address.getLocalNumber());
-		sessionFactory.getCurrentSession().update(addressToUpdate);
+
+		sessionFactory.getCurrentSession().update(address);
 	}
 
 	@Override

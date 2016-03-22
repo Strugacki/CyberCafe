@@ -28,7 +28,18 @@ public class UserServiceImpl extends UtilitiesService implements UserService{
 
 	@Override
 	public void updateUser(User user) {
-		userDao.updateUser(user);
+		User userToUpdate = getUserById(user.getIdUser());
+		userToUpdate.setFirstName(user.getFirstName());
+		userToUpdate.setLastName(user.getLastName());
+		userToUpdate.setEmail(user.getEmail());
+		userToUpdate.setActive(user.getActive());
+		userToUpdate.setDateOfBirth(user.getDateOfBirth());
+		userToUpdate.setLogin(user.getLogin());
+		userToUpdate.setPassword(user.getPassword());
+		if(user.getAvatar().length != 0){
+		userToUpdate.setAvatar(user.getAvatar());
+		}
+		userDao.updateUser(userToUpdate);
 		
 	}
 

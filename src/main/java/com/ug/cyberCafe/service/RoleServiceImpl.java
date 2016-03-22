@@ -28,7 +28,9 @@ public class RoleServiceImpl extends UtilitiesService implements RoleService{
 
 	@Override
 	public void updateRole(Role role) {
-		roleDao.updateRole(role);
+		Role roleToUpdate = getRoleById(role.getIdRole());
+		roleToUpdate.setRole(role.getRole());
+		roleDao.updateRole(roleToUpdate);
 		
 	}
 

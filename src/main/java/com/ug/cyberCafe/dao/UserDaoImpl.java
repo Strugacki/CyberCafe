@@ -46,18 +46,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void updateUser(User user) {
-		User userToUpdate = getUserById(user.getIdUser());
-		userToUpdate.setFirstName(user.getFirstName());
-		userToUpdate.setLastName(user.getLastName());
-		userToUpdate.setEmail(user.getEmail());
-		userToUpdate.setActive(user.getActive());
-		userToUpdate.setDateOfBirth(user.getDateOfBirth());
-		userToUpdate.setLogin(user.getLogin());
-		userToUpdate.setPassword(user.getPassword());
-		if(user.getAvatar().length != 0){
-		userToUpdate.setAvatar(user.getAvatar());
-		}
-		sessionFactory.getCurrentSession().update(userToUpdate);
+		sessionFactory.getCurrentSession().update(user);
 	}
 
 	public boolean isValidUser(String login, String password) throws SQLException {

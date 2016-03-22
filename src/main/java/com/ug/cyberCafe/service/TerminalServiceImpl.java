@@ -28,7 +28,11 @@ public class TerminalServiceImpl extends UtilitiesService implements TerminalSer
 
 	@Override
 	public void updateTerminal(Terminal terminal) {
-		dao.updateTerminal(terminal);
+		Terminal terminalToUpdate = getTerminalById(terminal.getIdTerminal());
+		terminalToUpdate.setAvailable(terminal.getAvailable());
+		terminalToUpdate.setType(terminal.getType());
+		terminalToUpdate.setDescription(terminal.getDescription());
+		dao.updateTerminal(terminalToUpdate);
 		
 	}
 

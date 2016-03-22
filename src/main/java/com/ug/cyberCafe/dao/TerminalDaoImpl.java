@@ -38,11 +38,7 @@ public class TerminalDaoImpl implements TerminalDao {
 
 	@Override
 	public void updateTerminal(Terminal terminal) {
-		Terminal terminalToUpdate = getTerminalById(terminal.getIdTerminal());
-		terminalToUpdate.setAvailable(terminal.getAvailable());
-		terminalToUpdate.setType(terminal.getType());
-		terminalToUpdate.setDescription(terminal.getDescription());
-		sessionFactory.getCurrentSession().update(terminalToUpdate);
+		sessionFactory.getCurrentSession().update(terminal);
 	}
 	
 	@Override
