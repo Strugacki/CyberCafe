@@ -69,6 +69,7 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public User getUserByUsername(String username) {
 		try{
@@ -88,6 +89,7 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getUsersByRole(String role) {
 		try{

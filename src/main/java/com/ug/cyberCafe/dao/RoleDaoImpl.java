@@ -50,6 +50,7 @@ public class RoleDaoImpl implements RoleDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Role getRoleByName(String roleName) {
 		try {

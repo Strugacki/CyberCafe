@@ -58,6 +58,7 @@ public class NewsDaoImpl implements NewsDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public User getUserByNewsId(long id) {
 		try{
