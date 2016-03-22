@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.dao.NewsDao;
 import com.ug.cyberCafe.dao.UserDao;
-import com.ug.cyberCafe.domain.Address;
 import com.ug.cyberCafe.domain.News;
 import com.ug.cyberCafe.domain.User;
 

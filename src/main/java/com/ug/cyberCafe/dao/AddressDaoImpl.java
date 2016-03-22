@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.domain.Address;
 
-
+@Transactional
 @Component("addressDao")
 public class AddressDaoImpl implements AddressDao {
 
@@ -17,7 +17,6 @@ public class AddressDaoImpl implements AddressDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	@Transactional
 	public void addAddress(Address address) {
 		sessionFactory.getCurrentSession().save(address);
 	}
@@ -31,7 +30,6 @@ public class AddressDaoImpl implements AddressDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<Address> getAllAddresses() {
 		return sessionFactory.getCurrentSession().getNamedQuery("get.All.Addresses").list();
 	}

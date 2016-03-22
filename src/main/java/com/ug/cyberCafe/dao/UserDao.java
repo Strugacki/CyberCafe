@@ -1,6 +1,5 @@
 package com.ug.cyberCafe.dao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import com.ug.cyberCafe.domain.User;

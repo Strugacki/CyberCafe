@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ug.cyberCafe.domain.News;
 import com.ug.cyberCafe.domain.User;
 
+@Transactional
 @Component("newsDao")
 public class NewsDaoImpl implements NewsDao {
 
@@ -18,13 +19,11 @@ public class NewsDaoImpl implements NewsDao {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	@Transactional
 	public void addNews(News news) {
 		sessionFactory.getCurrentSession().save(news);
 	}
 
 	@Override
-	@Transactional
 	public void deleteNews(News news) {
 		news = (News) sessionFactory.getCurrentSession().get(News.class, news.getIdNews());
 		sessionFactory.getCurrentSession().delete(news);
@@ -33,25 +32,21 @@ public class NewsDaoImpl implements NewsDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<News> getAllNews() {
 		return sessionFactory.getCurrentSession().getNamedQuery("get.All.News").list();
 	}
 
 	@Override
-	@Transactional
 	public News getNewsById(long id) {
 		return (News) sessionFactory.getCurrentSession().get(News.class, id);
 	}
 
 	@Override
-	@Transactional
 	public void updateNews(News news) {
 		sessionFactory.getCurrentSession().update(news);
 	}
 
 	@Override
-	@Transactional
 	public void deleteAllNews() {
 		for(News news : getAllNews() ) {
 			deleteNews(news);
