@@ -20,6 +20,7 @@
     </context:component-scan>
     
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    
 	<!--
 		Scans within the base package of the application for @Components to
 		configure as beans
@@ -30,6 +31,22 @@
         <jdbc:script location="classpath:dbRecordsInitialization.sql"/>
     </jdbc:embedded-database>
 
+
+	<bean depends-on="dataSource" class="org.springframework.beans.factory.config.MethodInvokingBean">
+		<property name="targetClass" value="org.hsqldb.util.DatabaseManagerSwing" />
+		<property name="targetMethod" value="main" />
+		<property name="arguments">
+			<list>
+				<value>--url</value>
+				<value>jdbc:hsqldb:mem:dataSource</value>
+				<value>--user</value>
+				<value>sa</value>
+				<value>--password</value>
+				<value></value>
+			</list>
+		</property>
+	</bean>
+	
 	<!--
 		enable the configuration of transactional behavior based on
 		annotations
