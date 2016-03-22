@@ -23,7 +23,7 @@ public class HomeController {
 	@Autowired
 	private NewsService newsService;
 	
-	@RequestMapping
+	@RequestMapping("home")
 	public String welcome(Model model){
 		newsService.authorization(model);
 		if(!newsService.getAllNews().isEmpty()){

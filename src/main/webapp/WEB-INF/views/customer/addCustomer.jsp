@@ -18,7 +18,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a style="padding-top: 0"class="navbar-brand " href="">
+							<a style="padding-top: 0"class="navbar-brand " href="/home">
 								<img class="img-responsive" src="<c:url value="/resources/images/logo.png" />"/>
 							</a>
 						</div>
@@ -70,7 +70,7 @@
 			<form class="form-horizontal" id="registrationForm" enctype="multipart/form-data" action="" method="post">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imię</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 						<spring:bind path="newUser.firstName">
 							<input id="firstName" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>

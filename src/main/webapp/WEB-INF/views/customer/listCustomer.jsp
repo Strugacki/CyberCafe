@@ -18,7 +18,7 @@
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-								<a style="padding-top: 0"class="navbar-brand " href="">
+								<a style="padding-top: 0"class="navbar-brand " href="/home">
 									<img class="img-responsive" src="<c:url value="/resources/images/logo.png" />"/>
 								</a>
 							</div>
