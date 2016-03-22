@@ -18,6 +18,11 @@ public class HomeController {
 	@Autowired
 	private NewsService newsService;
 	
+	@RequestMapping
+	public String redirect(){
+		return "redirect:/home";
+	}
+	
 	@RequestMapping("home")
 	public String welcome(Model model){
 		newsService.authorization(model);
