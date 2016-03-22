@@ -79,7 +79,12 @@
 											<label class="control-label col-lg-4 col-md-4 col-sm-4" for="avatar">Avatar</label>
 											<a class="btn btn-primary btn-sm avatarChangeBtn">Zmień avatar</a>
 											<div class="col-lg-3 col-md-3 col-sm-3 avatar">
-											
+												<c:if test="${!empty userImage}">
+													<img  class="img-rounded" src="data:image/jpeg;base64,${userImage}" width="150" height="150" />
+												</c:if>
+												<spring:bind path="userProfil.avatar">
+													<input id="avatar" type="file" name="${status.expression}" value="${status.expression}" />
+												</spring:bind>
 											</div>
 										</div>
 									</div>
@@ -293,6 +298,7 @@
 	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
 	<script type="text/javascript">
 		$(function(){
+			$('input#avatar').css("display", "none");
 			$("div.details-fadeIn").hide();
 			$('#moreDetails').on('click',function(){
 				$('div.details-fadeIn').slideToggle('slow');
@@ -321,7 +327,7 @@
 			});
 			
 			$('a.avatarChangeBtn').on('click',function(){
-				
+					$('input#avatar').fadeToggle();
 			});
 		})
 	</script>	

@@ -102,7 +102,7 @@ public class UserController {
 	@RequestMapping(value = "profile/edit", method = RequestMethod.POST)
 	public String processUserProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
             Authorization(model);
-            LOGGER.info(userProfil.getIdUser());
+            LOGGER.info(userProfil.getAvatar());
 			if(resultUser.hasErrors() || resultAddress.hasErrors()){
 				model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
 				LOGGER.info(resultUser.toString());

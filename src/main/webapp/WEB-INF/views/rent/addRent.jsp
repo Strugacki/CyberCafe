@@ -258,9 +258,8 @@
 				$.fn.datepicker.defaults.language = 'pl';
 				$('.datepicker').datepicker({});
 				
-				$('input#rentDate').on('click',function(e){
+				$('a#search').on('click',function(e){
 					e.preventDefault();
-					$('.toggleSlidder').slideToggle();
 					var idTerminal = $('input.terminal').val();
 					var date = $('input#rentDate').val();
 					$.ajax({
@@ -269,6 +268,7 @@
 						data: "idTerminal="+idTerminal+"&date="+date,
 						success: function(data){
 							console.log("response:",data);
+							$('.toggleSlidder').slideToggle();
 							$('.optionHours').remove();
 							$('#hoursList').append(data);
 						},

@@ -70,7 +70,7 @@
 			<form class="form-horizontal" id="registrationForm" enctype="multipart/form-data" action="" method="post">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
-						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imie</label>
+						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="firstName">Imię</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
 						<spring:bind path="newUser.firstName">
 							<input id="firstName" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
@@ -249,7 +249,7 @@
 				data: "nickname="+nickname,
 				success: function(data){
 					var response = $.trim(data);
-					if(data === 'yes'){
+					if(data === 'yes' && nickname.length !== 0){
 						$('div#checkNickname > span').removeClass("glyphicon-warning-sign").addClass("glyphicon-ok");
 						$('div#checkNicknameDiv').removeClass('has-warning').addClass("has-success");
 					}else{
@@ -271,7 +271,7 @@
 				data: "login="+login,
 				success: function(data){
 					var response = $.trim(data);
-					if(data === 'yes'){
+					if(data === 'yes' && login.length !== 0){
 						$('div#checkLogin > span').removeClass("glyphicon-warning-sign").addClass("glyphicon-ok");
 						$('div#checkLoginDiv').removeClass('has-warning').addClass("has-success");
 					}else{

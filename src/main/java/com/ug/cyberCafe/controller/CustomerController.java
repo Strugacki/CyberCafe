@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -78,6 +79,11 @@ public class CustomerController {
 			Authorization(model);
 			User userProfil = userService.getUserById(Long.parseLong(idCustomer));
 			Address userAddress = addressService.getAddressById(userProfil.getAddress().getIdAddress());
+			if(userProfil.getAvatar() != null){
+	        	byte[] encodeBase64 = Base64.encode(userProfil.getAvatar());
+	       	 	String base64Encoded = new String(encodeBase64, "UTF-8");
+	       	 	model.addAttribute("userImage", base64Encoded );
+		    }
             model.addAttribute("userProfil",userProfil);
             model.addAttribute("userAddress",userAddress);
             model.addAttribute("edit",true);
