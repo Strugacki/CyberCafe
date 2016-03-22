@@ -25,76 +25,46 @@ public class HomeController {
 	
 	@RequestMapping
 	public String welcome(Model model){
+		newsService.authorization(model);
 		if(!newsService.getAllNews().isEmpty()){
 			model.addAttribute("news",newsService.getAllNews());
 		}
 		
-		Authorization(model);
 		return "home";
 	}
 	
 	@RequestMapping("about")
 	public String about(Model model){
-		Authorization(model);
+		newsService.authorization(model);
 		
 		return "about";
 	}
 	
 	@RequestMapping("contact")
 	public String contact(Model model){
-		Authorization(model);
+		newsService.authorization(model);
 		
 		return "contact";
 	}
 	
 	@RequestMapping("pricing")
 	public String pricing(Model model){
-		Authorization(model);
+		newsService.authorization(model);
 		
 		return "pricing";
 	}
 	
 	@RequestMapping("promotions")
 	public String promotions(Model model){
-		Authorization(model);
+		newsService.authorization(model);
 		
 		return "promotions";
 	}
 	
 	@RequestMapping("events")
 	public String tournaments(Model model){
-		Authorization(model);
+		newsService.authorization(model);
 		
 		return "events";
-	}
-	
-	private String getPrincipal(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
- 
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
-	
-	private Model Authorization(Model model){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if( !(auth instanceof AnonymousAuthenticationToken)){
-			model.addAttribute("user",getPrincipal());
-			if(auth.getAuthorities() != null){
-				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
-					String role = authority.getAuthority();
-					LOGGER.info(role);
-					model.addAttribute("role",role);
-				}
-			}
-		}else{
-			model.addAttribute("user", null);
-		}
-		
-		return model;
 	}
 }

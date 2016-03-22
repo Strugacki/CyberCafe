@@ -11,7 +11,7 @@ import com.ug.cyberCafe.domain.Rent;
 
 @Service("rentService")
 @Transactional
-public class RentServiceImpl implements RentService {
+public class RentServiceImpl extends UtilitiesService implements RentService{
 
 	@Autowired
 	RentDao rentDao;

@@ -86,7 +86,7 @@ public class RentController {
 	
 	@RequestMapping(value = "list")
 	public String list(Model model){
-		authorization(model);
+		rentService.authorization(model);
 		model.addAttribute("rents",rentService.getAllRents());
 		return "/rent/listRent";
 	}
@@ -117,9 +117,9 @@ public class RentController {
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddRentForm(Model model){
-		authorization(model);
+		rentService.authorization(model);
 		Rent newRent = new Rent();
-		User employee = userService.getUserByUsername(getPrincipal());
+		User employee = userService.getUserByUsername(rentService.getPrincipal());
 		model.addAttribute("newRent",newRent);
 		model.addAttribute("idEmployee",employee.getIdUser());
 		model.addAttribute("customers", userService.getUsersByRole("ROLE_USER"));
@@ -129,7 +129,7 @@ public class RentController {
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String processAddRentForm(@ModelAttribute("newRent") Rent newRent, BindingResult rentResult, Model model){
-		authorization(model);
+		rentService.authorization(model);
 		if(rentResult.hasErrors()){
 			model.addAttribute("warn","Nie udało się dodać wypożyczenia, spróbuj ponownie!");
 			
@@ -142,36 +142,6 @@ public class RentController {
 			rentService.addRent(newRent);
 		}
 		return "redirect: /rent/list";
-	}
-	
-	
-	private String getPrincipal(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
-	
-	private Model authorization(Model model){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if( !(auth instanceof AnonymousAuthenticationToken)){
-			model.addAttribute("user",getPrincipal());
-			if(auth.getAuthorities() != null){
-				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
-					String role = authority.getAuthority();
-					LOGGER.info(role);
-					model.addAttribute("role",role);
-				}
-			}
-		}else{
-			model.addAttribute("user", null);
-		}
-		
-		return model;
 	}
 
 }

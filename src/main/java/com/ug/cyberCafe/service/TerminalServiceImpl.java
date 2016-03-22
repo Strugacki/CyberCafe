@@ -11,7 +11,7 @@ import com.ug.cyberCafe.domain.Terminal;
 
 @Service
 @Transactional
-public class TerminalServiceImpl implements TerminalService{
+public class TerminalServiceImpl extends UtilitiesService implements TerminalService{
 
 	@Autowired
 	TerminalDao dao;

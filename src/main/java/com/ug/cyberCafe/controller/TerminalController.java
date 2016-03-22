@@ -31,7 +31,7 @@ public class TerminalController {
 
 	@RequestMapping("list")
 	public String list(Model model) {
-		Authorization(model);
+		terminalService.authorization(model);
 		model.addAttribute("terminals", terminalService.getAllTerminals());
 		return "terminal/listTerminal";
 	}
@@ -41,8 +41,8 @@ public class TerminalController {
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewTerminalForm(Model model) {
+		terminalService.authorization(model);
 		Terminal newTerminal = new Terminal();
-		Authorization(model);
 		model.addAttribute("newTerminal", newTerminal);
 		return "terminal/addTerminal";
 	}
@@ -51,14 +51,12 @@ public class TerminalController {
 	 * 
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String processAddNewTerminalForm(@Valid @ModelAttribute("newTerminal") Terminal newTerminal,
-			BindingResult result, Model model) {
-		Authorization(model);
+	public String processAddNewTerminalForm(@Valid @ModelAttribute("newTerminal") Terminal newTerminal,BindingResult result, Model model) {
+		terminalService.authorization(model);
 		if (result.hasErrors()) {
 			model.addAttribute("warn", "Nie udało się dodać terminalu, spróbuj ponownie!");
 			return "terminal/addTerminal";
 		} else {
-			Authorization(model);
 			terminalService.addTerminal(newTerminal);
 			return "redirect:/device/list";
 		}
@@ -66,7 +64,7 @@ public class TerminalController {
 
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteTerminal(@RequestParam("id") String idTerminal, Model model) {
-		Authorization(model);
+		terminalService.authorization(model);
 		Terminal terminalToDelete = terminalService.getTerminalById(Long.parseLong(idTerminal));
 		terminalService.deleteTerminal(terminalToDelete);
 		return "redirect:/device/list";
@@ -74,16 +72,15 @@ public class TerminalController {
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String getUpdateTerminalForm(@RequestParam("id") String idTerminal, Model model) {
-		Authorization(model);
+		terminalService.authorization(model);
 		Terminal terminalToUpdate = terminalService.getTerminalById(Long.parseLong(idTerminal));
 		model.addAttribute("terminalToUpdate", terminalToUpdate);
 		return "terminal/updateTerminal";
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String processUpdateTerminalForm(@Valid @ModelAttribute("terminal") Terminal terminalToUpdate,
-			@RequestParam("id") String idTerminal, BindingResult result, Model model) {
-		Authorization(model);
+	public String processUpdateTerminalForm(@Valid @ModelAttribute("terminal") Terminal terminalToUpdate,@RequestParam("id") String idTerminal, BindingResult result, Model model) {
+		terminalService.authorization(model);
 		if (result.hasErrors()) {
 			model.addAttribute("warn", "Nie udało się wykonać aktualizacji, spróbuj ponownie!");
 			return "terminal/updateTerminal";
@@ -91,48 +88,6 @@ public class TerminalController {
 			terminalService.updateTerminal(terminalToUpdate);
 			return "redirect:/device/list";
 		}
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	private String getPrincipal() {
-		String userName = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		if (principal instanceof UserDetails) {
-			userName = ((UserDetails) principal).getUsername();
-		} else {
-			userName = principal.toString();
-		}
-		return userName;
-	}
-
-	/**
-	 * Method setting user attribute and setting appriopriate role attribute to
-	 * model
-	 * 
-	 * @param model
-	 * @return model
-	 */
-	private Model Authorization(Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (!(auth instanceof AnonymousAuthenticationToken)) {
-			model.addAttribute("user", getPrincipal());
-			if (auth.getAuthorities() != null) {
-				for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication()
-						.getAuthorities()) {
-					String role = authority.getAuthority();
-					LOGGER.info(role);
-					model.addAttribute("role", role);
-				}
-			}
-		} else {
-			model.addAttribute("user", null);
-		}
-
-		return model;
 	}
 
 }

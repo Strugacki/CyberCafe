@@ -12,7 +12,7 @@ import com.ug.cyberCafe.domain.User;
 
 @Service("newsService")
 @Transactional
-public class NewsServiceImpl implements NewsService{
+public class NewsServiceImpl extends UtilitiesService implements NewsService{
 	
 	@Autowired
 	NewsDao newsDao;

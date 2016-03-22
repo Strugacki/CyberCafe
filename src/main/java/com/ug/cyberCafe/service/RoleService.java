@@ -2,6 +2,8 @@ package com.ug.cyberCafe.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import com.ug.cyberCafe.domain.Role;
 
 public interface RoleService {
@@ -18,4 +20,7 @@ public interface RoleService {
 
 	List<Role> getAllRoles();
 
+	String getPrincipal();
+	
+	Model authorization(Model model);
 }

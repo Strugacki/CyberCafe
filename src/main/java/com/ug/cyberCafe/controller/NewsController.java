@@ -32,7 +32,7 @@ public class NewsController {
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewsForm(Model model) {
-		Authorization(model);
+		newsService.authorization(model);
 
 		return "news/addNews";
 	}
@@ -40,40 +40,9 @@ public class NewsController {
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteTerminal(@RequestParam("id") String idNews, Model model) {
-		Authorization(model);
+		newsService.authorization(model);
 		News newsToDelete = newsService.getNewsById(Long.parseLong(idNews));
 		newsService.deleteNews(newsToDelete);
 		return "redirect:/";
-	}
-	
-
-	private String getPrincipal() {
-		String userName = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (principal instanceof UserDetails) {
-			userName = ((UserDetails) principal).getUsername();
-		} else {
-			userName = principal.toString();
-		}
-		return userName;
-	}
-
-	private Model Authorization(Model model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (!(auth instanceof AnonymousAuthenticationToken)) {
-			model.addAttribute("user", getPrincipal());
-			if (auth.getAuthorities() != null) {
-				for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication()
-						.getAuthorities()) {
-					String role = authority.getAuthority();
-					LOGGER.info(role);
-					model.addAttribute("role", role);
-				}
-			}
-		} else {
-			model.addAttribute("user", null);
-		}
-
-		return model;
 	}
 }

@@ -11,7 +11,7 @@ import com.ug.cyberCafe.domain.User;
 
 @Service("userService")
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl extends UtilitiesService implements UserService{
 
 	@Autowired
 	UserDao userDao;

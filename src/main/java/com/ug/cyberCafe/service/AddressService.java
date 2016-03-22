@@ -2,6 +2,8 @@ package com.ug.cyberCafe.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import com.ug.cyberCafe.domain.Address;
 
 public interface AddressService {
@@ -15,4 +17,8 @@ public interface AddressService {
 	void deleteAddress(Address address);
 
 	List<Address> getAllAddress();
+	
+	String getPrincipal();
+	
+	Model authorization(Model model);
 }

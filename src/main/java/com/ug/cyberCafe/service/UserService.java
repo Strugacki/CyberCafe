@@ -2,6 +2,8 @@ package com.ug.cyberCafe.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import com.ug.cyberCafe.domain.User;
 
 public interface UserService {
@@ -25,5 +27,9 @@ public interface UserService {
 	boolean checkUniqueLogin (String login);
 	
 	boolean checkUniqueNickname (String nickname);
+	
+	String getPrincipal();
+	
+	Model authorization(Model model);
 
 }

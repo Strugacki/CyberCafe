@@ -56,7 +56,7 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "list")
 	public String list(Model model){
-		Authorization(model);
+		userService.authorization(model);
 		List<User> Employees = userService.getUsersByRole("ROLE_EMPLOYEE");
 		LOGGER.info(Employees.size());
 		model.addAttribute("employees",Employees);
@@ -77,7 +77,7 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
 	public String getEmployeeProfilUpdateForm(@RequestParam("id") String idCustomer, Model model) throws IOException{
-			Authorization(model);
+			userService.authorization(model);
 			User userProfil = userService.getUserById(Long.parseLong(idCustomer));
 			Address userAddress = addressService.getAddressById(userProfil.getAddress().getIdAddress());
 			if(userProfil.getAvatar() != null){
@@ -93,7 +93,7 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String processEmployeeProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@RequestParam("id") String idUser, @Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
-            Authorization(model);
+			userService.authorization(model);
             userProfil.setIdUser(Long.parseLong(idUser));
             LOGGER.info(userProfil.getIdUser());
             LOGGER.info(userProfil.getFirstName());
@@ -116,7 +116,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
-		Authorization(model);
+		userService.authorization(model);
 		User newUser = new User();
 		Address newAddress = new Address();
 		model.addAttribute("newUser", newUser);
@@ -133,7 +133,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String processAddNewUserForm(@Valid @ModelAttribute("newUser") User newUser, BindingResult resultUser,@Valid @ModelAttribute("newAddress") Address newAddress, BindingResult resultAddress, Model model) throws HibernateException, IOException, SerialException, SQLException{
-		Authorization(model);
+		userService.authorization(model);
 		if(resultUser.hasErrors() || resultUser.hasErrors()){
 			model.addAttribute("warn","Nie udało się dodać pracownika, spróbuj ponownie!");
 			return "/customer/addCustomer";
@@ -145,39 +145,7 @@ public class EmployeeController {
 			return "redirect:/employee/list" ;
 		}
 	}
-	
-	
-	
-	private String getPrincipal(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
-	
-	private Model Authorization(Model model){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if( !(auth instanceof AnonymousAuthenticationToken)){
-			model.addAttribute("user",getPrincipal());
-			if(auth.getAuthorities() != null){
-				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
-					String role = authority.getAuthority();
-					LOGGER.info(role);
-					model.addAttribute("role",role);
-				}
-			}
-		}else{
-			model.addAttribute("user", null);
-		}
 		
-		return model;
-	}
-	
-	
 	
 	
 }

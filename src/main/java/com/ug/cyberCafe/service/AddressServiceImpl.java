@@ -11,7 +11,7 @@ import com.ug.cyberCafe.domain.Address;
 
 @Service("addressService")
 @Transactional
-public class AddressServiceImpl implements AddressService{
+public class AddressServiceImpl extends UtilitiesService implements AddressService{
 
 	@Autowired
 	AddressDao addressDao;

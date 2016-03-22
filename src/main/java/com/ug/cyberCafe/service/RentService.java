@@ -2,6 +2,8 @@ package com.ug.cyberCafe.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import com.ug.cyberCafe.domain.Rent;
 
 public interface RentService {
@@ -18,4 +20,7 @@ public interface RentService {
 	
 	List<Rent> getRentByIdTerminal(long id, String date);
 	
+	String getPrincipal();
+	
+	Model authorization(Model model);
 }

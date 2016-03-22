@@ -11,7 +11,7 @@ import com.ug.cyberCafe.domain.Role;
 
 @Service
 @Transactional
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl extends UtilitiesService implements RoleService{
 	
 	@Autowired
 	RoleDao roleDao;

@@ -58,7 +58,7 @@ public class UserController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login(Model model){
-		Authorization(model);
+		userService.authorization(model);
 		return "/user/login";
 	}
 	
@@ -74,45 +74,45 @@ public class UserController {
 	
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String profile(Model model) throws IOException{
-            User currentUser = userService.getUserByUsername(getPrincipal());
-            Address currentAddress = addressService.getAddressById(currentUser.getAddress().getIdAddress());
-            Authorization(model);
-            if(currentUser.getAvatar() != null){
-            	byte[] encodeBase64 = Base64.encode(currentUser.getAvatar());
-           	 	String base64Encoded = new String(encodeBase64, "UTF-8");
-           	 	model.addAttribute("userImage", base64Encoded );
-            }
-            model.addAttribute("currentUser",currentUser);
-            model.addAttribute("currentAddress",currentAddress);
-    	
-    	return "/user/profile";
+		userService.authorization(model);
+        User currentUser = userService.getUserByUsername(userService.getPrincipal());
+        Address currentAddress = addressService.getAddressById(currentUser.getAddress().getIdAddress());
+        if(currentUser.getAvatar() != null){
+        	byte[] encodeBase64 = Base64.encode(currentUser.getAvatar());
+       	 	String base64Encoded = new String(encodeBase64, "UTF-8");
+       	 	model.addAttribute("userImage", base64Encoded );
+        }
+        model.addAttribute("currentUser",currentUser);
+        model.addAttribute("currentAddress",currentAddress);
+	
+        return "/user/profile";
 	}
 	
 	@RequestMapping(value = "profile/edit", method = RequestMethod.GET)
 	public String getUserProfilUpdateForm(Model model) throws IOException{
-			Authorization(model);
-			User userProfil = userService.getUserByUsername(getPrincipal());
-			Address userAddress = addressService.getAddressById(userProfil.getAddress().getIdAddress());
-            model.addAttribute("userProfil",userProfil);
-            model.addAttribute("userAddress",userAddress);
-            model.addAttribute("edit",true);
-    	return "/user/profile";
+		userService.authorization(model);
+		User userProfil = userService.getUserByUsername(userService.getPrincipal());
+		Address userAddress = addressService.getAddressById(userProfil.getAddress().getIdAddress());
+        model.addAttribute("userProfil",userProfil);
+        model.addAttribute("userAddress",userAddress);
+        model.addAttribute("edit",true);
+        return "/user/profile";
 	}
 	
 	@RequestMapping(value = "profile/edit", method = RequestMethod.POST)
 	public String processUserProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
-            Authorization(model);
-            LOGGER.info(userProfil.getAvatar());
-			if(resultUser.hasErrors() || resultAddress.hasErrors()){
-				model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
-				LOGGER.info(resultUser.toString());
-				LOGGER.info(userAddress.toString());
-				return "/user/profile";
-			}else{
-				addressService.updateAddress(userAddress);
-				userService.updateUser(userProfil);
-				return "redirect:/user/profile";
-			}
+		userService.authorization(model);
+        LOGGER.info(userProfil.getAvatar());
+		if(resultUser.hasErrors() || resultAddress.hasErrors()){
+			model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
+			LOGGER.info(resultUser.toString());
+			LOGGER.info(userAddress.toString());
+			return "/user/profile";
+		}else{
+			addressService.updateAddress(userAddress);
+			userService.updateUser(userProfil);
+			return "redirect:/user/profile";
+		}
 	}
 	
 	/**
@@ -120,7 +120,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
-		Authorization(model);
+		userService.authorization(model);
 		User newUser = new User();
 		Address newAddress = new Address();
 		newUser.setActive(true);
@@ -138,7 +138,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.POST)
 	public String processAddNewUserForm(@Valid @ModelAttribute("newUser") User newUser, BindingResult resultUser,@Valid @ModelAttribute("newAddress") Address newAddress, BindingResult resultAddress, Model model) throws HibernateException, IOException, SerialException, SQLException{
-		Authorization(model);
+		userService.authorization(model);
 		if(resultUser.hasErrors() || resultUser.hasErrors()){
 			model.addAttribute("warn","Nie udało się wykonać rejestracji, spróbuj ponownie!");
 			LOGGER.info(resultUser.toString());
@@ -178,35 +178,6 @@ public class UserController {
 			response = "not";
 		}
 		return response;
-	}
-	
-	private String getPrincipal(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
-	
-	private Model Authorization(Model model){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if( !(auth instanceof AnonymousAuthenticationToken)){
-			model.addAttribute("user",getPrincipal());
-			if(auth.getAuthorities() != null){
-				for(GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()){
-					String role = authority.getAuthority();
-					LOGGER.info(role);
-					model.addAttribute("role",role);
-				}
-			}
-		}else{
-			model.addAttribute("user", null);
-		}
-		
-		return model;
 	}
 	
 }
