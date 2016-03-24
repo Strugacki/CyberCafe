@@ -47,7 +47,7 @@ public class UserDaoTest {
 	
 
 	/*
-	 * Initialization method that clears the news table from database and add
+	 * Initialisation method that clears the news table from database and add
 	 * few records before starting test method
 	 */
 	@Before
@@ -55,27 +55,11 @@ public class UserDaoTest {
 		userDao.deleteAllUsers();
 
 		/* First address added */
-		User userToAdd = new User();
-		userToAdd.setFirstName(FIRSTNAME);
-		userToAdd.setLastName(LASTNAME);
-		userToAdd.setEmail(EMAIL);
-		userToAdd.setActive(ACTIVE);
-		userToAdd.setDateOfBirth(DATEOFBIRTH);
-		userToAdd.setNickname(NICKNAME);
-		userToAdd.setLogin(LOGIN);
-		userToAdd.setPassword(PASSWORD);
+		User userToAdd = User.builder().firstName(FIRSTNAME).lastName(LASTNAME).email(EMAIL).active(ACTIVE).dateOfBirth(DATEOFBIRTH).nickname(NICKNAME).login(LOGIN).password(PASSWORD).build();
 		userDao.addUser(userToAdd);
 
 		/* Second address added */
-		User userToAdd2 = new User();
-		userToAdd2.setFirstName(FIRSTNAME);
-		userToAdd2.setLastName(LASTNAME);
-		userToAdd2.setEmail(EMAIL);
-		userToAdd2.setActive(ACTIVE);
-		userToAdd2.setDateOfBirth(DATEOFBIRTH);
-		userToAdd2.setNickname(NICKNAME);
-		userToAdd2.setLogin(LOGIN);
-		userToAdd2.setPassword(PASSWORD);
+		User userToAdd2 = User.builder().firstName(FIRSTNAME).lastName(LASTNAME).email(EMAIL).active(ACTIVE).dateOfBirth(DATEOFBIRTH).nickname(NICKNAME).login(LOGIN).password(PASSWORD).build();
 		userDao.addUser(userToAdd2);
 	}
 
@@ -152,11 +136,7 @@ public class UserDaoTest {
 	public void addAddressToUserCheck() {
 		List<User> retrievedUsers = userDao.getAllUsers();
 		User userToUpdate = retrievedUsers.get(0);
-		Address addressToAdd = new Address();
-		addressToAdd.setCity("Kwidzyn");
-		addressToAdd.setPostalCode("80-126");
-		addressToAdd.setStreet("Lakowa");
-		addressToAdd.setLocalNumber("14");
+		Address addressToAdd = Address.builder().city("Kwidzyn").postalCode("80-126").street("Lakowa").localNumber("14").build();
 		addressDao.addAddress(addressToAdd);
 		List<Address> retrievedAddresses = addressDao.getAllAddresses();
 		addressToAdd = retrievedAddresses.get(0);
@@ -172,8 +152,7 @@ public class UserDaoTest {
 	public void addRoleToUserCheck() {
 		List<User> retrievedUsers = userDao.getAllUsers();
 		User userToUpdate = retrievedUsers.get(0);
-		Role roleToAdd = new Role();
-		roleToAdd.setRole("ADMIN");
+		Role roleToAdd = Role.builder().role("ADMIN").build();
 		roleDao.addRole(roleToAdd);
 		List<Role> retrievedRoles = roleDao.getAllRoles();
 		roleToAdd = retrievedRoles.get(0);

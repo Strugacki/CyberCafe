@@ -19,7 +19,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 @Entity
 @Table(name = "USER")
@@ -31,6 +33,7 @@ import lombok.Data;
 		@NamedQuery(name = "check.Unique.Login", query = "Select u.firstName from User u WHERE u.login = ?"),
 		@NamedQuery(name = "check.Unique.Nickname", query = "Select u.firstName from User u WHERE u.nickname = ?")})
 @Data
+@Builder
 public class User {
 
 	@Id
@@ -93,5 +96,8 @@ public class User {
 	@JoinColumn(name = "ROLE_IDROLE")
 	private Role role;
 	// private Set<Role> roles;
+	
+	@Tolerate
+	User(){}
 
 }

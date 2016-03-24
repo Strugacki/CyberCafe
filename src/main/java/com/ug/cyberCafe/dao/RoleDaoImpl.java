@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.domain.Role;
 
-@Transactional
 @Repository
 public class RoleDaoImpl implements RoleDao {
 

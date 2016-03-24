@@ -35,17 +35,10 @@ public class TerminalDaoTest {
 		terminalDao.deleteAllTerminals();
 		
 		/*First address added*/
-		Terminal terminalToAdd = new Terminal();
-		terminalToAdd.setType(TYPE);
-		terminalToAdd.setAvailable(AVAILABLE);
-		terminalToAdd.setDescription(DESCRIPTION);
+		Terminal terminalToAdd = Terminal.builder().type(TYPE).available(AVAILABLE).description(DESCRIPTION).build();
 		terminalDao.addTerminal(terminalToAdd);
-		
 		/*Second address added*/
-		Terminal terminalToAdd2 = new Terminal();
-		terminalToAdd2.setType(TYPE);
-		terminalToAdd2.setAvailable(AVAILABLE);
-		terminalToAdd2.setDescription(DESCRIPTION);
+		Terminal terminalToAdd2 = Terminal.builder().type(TYPE).available(AVAILABLE).description(DESCRIPTION).build();
 		terminalDao.addTerminal(terminalToAdd2);
 	}
 	

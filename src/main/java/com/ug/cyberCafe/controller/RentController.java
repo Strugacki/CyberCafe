@@ -113,7 +113,7 @@ public class RentController {
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddRentForm(Model model){
 		rentService.authorization(model);
-		Rent newRent = new Rent();
+		Rent newRent = Rent.builder().build();
 		User employee = userService.getUserByUsername(rentService.getPrincipal());
 		model.addAttribute("newRent",newRent);
 		model.addAttribute("idEmployee",employee.getIdUser());

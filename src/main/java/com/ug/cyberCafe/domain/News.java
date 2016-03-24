@@ -11,7 +11,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 @Entity
 @Table(name="NEWS")
@@ -20,6 +22,7 @@ import lombok.Data;
 	@NamedQuery(name = "get.User.By.News.Id", query = "SELECT u.nickname FROM User u")
 })
 @Data
+@Builder
 public class News {
 	
 	@Id
@@ -39,5 +42,8 @@ public class News {
 	@ManyToOne
 	@JoinColumn(name="USER_IDUSER")
 	private User user;
+	
+	@Tolerate
+	News() {}
 
 }

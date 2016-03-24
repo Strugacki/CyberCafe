@@ -31,28 +31,20 @@ public class AddressDaoTest {
 	private String STREET = "Spokojna";
 	private String LOCALNUMBER = "1";
 	
-	/*Initialization method that cleares the address table from database and add few records before starting test method*/
+	/*Initialisation method that clears the address table from database and add few records before starting test method*/
 	@Before public void initialize() {
 		addressDao.deleteAllAddresses();
 		
 		/*First address added*/
-		Address addressToAdd = new Address();
-		addressToAdd.setCity(CITY);
-		addressToAdd.setPostalCode(POSTALCODE);
-		addressToAdd.setStreet(STREET);
-		addressToAdd.setLocalNumber(LOCALNUMBER);
+		Address addressToAdd = Address.builder().city(CITY).postalCode(POSTALCODE).street(STREET).localNumber(LOCALNUMBER).build();
 		addressDao.addAddress(addressToAdd);
 		
 		/*Second address added*/
-		Address addressToAdd2 = new Address();
-		addressToAdd2.setCity(CITY);
-		addressToAdd2.setPostalCode(POSTALCODE);
-		addressToAdd2.setStreet(STREET);
-		addressToAdd2.setLocalNumber(LOCALNUMBER);
+		Address addressToAdd2 = Address.builder().city(CITY).postalCode(POSTALCODE).street(STREET).localNumber(LOCALNUMBER).build();
 		addressDao.addAddress(addressToAdd2);
 	}
 	
-	/*Finishing method that cleares the address table from database*/
+	/*Finishing method that clears the address table from database*/
 	@After public void finishing() {
 		addressDao.deleteAllAddresses();
 	}

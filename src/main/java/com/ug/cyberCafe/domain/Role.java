@@ -9,7 +9,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 @Entity
 @Table(name="ROLE")
@@ -18,6 +20,7 @@ import lombok.Data;
 	@NamedQuery(name = "get.Role.By.Name", query = "Select r from Role r WHERE r.role = ? ")
 })
 @Data
+@Builder
 public class Role {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +29,8 @@ public class Role {
 	
 	@Column(name = "ROLE")
 	private String role;
+	
+	@Tolerate
+	Role(){}
 	
 }

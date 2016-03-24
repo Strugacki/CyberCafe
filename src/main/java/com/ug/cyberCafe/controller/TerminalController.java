@@ -37,7 +37,7 @@ public class TerminalController {
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewTerminalForm(Model model) {
 		terminalService.authorization(model);
-		Terminal newTerminal = new Terminal();
+		Terminal newTerminal = Terminal.builder().build();
 		model.addAttribute("newTerminal", newTerminal);
 		return "terminal/addTerminal";
 	}

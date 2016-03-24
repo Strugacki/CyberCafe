@@ -28,22 +28,20 @@ public class RoleDaoTest {
 	
 	private String ROLE = "Admin";
 	
-	/*Initialization method that clears the news table from database and add few records before starting test method*/
+	/*Initialisation method that clears the news table from database and add few records before starting test method*/
 	@Before public void initialize() {
 		roleDao.deleteAllRoles();
 		
 		/*First address added*/
-		Role roleToAdd = new Role();
-		roleToAdd.setRole(ROLE);
+		Role roleToAdd = Role.builder().role(ROLE).build();
 		roleDao.addRole(roleToAdd);
 		
 		/*Second address added*/
-		Role roleToAdd2 = new Role();
-		roleToAdd2.setRole(ROLE);
+		Role roleToAdd2 = Role.builder().role(ROLE).build();
 		roleDao.addRole(roleToAdd2);
 	}
 	
-	/*Finishing method that cleares the address table from database*/
+	/*Finishing method that clears the address table from database*/
 	@After public void finishing() {
 		roleDao.deleteAllRoles();
 	}

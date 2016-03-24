@@ -112,8 +112,8 @@ public class EmployeeController {
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
 		userService.authorization(model);
-		User newUser = new User();
-		Address newAddress = new Address();
+		User newUser = User.builder().build();
+		Address newAddress = Address.builder().build();
 		model.addAttribute("newUser", newUser);
 		model.addAttribute("newAddress",newAddress);
 		return "/employee/addEmployee";

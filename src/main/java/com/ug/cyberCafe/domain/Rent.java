@@ -11,13 +11,16 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 @Entity
 @Table(name = "RENT")
 @NamedQueries({ @NamedQuery(name = "get.All.Rents", query = "Select r from Rent r"),
 		@NamedQuery(name = "get.Rent.By.Terminal.And.Date", query = "Select r from Rent r Where r.terminal = ? And r.date = ?") })
 @Data
+@Builder
 public class Rent {
 
 	@Id
@@ -49,4 +52,6 @@ public class Rent {
 	@Column(name = "HOURS", nullable = false)
 	private Integer hours;
 
+	@Tolerate
+	Rent(){}
 }

@@ -118,8 +118,8 @@ public class UserController {
 	@RequestMapping(value = "registration", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
 		userService.authorization(model);
-		User newUser = new User();
-		Address newAddress = new Address();
+		User newUser = User.builder().build();
+		Address newAddress = Address.builder().build();
 		newUser.setActive(true);
 		model.addAttribute("newUser", newUser);
 		model.addAttribute("newAddress",newAddress);

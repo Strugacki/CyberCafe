@@ -13,7 +13,9 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 @Entity
 @Table(name="TERMINAL")
@@ -22,6 +24,7 @@ import lombok.Data;
 	@NamedQuery(name = "get.All.Available.Terminals", query = "Select t from Terminal t Where t.available=true"),
 })
 @Data
+@Builder
 public class Terminal {
 	
 	@Id
@@ -43,5 +46,8 @@ public class Terminal {
 	@NotEmpty(message = "Podaj opis")
 	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
+	
+	@Tolerate
+	Terminal() {}
 	
 }

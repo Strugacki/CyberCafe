@@ -1,6 +1,8 @@
 package com.ug.cyberCafe.domain;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "Address")
 @NamedQueries({ @NamedQuery(name = "get.All.Addresses", query = "Select a from Address a"), })
 @Data
+@Builder
 public class Address {
 
 	@Id
@@ -47,4 +50,6 @@ public class Address {
 	@NotEmpty(message = "Podaj właściwy numer lokalu/domu!")
 	private String localNumber;
 
+	@Tolerate
+	Address(){}
 }

@@ -41,7 +41,7 @@ public class RentDaoTest {
 	
 	//for terminal
 	private String TYPE = "PC";
-	private boolean AVAIABLE = true;
+	private boolean AVAILABLE = true;
 	private String DESCRIPTION = "Personal Computer";
 	
 	//for customer
@@ -79,55 +79,22 @@ public class RentDaoTest {
 		userDao.deleteAllUsers();
 		terminalDao.deleteAllTerminals();
 		
-		User customerToAdd = new User();
-		customerToAdd.setFirstName(FIRSTNAMECUSTOMER);
-		customerToAdd.setLastName(LASTNAMECUSTOMER);
-		customerToAdd.setEmail(EMAILCUSTOMER);
-		customerToAdd.setActive(ACTIVECUSTOMER);
-		customerToAdd.setDateOfBirth(DATEOFBIRTHCUSTOMER);
-		customerToAdd.setNickname(NICKNAMECUSTOMER);
-		customerToAdd.setLogin(LOGINCUSTOMER);
-		customerToAdd.setPassword(PASSWORDCUSTOMER);
+		User customerToAdd = User.builder().firstName(FIRSTNAMECUSTOMER).lastName(LASTNAMECUSTOMER).email(EMAILCUSTOMER).active(ACTIVECUSTOMER).dateOfBirth(DATEOFBIRTHCUSTOMER).nickname(NICKNAMECUSTOMER).login(LOGINCUSTOMER).password(PASSWORDCUSTOMER).build();
 		userDao.addUser(customerToAdd);
 		
-		User employeeToAdd = new User();
-		employeeToAdd.setFirstName(FIRSTNAMEEMPLOYEE);
-		employeeToAdd.setLastName(LASTNAMEEMPLOYEE);
-		employeeToAdd.setEmail(EMAILEMPLOYEE);
-		employeeToAdd.setActive(ACTIVEEMPLOYEE);
-		employeeToAdd.setDateOfBirth(DATEOFBIRTHEMPLOYEE);
-		employeeToAdd.setNickname(NICKNAMEEMPLOYEE);
-		employeeToAdd.setLogin(LOGINEMPLOYEE);
-		employeeToAdd.setPassword(PASSWORDEMPLOYEE);
+		User employeeToAdd = User.builder().firstName(FIRSTNAMEEMPLOYEE).lastName(LASTNAMEEMPLOYEE).email(EMAILEMPLOYEE).active(ACTIVEEMPLOYEE).dateOfBirth(DATEOFBIRTHEMPLOYEE).nickname(NICKNAMEEMPLOYEE).login(LOGINEMPLOYEE).password(PASSWORDEMPLOYEE).build();	
 		userDao.addUser(employeeToAdd);
 		
-		Terminal terminalToAdd = new Terminal();
-		terminalToAdd.setAvailable(AVAIABLE);
-		terminalToAdd.setDescription(DESCRIPTION);
-		terminalToAdd.setType(TYPE);
+		Terminal terminalToAdd = Terminal.builder().type(TYPE).available(AVAILABLE).description(DESCRIPTION).build();
 		terminalDao.addTerminal(terminalToAdd);
 		
 		allUsers = userDao.getAllUsers();
 		allTerminals = terminalDao.getAllTerminals();
 		
-		Rent rentToAdd = new Rent();
-		rentToAdd.setTerminal(allTerminals.get(0));
-		rentToAdd.setCustomer(allUsers.get(0));
-		rentToAdd.setEmployee(allUsers.get(1));
-		rentToAdd.setPrice(PRICE);
-		rentToAdd.setDate(DATE);
-		rentToAdd.setTimeStart(TIMESTART);
-		rentToAdd.setHours(HOURS);
+		Rent rentToAdd = Rent.builder().terminal(allTerminals.get(0)).customer(allUsers.get(0)).employee(allUsers.get(1)).price(PRICE).date(DATE).timeStart(TIMESTART).hours(HOURS).build();
 		rentDao.addRent(rentToAdd);
 		
-		Rent rentToAdd2 = new Rent();
-		rentToAdd2.setTerminal(TERMINAL);
-		rentToAdd2.setCustomer(CUSTOMER);
-		rentToAdd2.setEmployee(EMPLOYEE);
-		rentToAdd2.setPrice(PRICE);
-		rentToAdd2.setDate(DATE);
-		rentToAdd2.setTimeStart(TIMESTART);
-		rentToAdd2.setHours(HOURS);
+		Rent rentToAdd2 = Rent.builder().terminal(TERMINAL).customer(CUSTOMER).employee(EMPLOYEE).price(PRICE).date(DATE).timeStart(TIMESTART).hours(HOURS).build();
 		rentDao.addRent(rentToAdd2);
 		
 		allUsers = userDao.getAllUsers();

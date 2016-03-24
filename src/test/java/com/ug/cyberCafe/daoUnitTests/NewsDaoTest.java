@@ -45,43 +45,33 @@ public class NewsDaoTest {
 	private String PASSWORD = "123456";
 	
 	//for news
+	private String TITLE = "Test title";
 	private String BODY = "This is testing body";
 	private String UPLOADDATE = "1922-12-12";
 	
-	/*Initialization method that cleares the news table from database and add few records before starting test method*/
+
+	/*Initialisation method that clears the news table from database and add few records before starting test method*/
 	@Before public void initialize() {
 		newsDao.deleteAllNews();
 		userDao.deleteAllUsers();
 		
-		User userToAdd = new User();
-		userToAdd.setFirstName(FIRSTNAME);
-		userToAdd.setLastName(LASTNAME);
-		userToAdd.setEmail(EMAIL);
-		userToAdd.setActive(ACTIVE);
-		userToAdd.setDateOfBirth(DATEOFBIRTH);
-		userToAdd.setNickname(NICKNAME);
-		userToAdd.setLogin(LOGIN);
-		userToAdd.setPassword(PASSWORD);
+		User userToAdd = User.builder().firstName(FIRSTNAME).lastName(LASTNAME).email(EMAIL).active(ACTIVE).dateOfBirth(DATEOFBIRTH).nickname(NICKNAME).login(LOGIN).password(PASSWORD).build();
 		userDao.addUser(userToAdd);
 		
 		allUsers = userDao.getAllUsers();
 		
 		/*First address added*/
-		News newsToAdd = new News();
-		newsToAdd.setBody(BODY);
-		newsToAdd.setUploadDate(UPLOADDATE);
-		newsToAdd.setUser(allUsers.get(0));
+		News newsToAdd = News.builder().title(TITLE).body(BODY).uploadDate(UPLOADDATE).user(allUsers.get(0)).build();
+			
 		newsDao.addNews(newsToAdd);
 		
 		/*Second address added*/
-		News newsToAdd2 = new News();
-		newsToAdd2.setBody(BODY);
-		newsToAdd2.setUploadDate(UPLOADDATE);
-		newsToAdd2.setUser(allUsers.get(0));
+		News newsToAdd2 = News.builder().title(TITLE).body(BODY).uploadDate(UPLOADDATE).user(allUsers.get(0)).build();
+	
 		newsDao.addNews(newsToAdd2);
 	}
 	
-	/*Finishing method that cleares the address table from database*/
+	/*Finishing method that clears the address table from database*/
 	@After public void finishing() {
 		newsDao.deleteAllNews();
 	}
