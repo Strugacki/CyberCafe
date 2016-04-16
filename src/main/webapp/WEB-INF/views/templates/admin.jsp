@@ -26,6 +26,14 @@
 	</ul>
 </li>
 <li class="dropdown">
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Newsy
+	<span class="caret"></span></a>
+	<ul class="dropdown-menu">
+	  <li><a href="<c:url value="/news/list" />" >Lista</a></li>
+	  <li><a href="<c:url value="/news/add" />" >Dodaj</a></li>
+	</ul>
+</li>
+<li class="dropdown">
 	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Wypożyczenia
 	<span class="caret"></span></a>
 	<ul class="dropdown-menu">

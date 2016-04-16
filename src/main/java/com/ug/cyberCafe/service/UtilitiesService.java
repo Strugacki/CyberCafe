@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 
 public abstract class UtilitiesService {
-
+	
 	
 	public String getPrincipal(){
         String userName = null;
