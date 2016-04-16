@@ -128,9 +128,12 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="nickname">Pseudonim</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.nickname">
-							<input id="nickname" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
+							<div class="input-group has-warning" id="checkNicknameDiv">
+								<spring:bind path="newUser.nickname">
+									<input id="nickname" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm" aria-decscribedBy="chechNickname"/>
+								</spring:bind>
+								<div class="input-group-addon" id="checkNickname"><span class="glyphicon glyphicon-warning-sign"></span></div>
+							</div>
 						<form:errors path="newUser.nickname" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4" />
 						</div>
 					</div>
@@ -139,9 +142,12 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">
 						<label class="control-label col-lg-4 col-md-4 col-sm-4" for="login">Login</label>
 						<div class="col-lg-3 col-md-3 col-sm-3">
-						<spring:bind path="newUser.login" >
-							<input id="login" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm"/>
-						</spring:bind>
+							<div class="input-group has-warning" id="checkLoginDiv">
+								<spring:bind path="newUser.login" >
+									<input id="login" type="text" name="${status.expression}" value="${status.value}" class="form-control input-sm" aria-describedBy="checkLogin"/>
+								</spring:bind>
+								<div class="input-group-addon" id="checkLogin"><span class="glyphicon glyphicon-warning-sign"></span></div>
+							</div>
 						</div>
 						<form:errors path="newUser.login" cssClass="alert alert-danger col-lg-4 col-md-4 col-sm-4"/>
 					</div>
@@ -247,6 +253,57 @@
 		$(document).ready(function(){
 		        $("#myModal").modal();
 		    });
-</script>		
+		
+		$("input#nickname").keyup(function(){
+			var nickname = $(this).val();
+			$.ajax({
+				type: "GET",
+				url: "${pageContext.request.contextPath}/user/checkNickname",
+				data: "nickname="+nickname,
+				success: function(data){
+					var response = $.trim(data);
+					if(data === 'yes' && nickname.length !== 0){
+						$('div#checkNickname > span').removeClass("glyphicon-warning-sign").addClass("glyphicon-ok");
+						$('div#checkNicknameDiv').removeClass('has-warning').addClass("has-success");
+					}else{
+						$('div#checkNickname > span').removeClass("glyphicon-ok").addClass("glyphicon-warning-sign");
+						$('div#checkNicknameDiv').removeClass("has-success").addClass('has-warning');
+					}
+				},
+				error: function(){
+					console.log("ERROR");
+				}
+			})
+		});
+		
+		$("input#login").keyup(function(){
+			var login = $(this).val();
+			$.ajax({
+				type: "GET",
+				url: "${pageContext.request.contextPath}/user/checkLogin",
+				data: "login="+login,
+				success: function(data){
+					var response = $.trim(data);
+					if(data === 'yes' && login.length !== 0){
+						$('div#checkLogin > span').removeClass("glyphicon-warning-sign").addClass("glyphicon-ok");
+						$('div#checkLoginDiv').removeClass('has-warning').addClass("has-success");
+					}else{
+						$('div#checkLogin > span').removeClass("glyphicon-ok").addClass("glyphicon-warning-sign");
+						$('div#checkLoginDiv').removeClass("has-success").addClass('has-warning');
+					}
+				},
+				error: function(){
+					console.log("ERROR");
+				}
+			})
+		});
+		
+		$("input[name='submit']").on('click',function(e){
+			if($('div#checkLoginDiv').hasClass('has-warning') || $('div#checkNicknameDiv').hasClass('has-warning')){
+			e.preventDefault();
+			
+			}
+		});
+	</script>	
 	<body>
 </html>
