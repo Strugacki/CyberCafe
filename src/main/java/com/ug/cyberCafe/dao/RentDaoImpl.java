@@ -11,15 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.domain.Rent;
 
-@Transactional
+
 @Repository
 public class RentDaoImpl implements RentDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	TerminalDao terminalDao;
+	UserDao userDao;
+	RoleDao roleDao;
 
 	@Override
 	public void addRent(Rent rent) {
+
 		sessionFactory.getCurrentSession().save(rent);
 	}
 

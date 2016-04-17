@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ug.cyberCafe.domain.News;
 import com.ug.cyberCafe.domain.User;
 
-@Transactional
 @Component("newsDao")
 public class NewsDaoImpl implements NewsDao {
 

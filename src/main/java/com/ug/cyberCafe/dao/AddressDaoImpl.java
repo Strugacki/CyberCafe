@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.domain.Address;
 
-@Transactional
 @Component("addressDao")
 public class AddressDaoImpl implements AddressDao {
 

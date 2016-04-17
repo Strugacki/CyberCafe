@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ug.cyberCafe.domain.Terminal;
 
-@Transactional
+
 @Repository
 public class TerminalDaoImpl implements TerminalDao {
 	
