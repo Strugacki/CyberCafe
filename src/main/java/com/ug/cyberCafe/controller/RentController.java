@@ -127,7 +127,6 @@ public class RentController {
 		rentService.authorization(model);
 		if(rentResult.hasErrors()){
 			model.addAttribute("warn","Nie udało się dodać wypożyczenia, spróbuj ponownie!");
-			
 			LOGGER.info(rentResult);
 			return "rent/addRent";
 		}else{
@@ -135,8 +134,39 @@ public class RentController {
 			LOGGER.info(newRent.getHours());
 			LOGGER.info(newRent.getPrice());
 			rentService.addRent(newRent);
+			return "redirect:/rent/list";
 		}
-		return "redirect: /rent/list";
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(@RequestParam("id") String idRent, Model model){
+		rentService.authorization(model);
+		rentService.deleteRent(rentService.getRentById(Long.parseLong(idRent)));
+		return "redirect:/rent/list";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String getUpdateRentForm(@RequestParam("id") String idRent, Model model){
+		rentService.authorization(model);
+		Rent rentToUpdate = rentService.getRentById(Long.parseLong(idRent));
+		LOGGER.info(rentToUpdate.getTerminal().getType());
+		model.addAttribute("customers", userService.getUsersByRole("ROLE_USER"));
+		model.addAttribute("terminals",terminalService.getAllAvailableTerminals());
+		model.addAttribute("rentToUpdate", rentToUpdate);
+		return "rent/updateRent";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String processUpdateRentForm(@RequestParam("id") String idRent, @ModelAttribute("rentToUpdate") Rent rentToUpdate, BindingResult rentResult, Model model){
+		rentService.authorization(model);
+		if(rentResult.hasErrors()){
+			model.addAttribute("warn","Nie udało się wykonać aktualizacji wypożyczenia, spróbuj ponownie!");
+			LOGGER.info(rentResult);			
+			return "rent/updateRent";
+		}else{
+			rentService.updateRent(rentToUpdate);
+			return "redirect:/rent/list";
+		}
 	}
 
 }

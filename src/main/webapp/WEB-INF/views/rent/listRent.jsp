@@ -80,9 +80,10 @@
   					<th class="text-center">Klient</th>
   					<th class="text-center">Pracownik</th>
   					<th class="text-center">Data</th>
-  					<th class="txt-center">Godzina wypożyczenia</th>
+  					<th class="txt-center">Godzina</th>
   					<th class="txt-center">Ilość godzin</th>
   					<th class="txt-center">Cena</th>
+  					<th class="txt-center"></th>
   				</tr>
   			</thead>
   			<tbody>
@@ -96,6 +97,7 @@
 					<td class="text-center">${rent.timeStart}</td>
 					<td class="text-center">${rent.hours}</td>
 					<td class="text-center">${rent.price}</td>
+					<td class="text-center"><a href="/cyberCafe/rent/update?id=${rent.idRent}" class="btn btn-primary">Edytuj <span class="glyphicon glyphicon-wrench"></span></a> <a href="/cyberCafe/rent/delete?id=${rent.idRent}" class="btn btn-danger">Usuń <span class="glyphicon glyphicon-remove-circle"></span></a> </td>
 				</tr>
 	    </c:forEach>
 	    </tbody>

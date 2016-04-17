@@ -33,7 +33,7 @@ public class NewsServiceImpl extends UtilitiesService implements NewsService{
 		newsToUpdate.setTitle(news.getTitle());
 		newsToUpdate.setBody(news.getBody());
 		newsToUpdate.setUploadDate(news.getUploadDate());
-		newsToUpdate.setUser(news.getUser());
+		//newsToUpdate.setUser(news.getUser());
 		newsDao.updateNews(newsToUpdate);
 	}
 
