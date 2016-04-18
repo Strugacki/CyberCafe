@@ -52,7 +52,7 @@ public class CustomerController {
 	public String list(Model model){
 		userService.authorization(model);
 		List<User> Customers = userService.getUsersByRole("ROLE_USER");
-		LOGGER.info(Customers.size());
+		LOGGER.info("customers size: "+Customers.size());
 		model.addAttribute("customers",Customers);
 		return "customer/listCustomer";
 	}
@@ -89,14 +89,10 @@ public class CustomerController {
 	public String processCustomerProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@RequestParam("id") String idUser, @Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
 			userService.authorization(model);
             userProfil.setIdUser(Long.parseLong(idUser));
-            LOGGER.info(userProfil.getIdUser());
-            LOGGER.info(userProfil.getFirstName());
-            LOGGER.info(userProfil.getLastName());
-            LOGGER.info(idUser);
+            LOGGER.info("user profil id: "+userProfil.getIdUser() + " firstname: " + userProfil.getFirstName() + " lastname: " + userProfil.getLastName());
 			if(resultUser.hasErrors() || resultAddress.hasErrors()){
 				model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
-				LOGGER.info(resultUser.toString());
-				LOGGER.info(userAddress.toString());
+				LOGGER.info("result user: " + resultUser.toString() + " user address: " + userAddress.toString());
 				return "/customer/updateCustomer";
 			}else{
 				addressService.updateAddress(userAddress);

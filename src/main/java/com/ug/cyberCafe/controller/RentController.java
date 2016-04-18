@@ -92,7 +92,7 @@ public class RentController {
 		String datee = date;
 		List<Rent> dbResults = new ArrayList<Rent>();
 		dbResults = rentService.getRentByIdTerminal(idTerminall, datee);
-		LOGGER.info(dbResults);
+		LOGGER.info("getRentByIdTerminal - db results: " + dbResults);
 		String response = "";
 		for(int i=10;i<23;i++){
 			if(dbResults.size()>0){
@@ -127,13 +127,10 @@ public class RentController {
 		rentService.authorization(model);
 		if(rentResult.hasErrors()){
 			model.addAttribute("warn","Nie udało się dodać wypożyczenia, spróbuj ponownie!");
-			LOGGER.info(rentResult);
+			LOGGER.info("rentResult: "+rentResult);
 			return "rent/addRent";
 		}else{
-			LOGGER.info(newRent.getTimeStart());
-			LOGGER.info(newRent.getHours());
-			LOGGER.info(newRent.getPrice());
-			rentService.addRent(newRent);
+			LOGGER.info("Rent time start: " + newRent.getTimeStart() + " rent Hours: " + newRent.getHours() + " rent price: " + newRent.getPrice());
 			return "redirect:/rent/list";
 		}
 	}
@@ -149,7 +146,7 @@ public class RentController {
 	public String getUpdateRentForm(@RequestParam("id") String idRent, Model model){
 		rentService.authorization(model);
 		Rent rentToUpdate = rentService.getRentById(Long.parseLong(idRent));
-		LOGGER.info(rentToUpdate.getTerminal().getType());
+		LOGGER.info("Rent to update - terminal type: " + rentToUpdate.getTerminal().getType());
 		model.addAttribute("customers", userService.getUsersByRole("ROLE_USER"));
 		model.addAttribute("terminals",terminalService.getAllAvailableTerminals());
 		model.addAttribute("rentToUpdate", rentToUpdate);
@@ -161,7 +158,7 @@ public class RentController {
 		rentService.authorization(model);
 		if(rentResult.hasErrors()){
 			model.addAttribute("warn","Nie udało się wykonać aktualizacji wypożyczenia, spróbuj ponownie!");
-			LOGGER.info(rentResult);			
+			LOGGER.info("rent result: " + rentResult);			
 			return "rent/updateRent";
 		}else{
 			rentService.updateRent(rentToUpdate);

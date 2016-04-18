@@ -99,11 +99,9 @@ public class UserController {
 	@RequestMapping(value = "profile/edit", method = RequestMethod.POST)
 	public String processUserProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
 		userService.authorization(model);
-        LOGGER.info(userProfil.getAvatar());
 		if(resultUser.hasErrors() || resultAddress.hasErrors()){
 			model.addAttribute("warn","Nie udało się wykonać aktualizacji, spróbuj ponownie!");
-			LOGGER.info(resultUser.toString());
-			LOGGER.info(userAddress.toString());
+			LOGGER.info("Result user: "+resultUser.toString() + " user address: " + userAddress.toString());
 			return "/user/profile";
 		}else{
 			addressService.updateAddress(userAddress);
@@ -138,8 +136,7 @@ public class UserController {
 		userService.authorization(model);
 		if(resultUser.hasErrors() || resultUser.hasErrors()){
 			model.addAttribute("warn","Nie udało się wykonać rejestracji, spróbuj ponownie!");
-			LOGGER.info(resultUser.toString());
-			LOGGER.info(newAddress.toString());
+			LOGGER.info("Result user: "+resultUser.toString() + " user address: " + newAddress.toString());
 			return "/user/registration";
 		}else{
 			newUser.setRole(roleService.getRoleByName("ROLE_USER"));

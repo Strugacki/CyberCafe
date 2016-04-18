@@ -55,11 +55,11 @@ public class NewsController {
 		newsService.authorization(model);
 		if(resultNews.hasErrors()){
 			model.addAttribute("warn","Nie udało się dodać newsa, spróbuj ponownie!");
-			LOGGER.info(resultNews.toString());
+			LOGGER.info("news result: " + resultNews.toString());
 			return "news/addNews";
 		}else{
 			String uploadDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-			LOGGER.info(uploadDate);
+			LOGGER.info("upload date: "+uploadDate);
 			User user = userService.getUserByUsername(newsService.getPrincipal());
 			newNews.setUploadDate(uploadDate);
 			newNews.setUser(user);
@@ -84,7 +84,7 @@ public class NewsController {
 		newsService.authorization(model);
 		if(resultNews.hasErrors()){
 			model.addAttribute("warn","Nie udało się wykonać aktualizacji newsa, spróbuj ponownie!");
-			LOGGER.info(resultNews.toString());
+			LOGGER.info("result news: "+resultNews.toString());
 			return "news/updateNews";
 		}else{
 			newsService.updateNews(newsToUpdate);
