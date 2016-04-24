@@ -5,7 +5,7 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe - dodaj news</title>
+		<title> Cyber Cafe - dodawanie newsa</title>
 	</head>
 
 	<body>

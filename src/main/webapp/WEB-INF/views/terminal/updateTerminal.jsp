@@ -5,7 +5,7 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe - rejestracja</title>
+		<title> Cyber Cafe - edycja sprzętu</title>
 	</head>
 
 	<body>
@@ -64,7 +64,7 @@
 	
 	<div class="generic-container">
     	<div class="well lead">
-    		<h2 class="text-center">Formularz aktualizacji terminalu</h2>
+    		<h2 class="text-center">Formularz edycji sprzętu</h2>
     	</div>
 			<form:form modelAttribute="terminalToUpdate" class="form-horizontal" id="updateForm">
 				<div class="row">

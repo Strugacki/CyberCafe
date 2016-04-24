@@ -5,7 +5,7 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<title> Cyber Cafe - aktualizuj news</title>
+		<title> Cyber Cafe - edycja newsa</title>
 	</head>
 
 	<body>
@@ -63,7 +63,7 @@
 		</nav>
 	
 		<div class="generic-container">
-    	<div class="well lead text-center">Formularz aktualizacji newsa</div>
+    	<div class="well lead text-center">Formularz edycji newsa</div>
 			<form:form modelAttribute="newsToUpdate" class="form-horizontal" accept-charset="UTF-8">
 				<div class="row">
 					<div class="form-group col-lg-12 col-md-12 col-sm-12">

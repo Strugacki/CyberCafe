@@ -68,7 +68,7 @@
 	<!-- Page Content -->
     <div class="container">
 	    <div class="well lead">
-			<h2 class="text-center">Dodaj wypożyczenie</h2>
+			<h2 class="text-center">Formularz dodawania wypożyczenia</h2>
 		</div>
 		<div class="col-lg-8 col-lg-push-2 col-md-8 col-md-push-2 col-sm-12">
 			<div class="panel panel-default">

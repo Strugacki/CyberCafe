@@ -47,18 +47,17 @@
 								</c:choose>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
-						<c:choose >
-							<c:when test="${empty user}">
-								<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
-							</c:when>
-							<c:otherwise>
-								<li><a class="btn btn-primary-outline" href="<c:url value='/user/logout' />" ><span class="glyphicon glyphicon-log-out" ></span> Wyloguj</a></li>
-							</c:otherwise>
-						</c:choose>
-						<li><a class="btn btn-info-outline" href="<c:url value='/user/registration' />" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
-					</ul>
+								<c:choose >
+									<c:when test="${empty user}">
+										<li><a class="btn btn-primary-outline" href="<c:url value='/user/login' />" ><span class="glyphicon glyphicon-log-in" ></span> Logowanie</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a class="btn btn-primary-outline" href="<c:url value='/user/logout' />" ><span class="glyphicon glyphicon-log-out" ></span> Wyloguj</a></li>
+									</c:otherwise>
+								</c:choose>
+								<li><a class="btn btn-info-outline" href="<c:url value='/user/registration' />" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
+							</ul>
 						</div>
-					
 			</div>
 		</nav>
 		
@@ -84,34 +83,34 @@
   				</tr>
   			</thead>
   			<tbody>
-	    <c:forEach items="${employees}" var="employee">	    
-	    		<tr>
-	    			<td></td>
-					<td class="text-center">${employee.firstName}</td>
-					<td class="text-center">${employee.lastName}</td>
-					<td class="text-center">${employee.dateOfBirth}</td>
-					<td class="text-center">${employee.nickname}</td>
-					<c:choose>
-						<c:when test="${employee.active == true }">
-							<td class="text-center success">Tak</td>
-						</c:when>
-						<c:otherwise>
-							<td class="text-center danger">Nie</td>
-						</c:otherwise>
-					</c:choose>
-					<td class="text-center"> <a href="/cyberCafe/employee/edit?id=${employee.idUser}" class="btn btn-primary">Edytuj <span class="glyphicon glyphicon-wrench"></span></a> 
-						<c:choose>
-							<c:when test="${employee.active == true}">
-								<a href="/cyberCafe/employee/deactive?id=${employee.idUser}" class="btn btn-warning">Dezaktywuj <span class="glyphicon glyphicon-ban-circle"></span></a>
-							</c:when>
-							<c:otherwise>
-								<a href="/cyberCafe/employee/active?id=${employee.idUser}" class="btn btn-success">Aktywuj <span class="glyphicon glyphicon-ok-circle"></span></a>
-							</c:otherwise>
-						</c:choose>
-					</td>
-				</tr>
-	    </c:forEach>
-	    </tbody>
+			    <c:forEach items="${employees}" var="employee">	    
+			    		<tr>
+			    			<td></td>
+							<td class="text-center">${employee.firstName}</td>
+							<td class="text-center">${employee.lastName}</td>
+							<td class="text-center">${employee.dateOfBirth}</td>
+							<td class="text-center">${employee.nickname}</td>
+							<c:choose>
+								<c:when test="${employee.active == true }">
+									<td class="text-center success">Tak</td>
+								</c:when>
+								<c:otherwise>
+									<td class="text-center danger">Nie</td>
+								</c:otherwise>
+							</c:choose>
+							<td class="text-center"> <a href="/cyberCafe/employee/edit?id=${employee.idUser}" class="btn btn-primary">Edytuj <span class="glyphicon glyphicon-wrench"></span></a> 
+								<c:choose>
+									<c:when test="${employee.active == true}">
+										<a href="/cyberCafe/employee/deactive?id=${employee.idUser}" class="btn btn-warning">Dezaktywuj <span class="glyphicon glyphicon-ban-circle"></span></a>
+									</c:when>
+									<c:otherwise>
+										<a href="/cyberCafe/employee/active?id=${employee.idUser}" class="btn btn-success">Aktywuj <span class="glyphicon glyphicon-ok-circle"></span></a>
+									</c:otherwise>
+								</c:choose>
+							</td>
+						</tr>
+			    </c:forEach>
+		    </tbody>
  	</table>    
     </div>
 	<jsp:include page="../templates/footer.jsp"></jsp:include>	

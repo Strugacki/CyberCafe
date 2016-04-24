@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-type" content="text/html" charset="UTF-8">
 		<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
 		<link rel="stylesheet" href="<c:url value="/resources/css/datepicker.css" />">
-		<title> Cyber Cafe - aktualizuj wypożyczenia</title>
+		<title> Cyber Cafe - edycja wypożyczenia</title>
 	</head>
 
 	<body>
@@ -68,7 +68,7 @@
 	<!-- Page Content -->
     <div class="container">
 	    <div class="well lead">
-			<h2 class="text-center">Aktualizuj wypożyczenie</h2>
+			<h2 class="text-center">Formularz edycji wypożyczenia</h2>
 		</div>
 		<div class="col-lg-8 col-lg-push-2 col-md-8 col-md-push-2 col-sm-12">
 			<div class="panel panel-default">
