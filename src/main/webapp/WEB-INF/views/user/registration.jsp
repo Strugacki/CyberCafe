@@ -240,7 +240,6 @@
 		$(document).ready(function(){
 		        $("#myModal").modal();
 		    });
-		
 		$("input#nickname").keyup(function(){
 			var nickname = $(this).val();
 			$.ajax({

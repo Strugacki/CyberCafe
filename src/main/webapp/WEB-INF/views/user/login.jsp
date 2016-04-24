@@ -105,6 +105,15 @@
 		</div>
 	<jsp:include page="../templates/footer.jsp"></jsp:include>
 	<script src="<c:url value="/resources/js/jquery.js" />" ></script>
-	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>		
+	<script src="<c:url value="/resources/js/bootstrap.js" />" ></script>
+	<script>
+		var docHeight = $(window).height();
+	    var footerHeight = $('footer').height();
+	    var footerTop = $('footer').position().top + footerHeight;
+	
+	    if (footerTop < docHeight) {
+	    	$('footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
+	    }
+	</script>		
 	<body>
 </html>

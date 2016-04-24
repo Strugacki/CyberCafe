@@ -45,7 +45,7 @@
 				<value></value>
 			</list>
 		</property>
-	</bean> -->
+	</bean>!-->
 	
 	<!--
 		enable the configuration of transactional behavior based on
