@@ -48,6 +48,11 @@ public class CustomerController {
 		binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
 	}
 	
+	/**
+	 * Show all customers controller method
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "list")
 	public String list(Model model){
 		userService.authorization(model);
@@ -57,18 +62,37 @@ public class CustomerController {
 		return "customer/listCustomer";
 	}
 	
+	/**
+	 * Deactivate customer controller method
+	 * @param idUser
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "deactive", method = RequestMethod.GET)
 	public String deactivate(@RequestParam("id")String idUser,Model model){
 		userService.deactivateUserAccount(Long.parseLong(idUser),false);
 		return "redirect:/customer/list";
 	}
 	
+	/**
+	 * Activate customer controller method
+	 * @param idUser
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "active", method = RequestMethod.GET)
 	public String activate(@RequestParam("id")String idUser,Model model){
 		userService.deactivateUserAccount(Long.parseLong(idUser),true);
 		return "redirect:/customer/list";
 	}
 	
+	/**
+	 * Get customer update form controller method
+	 * @param idCustomer
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
 	public String getCustomerProfilUpdateForm(@RequestParam("id") String idCustomer, Model model) throws IOException{
 		userService.authorization(model);
@@ -85,6 +109,17 @@ public class CustomerController {
     	return "/customer/updateCustomer";
 	}
 	
+	/**
+	 * Process customer update form controller method
+	 * @param userProfil
+	 * @param resultUser
+	 * @param idUser
+	 * @param userAddress
+	 * @param resultAddress
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String processCustomerProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@RequestParam("id") String idUser, @Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
 			userService.authorization(model);
@@ -102,7 +137,9 @@ public class CustomerController {
 	}
 	
 	/**
-	 * 
+	 * Get customer add form controller method
+	 * @param model
+	 * @return
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
@@ -115,6 +152,7 @@ public class CustomerController {
 	}
 	
 	/**
+	 * Process customer add form controller method
 	 * @throws IOException 
 	 * @throws HibernateException 
 	 * @throws SQLException 

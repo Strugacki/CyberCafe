@@ -23,6 +23,11 @@ public class HomeController {
 		return "redirect:/home";
 	}
 	
+	/**
+	 * Controller method rendering home page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("home")
 	public String welcome(Model model){
 		newsService.authorization(model);
@@ -33,6 +38,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	/**
+	 * Controller method rendering about page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("about")
 	public String about(Model model){
 		newsService.authorization(model);
@@ -40,6 +50,11 @@ public class HomeController {
 		return "about";
 	}
 	
+	/**
+	 * Controller method rendering contact page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("contact")
 	public String contact(Model model){
 		newsService.authorization(model);
@@ -47,6 +62,11 @@ public class HomeController {
 		return "contact";
 	}
 	
+	/**
+	 * Controller method rendering pricing page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("pricing")
 	public String pricing(Model model){
 		newsService.authorization(model);
@@ -54,6 +74,11 @@ public class HomeController {
 		return "pricing";
 	}
 	
+	/**
+	 * Controller method rendering promotions page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("promotions")
 	public String promotions(Model model){
 		newsService.authorization(model);
@@ -61,6 +86,11 @@ public class HomeController {
 		return "promotions";
 	}
 	
+	/**
+	 * Controller method rendering tournaments page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("events")
 	public String tournaments(Model model){
 		newsService.authorization(model);

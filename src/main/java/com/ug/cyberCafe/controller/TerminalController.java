@@ -24,6 +24,11 @@ public class TerminalController {
 	@Autowired
 	private TerminalService terminalService;
 
+	/**
+	 * Show all terminals controller method
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("list")
 	public String list(Model model) {
 		terminalService.authorization(model);
@@ -32,7 +37,9 @@ public class TerminalController {
 	}
 
 	/**
-	 * 
+	 * Get terminal add form controller method
+	 * @param model
+	 * @return
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewTerminalForm(Model model) {
@@ -43,7 +50,11 @@ public class TerminalController {
 	}
 
 	/**
-	 * 
+	 * Process terminal add form controller method
+	 * @param newTerminal
+	 * @param result
+	 * @param model
+	 * @return
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String processAddNewTerminalForm(@Valid @ModelAttribute("newTerminal") Terminal newTerminal,BindingResult result, Model model) {
@@ -57,6 +68,12 @@ public class TerminalController {
 		}
 	}
 
+	/**
+	 * Delete terminal controller method
+	 * @param idTerminal
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteTerminal(@RequestParam("id") String idTerminal, Model model) {
 		terminalService.authorization(model);
@@ -65,6 +82,12 @@ public class TerminalController {
 		return "redirect:/device/list";
 	}
 
+	/**
+	 * Get terminal update form controller method
+	 * @param idTerminal
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String getUpdateTerminalForm(@RequestParam("id") String idTerminal, Model model) {
 		terminalService.authorization(model);
@@ -73,6 +96,14 @@ public class TerminalController {
 		return "terminal/updateTerminal";
 	}
 
+	/**
+	 * Process terminal update form controller method
+	 * @param terminalToUpdate
+	 * @param idTerminal
+	 * @param result
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String processUpdateTerminalForm(@Valid @ModelAttribute("terminal") Terminal terminalToUpdate,@RequestParam("id") String idTerminal, BindingResult result, Model model) {
 		terminalService.authorization(model);

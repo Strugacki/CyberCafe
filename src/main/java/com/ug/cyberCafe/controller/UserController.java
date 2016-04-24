@@ -53,13 +53,23 @@ public class UserController {
 		binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
 	}
 	
+	/**
+	 * Controller method rendering login page
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login(Model model){
 		userService.authorization(model);
 		return "/user/login";
 	}
 	
-	
+	/**
+	 * Controller method redirecting to logout page
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpServletResponse response){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -69,6 +79,12 @@ public class UserController {
 		return "redirect:/user/login?logout";
 	}
 	
+	/**
+	 * Controller method rendering user profile page
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "profile", method = RequestMethod.GET)
 	public String profile(Model model) throws IOException{
 		userService.authorization(model);
@@ -85,6 +101,12 @@ public class UserController {
         return "/user/profile";
 	}
 	
+	/**
+	 * Get user update form controller method
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "profile/edit", method = RequestMethod.GET)
 	public String getUserProfilUpdateForm(Model model) throws IOException{
 		userService.authorization(model);
@@ -96,6 +118,16 @@ public class UserController {
         return "/user/profile";
 	}
 	
+	/**
+	 * Process user update form controller method
+	 * @param userProfil
+	 * @param resultUser
+	 * @param userAddress
+	 * @param resultAddress
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "profile/edit", method = RequestMethod.POST)
 	public String processUserProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
 		userService.authorization(model);
@@ -111,7 +143,9 @@ public class UserController {
 	}
 	
 	/**
-	 * 
+	 * Get user add form controller method
+	 * @param model
+	 * @return
 	 */
 	@RequestMapping(value = "registration", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
@@ -125,6 +159,7 @@ public class UserController {
 	}
 	
 	/**
+	 * Process user add form controller method
 	 * @throws IOException 
 	 * @throws HibernateException 
 	 * @throws SQLException 
@@ -147,7 +182,12 @@ public class UserController {
 		}
 	}
 	
-	
+	/**
+	 * Check nickname controller method
+	 * using AJAX
+	 * @param nickname
+	 * @return
+	 */
 	@RequestMapping(value = "checkNickname", method = RequestMethod.GET)
 	public @ResponseBody String checkNickname(@RequestParam("nickname") String nickname){
 		String response = "not";
@@ -161,6 +201,12 @@ public class UserController {
 		return response;
 	}
 	
+	/**
+	 * Check login controller method
+	 * using AJAX
+	 * @param login
+	 * @return
+	 */
 	@RequestMapping(value = "checkLogin", method = RequestMethod.GET)
 	public @ResponseBody String checkLogin(@RequestParam("login") String login){
 		String response = "not";

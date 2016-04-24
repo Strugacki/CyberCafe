@@ -42,6 +42,12 @@ public class RentController {
 	@Autowired
 	private TerminalService terminalService;
 	
+	/**
+	 * Init binder for rent
+	 * Uses String id param parsed to Long to search for User 
+	 * Returns customer(User) and employee(User) objects
+	 * @param binder
+	 */
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder){
 		binder.registerCustomEditor(Terminal.class,"terminal", new PropertyEditorSupport() {
@@ -58,7 +64,6 @@ public class RentController {
 		PropertyEditorSupport customerSupport = new PropertyEditorSupport(){
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
-				//User user = userService.getUserById(Long.parseLong(text));
 				this.setValue(userService.getUserById(Long.parseLong(text)));
 				
 			}
@@ -67,7 +72,6 @@ public class RentController {
 		PropertyEditorSupport employeeSupport = new PropertyEditorSupport(){
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
-				//User user = userService.getUserById(Long.parseLong(text));
 				this.setValue(userService.getUserById(Long.parseLong(text)));
 				
 			}
@@ -79,6 +83,11 @@ public class RentController {
 		
 	}
 	
+	/**
+	 * Show all rents controller method
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "list")
 	public String list(Model model){
 		rentService.authorization(model);
@@ -86,6 +95,13 @@ public class RentController {
 		return "/rent/listRent";
 	}
 	
+	/**
+	 * Reservation terminal on specific day controller method
+	 * using AJAX
+	 * @param idTerminal
+	 * @param date
+	 * @return
+	 */
 	@RequestMapping(value = "search", method=RequestMethod.GET)
 	public @ResponseBody String reservationCheck(@Valid @RequestParam("idTerminal") String idTerminal, @RequestParam("date") String date){
 		Long idTerminall = Long.parseLong(idTerminal);
@@ -110,6 +126,11 @@ public class RentController {
 		return response;
 	}
 	
+	/**
+	 * Get rent add form controller method
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddRentForm(Model model){
 		rentService.authorization(model);
@@ -122,6 +143,13 @@ public class RentController {
 		return "/rent/addRent";
 	}
 	
+	/**
+	 * Process rent add form controller method
+	 * @param newRent
+	 * @param rentResult
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String processAddRentForm(@ModelAttribute("newRent") Rent newRent, BindingResult rentResult, Model model){
 		rentService.authorization(model);
@@ -135,6 +163,12 @@ public class RentController {
 		}
 	}
 	
+	/**
+	 * Delete rent controller method
+	 * @param idRent
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String delete(@RequestParam("id") String idRent, Model model){
 		rentService.authorization(model);
@@ -142,6 +176,12 @@ public class RentController {
 		return "redirect:/rent/list";
 	}
 	
+	/**
+	 * Get rent update form controller method
+	 * @param idRent
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String getUpdateRentForm(@RequestParam("id") String idRent, Model model){
 		rentService.authorization(model);
@@ -153,6 +193,14 @@ public class RentController {
 		return "rent/updateRent";
 	}
 	
+	/**
+	 * Process rent update form controller method
+	 * @param idRent
+	 * @param rentToUpdate
+	 * @param rentResult
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String processUpdateRentForm(@RequestParam("id") String idRent, @ModelAttribute("rentToUpdate") Rent rentToUpdate, BindingResult rentResult, Model model){
 		rentService.authorization(model);

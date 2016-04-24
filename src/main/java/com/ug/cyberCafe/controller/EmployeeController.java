@@ -49,6 +49,11 @@ public class EmployeeController {
 		binder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
 	}
 	
+	/**
+	 * Show all employees controller method
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "list")
 	public String list(Model model){
 		userService.authorization(model);
@@ -58,18 +63,37 @@ public class EmployeeController {
 		return "employee/listEmployee";
 	}
 	
+	/**
+	 * Deactivate employee controller method
+	 * @param idUser
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "deactive", method = RequestMethod.GET)
 	public String deactivate(@RequestParam("id")String idUser,Model model){
 		userService.deactivateUserAccount(Long.parseLong(idUser),false);
 		return "redirect:/employee/list";
 	}
 	
+	/**
+	 * Activate employee controller method
+	 * @param idUser
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "active", method = RequestMethod.GET)
 	public String activate(@RequestParam("id")String idUser,Model model){
 		userService.deactivateUserAccount(Long.parseLong(idUser),true);
 		return "redirect:/employee/list";
 	}
 	
+	/**
+	 * Get employee update form controller method
+	 * @param idCustomer
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "edit", method = RequestMethod.GET)
 	public String getEmployeeProfilUpdateForm(@RequestParam("id") String idCustomer, Model model) throws IOException{
 			userService.authorization(model);
@@ -86,6 +110,17 @@ public class EmployeeController {
     	return "/employee/updateEmployee";
 	}
 	
+	/**
+	 * Process employee update form controller method
+	 * @param userProfil
+	 * @param resultUser
+	 * @param idUser
+	 * @param userAddress
+	 * @param resultAddress
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "edit", method = RequestMethod.POST)
 	public String processEmployeeProfilUpdateForm(@Valid @ModelAttribute("userProfil") User userProfil, BindingResult resultUser,@RequestParam("id") String idUser, @Valid @ModelAttribute("userAddress") Address userAddress, BindingResult resultAddress, Model model) throws IOException{
 			userService.authorization(model);
@@ -103,7 +138,9 @@ public class EmployeeController {
 	}
 	
 	/**
-	 * 
+	 * Get employee add form controller method
+	 * @param model
+	 * @return
 	 */
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewUserForm(Model model){
@@ -116,6 +153,7 @@ public class EmployeeController {
 	}
 	
 	/**
+	 * Process employee add form controller method
 	 * @throws IOException 
 	 * @throws HibernateException 
 	 * @throws SQLException 

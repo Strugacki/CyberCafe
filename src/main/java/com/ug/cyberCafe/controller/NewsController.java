@@ -33,7 +33,11 @@ public class NewsController {
 	@Autowired
 	NewsService newsService;
 
-	
+	/**
+	 * Show all news controller method
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "list")
 	public String list(Model model){
 		newsService.authorization(model);
@@ -42,6 +46,11 @@ public class NewsController {
 		return "news/listNews";
 	}
 	
+	/**
+	 * Get news add form controller method
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String getAddNewsForm(Model model) {
 		newsService.authorization(model);
@@ -50,6 +59,13 @@ public class NewsController {
 		return "news/addNews";
 	}
 	
+	/**
+	 * Process news add form controller method
+	 * @param newNews
+	 * @param resultNews
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String processAddNewsForm(@Valid @ModelAttribute("newNews") News newNews, BindingResult resultNews, Model model){
 		newsService.authorization(model);
@@ -69,6 +85,12 @@ public class NewsController {
 		}
 	}
 	
+	/**
+	 * Get news update form controller method
+	 * @param idNews
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping( value = "/update", method = RequestMethod.GET)
 	public String getUpdateNewsForm(@RequestParam("id") String idNews,Model model){
 		newsService.authorization(model);
@@ -78,7 +100,14 @@ public class NewsController {
 		return "news/updateNews";
 	}
 	
-	
+	/**
+	 * Process news update form controller method
+	 * @param newsToUpdate
+	 * @param resultNews
+	 * @param idNews
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping( value = "/update", method = RequestMethod.POST)
 	public String processUpdateNewsForm(@Valid @ModelAttribute("newsToUpdate") News newsToUpdate, BindingResult resultNews, @RequestParam("id") String idNews,Model model){
 		newsService.authorization(model);
@@ -93,6 +122,12 @@ public class NewsController {
 		
 	}
 	
+	/**
+	 * Delete news controller method
+	 * @param idNews
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteTerminal(@RequestParam("id") String idNews, Model model) {
 		newsService.authorization(model);
