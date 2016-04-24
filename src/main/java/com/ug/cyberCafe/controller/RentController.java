@@ -158,7 +158,8 @@ public class RentController {
 			LOGGER.info("rentResult: "+rentResult);
 			return "rent/addRent";
 		}else{
-			LOGGER.info("Rent time start: " + newRent.getTimeStart() + " rent Hours: " + newRent.getHours() + " rent price: " + newRent.getPrice());
+			LOGGER.info("Rent time start: " + newRent.getTimeStart() + " rent Hours: " + newRent.getHours() + " rent price: " + newRent.getPrice() + " customer: " + newRent.getCustomer().getNickname() + " employee: " + newRent.getEmployee().getNickname() + " terminal: " + newRent.getTerminal().getType());
+			rentService.addRent(newRent);
 			return "redirect:/rent/list";
 		}
 	}
