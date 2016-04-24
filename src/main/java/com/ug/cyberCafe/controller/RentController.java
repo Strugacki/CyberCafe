@@ -109,7 +109,7 @@ public class RentController {
 		List<Rent> dbResults = new ArrayList<Rent>();
 		dbResults = rentService.getRentByIdTerminal(idTerminall, datee);
 		LOGGER.info("getRentByIdTerminal - db results: " + dbResults);
-		String response = "";
+		String response = "<option selected='true' class='optionHours' value='null'>-- Wybierz --</option>";
 		for(int i=10;i<23;i++){
 			if(dbResults.size()>0){
 				for(int j=0;j<dbResults.size();j++){

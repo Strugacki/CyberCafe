@@ -305,6 +305,8 @@
 				$('#hoursList').change(function(){
 					var timeStart = $(this).val();
 					console.log(timeStart);
+					$('.hours option').remove();
+					$('.hours').append('<option value="null">-- Wybierz --</option>');
 					$('#timeStart').val(timeStart);
 					var optionSelected = $('select#hoursList option:selected');
 					var hoursQuantity = 1 ;
